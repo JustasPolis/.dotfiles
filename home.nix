@@ -7,7 +7,7 @@
   home.file.".config/kitty/kitty.conf".source = ./kitty/kitty.conf;
   home.file.".config/wallpapers".source = ./wallpapers;
   home.file.".config/swayidle/config".source = ./swayidle/config;
-  home.file.".config/swaylock/config".source = ./swayidle/config;
+  home.file.".config/swaylock/config".source = ./swaylock/config;
 
   home.packages = with pkgs; [
     kitty
