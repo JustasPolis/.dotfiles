@@ -6,18 +6,19 @@
   home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
 
   home.packages = with pkgs; [
-    ripgrep 
-    jq 
-    yq-go 
+    nixfmt
+    ripgrep
+    jq
+    yq-go
     firefox
     fzf
     neovim
-	kitty
-	swaylock-effects
-	neofetch
-	swayidle
-	hyprpaper
-	neovim
+    kitty
+    swaylock-effects
+    neofetch
+    swayidle
+    hyprpaper
+    neovim
   ];
 
   home.stateVersion = "23.11";
