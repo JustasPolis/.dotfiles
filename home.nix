@@ -2,8 +2,9 @@
 
   home.username = "justin";
   home.homeDirectory = "/home/justin";
-  home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
+  home.file.".config/hypr".source = ./hypr;
   home.file.".config/kitty/kitty.conf".source = ./kitty/kitty.conf;
+  home.file.".config/wallpapers".source = ./wallpapers;
 
   home.packages = with pkgs; [
     kitty
