@@ -7,7 +7,11 @@
   ];
 
   programs.fish.enable = true;
-  programs.fish.loginShellInit = "exec Hyprland > /dev/null";
+  programs.fish.loginShellInit = ''
+    if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
+       exec "Hyprland" > /dev/null
+    end
+  '';
   programs.fish.interactiveShellInit = "set fish_greeting";
   users.defaultUserShell = pkgs.fish;
 
