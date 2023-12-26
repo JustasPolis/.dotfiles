@@ -62,7 +62,13 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [ git ];
+  environment.systemPackages = with pkgs; [ 
+  git
+  ];
+
+  fonts.packages = with pkgs; [
+  (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
 
   networking.firewall.enable = true;
 

@@ -2,10 +2,11 @@
 
   home.username = "justin";
   home.homeDirectory = "/home/justin";
-
   home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
+  home.file.".config/kitty/kitty.conf".source = ./kitty/kitty.conf;
 
   home.packages = with pkgs; [
+    kitty
     nixfmt
     ripgrep
     jq
@@ -13,7 +14,6 @@
     firefox
     fzf
     neovim
-    kitty
     swaylock-effects
     neofetch
     swayidle
