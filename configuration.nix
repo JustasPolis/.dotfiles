@@ -6,6 +6,11 @@
   inputs.home-manager.nixosModules.home-manager
   ];
 
+  programs.fish.enable = true;
+  programs.fish.loginShellInit = "exec Hyprland > /dev/null";
+  programs.fish.interactiveShellInit = "set fish_greeting";
+  users.defaultUserShell = pkgs.fish;
+
     home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
