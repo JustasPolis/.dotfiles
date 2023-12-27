@@ -18,6 +18,9 @@
     end
   '';
   users.users.justin.shell = pkgs.fish;
+  programs.fish.interactiveShellInit = ''
+      set fish_greeting
+  '';
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 2;

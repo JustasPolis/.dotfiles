@@ -15,6 +15,7 @@
     ripgrep
     jq
     yq-go
+    fzf
     firefox
     neovim
     swaylock-effects
@@ -23,16 +24,6 @@
     hyprpaper
     neovim
   ];
-
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set fish_greeting
-    '';
-    plugins = [
-    { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-    ];
-    };
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
