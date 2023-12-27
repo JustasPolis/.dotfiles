@@ -25,6 +25,18 @@
     neovim
   ];
 
+  programs.fish = {
+    enable = true;
+    loginShellInit = ''
+    if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
+       exec "Hyprland" > /dev/null
+    end
+  '';
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+    };
+
   programs.fzf.enableFishIntegration = false;
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;

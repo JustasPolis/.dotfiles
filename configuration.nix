@@ -6,17 +6,6 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  programs.fish.enable = true;
-  programs.fish.loginShellInit = ''
-    if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
-       exec "Hyprland" > /dev/null
-    end
-  '';
-
-
-  programs.fish.interactiveShellInit = "set fish_greeting";
-  users.defaultUserShell = pkgs.fish;
-
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = { justin = import ./home.nix; };
@@ -66,7 +55,6 @@
 
   environment.systemPackages = with pkgs; [ 
   git
-  fishPlugins.fzf-fish
   ];
 
   fonts.packages = with pkgs; [
