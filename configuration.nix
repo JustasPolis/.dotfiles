@@ -12,6 +12,11 @@
        exec "Hyprland" > /dev/null
     end
   '';
+
+  programs.fish.plugins = [
+   { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+  ];
+
   programs.fish.interactiveShellInit = "set fish_greeting";
   users.defaultUserShell = pkgs.fish;
 
