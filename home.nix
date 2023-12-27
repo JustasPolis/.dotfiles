@@ -24,6 +24,7 @@
     swayidle
     hyprpaper
     neovim
+    eza
   ];
 
   home.stateVersion = "23.11";
