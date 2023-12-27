@@ -11,6 +11,13 @@
     users = { justin = import ./home.nix; };
   };
 
+  programs.fish.enable = true;
+  programs.fish.loginShellInit = ''
+    if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
+       exec "Hyprland" > /dev/null
+    end
+  '';
+  users.users.justin.shell = pkgs.fish;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 2;
