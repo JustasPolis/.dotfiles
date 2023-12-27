@@ -67,7 +67,7 @@
   git
   fzf
   fishPlugins.fzf-fish
-  fishPlugins.tide
+  starship
   fd
   bat
   ];
