@@ -15,7 +15,6 @@
     ripgrep
     jq
     yq-go
-    fzf
     firefox
     neovim
     swaylock-effects
