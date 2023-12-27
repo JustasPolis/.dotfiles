@@ -66,6 +66,7 @@
 
   environment.systemPackages = with pkgs; [ 
   git
+  fishPlugins.fzf-fish
   ];
 
   fonts.packages = with pkgs; [

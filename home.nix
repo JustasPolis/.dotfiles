@@ -25,10 +25,6 @@
     neovim
   ];
 
-  programs.fish.plugins = [
-    { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; } 
-  ];
-
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }
