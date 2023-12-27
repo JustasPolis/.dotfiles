@@ -25,6 +25,7 @@
     neovim
   ];
 
+  programs.fzf.enableFishIntegration = false;
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }
