@@ -8,9 +8,9 @@ add_newline = false
 truncate_to_repo = false
 
 [git_branch]
-format = '[($symbol$branch(:$remote_branch))]($style)'
-symbol = ''
-style = 'bold red'
+format = ' [($symbol$branch(:$remote_branch))]($style)'
+symbol = ' '
+style = 'bold purple'
 
 [cmd_duration]
 format = ''
