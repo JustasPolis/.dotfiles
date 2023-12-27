@@ -8,6 +8,8 @@
   home.file.".config/wallpapers".source = ./wallpapers;
   home.file.".config/swayidle/config".source = ./swayidle/config;
   home.file.".config/swaylock/config".source = ./swaylock/config;
+  home.file.".config/fish/config.fish".source = ./fish/config.fish;
+  home.file.".config/starship.toml".source = ./starship/starship.toml;
 
   home.packages = with pkgs; [
     kitty
