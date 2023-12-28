@@ -26,6 +26,9 @@
     hyprpaper
     neovim
     eza
+    clang
+    nodejs
+    go
   ];
 
   home.stateVersion = "23.11";
