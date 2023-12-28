@@ -32,6 +32,8 @@
     nodejs
     go
     lua-language-server
+    wofi
+    eww-wayland
   ];
 
   home.stateVersion = "23.11";
