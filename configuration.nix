@@ -75,6 +75,7 @@
 
   fonts.packages = with pkgs; [
   (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  roboto
   ];
 
   networking.firewall.enable = true;
