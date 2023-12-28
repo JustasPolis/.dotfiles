@@ -34,14 +34,9 @@
     lua-language-server
     wofi
     eww-wayland
+    glib
   ];
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
-
-  gtk.enable = true;
-  gtk.font.name = "Roboto";
-  gtk.font.package = pkgs.Roboto;
-  gtk.theme.name = "Rose-Pine";
-  gtk.theme.package = rose-pine-gtk-theme;
 }
