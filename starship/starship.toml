@@ -4,14 +4,12 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
-[line_break]
-disabled = true
-
 [directory]
 truncate_to_repo = false
+read_only = ''
 
 [git_branch]
-format = '\([$symbol$branch]($style)\) '
+format = '[$symbol$branch]($style) '
 symbol = ''
 style = 'bold #c4a7e7'
 
@@ -25,8 +23,8 @@ format = """
 $directory\
 $vcsh\
 $git_branch\
+$character
 """
-
 [character]
-disabled = true
-
+success_symbol = '[❯](bold purple)'
+error_symbol = '[❯](bold purple)'
