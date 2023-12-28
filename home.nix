@@ -11,6 +11,8 @@
   home.file.".config/fish/config.fish".source = ./fish/config.fish;
   home.file.".config/starship.toml".source = ./starship/starship.toml;
   home.file.".config/nvim".source = ./nvim;
+  home.file.".config/gtk-3.0".source = ./gtk-3.0;
+  
 
   home.packages = with pkgs; [
     kitty
