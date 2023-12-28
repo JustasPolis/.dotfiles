@@ -29,8 +29,6 @@ return {
 			highlight = { enable = true, additional_vim_regex_highlighting = false },
 		})
 		---@diagnostic disable-next-line: deprecated
-		vim.treesitter.query.set("swift", "injections", "")
-		vim.treesitter.query.set("swift", "folds", "")
 		vim.treesitter.language.register("bash", "zsh")
 	end,
 }

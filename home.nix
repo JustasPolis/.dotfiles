@@ -29,6 +29,7 @@
     clang
     nodejs
     go
+    lua-language-server
   ];
 
   home.stateVersion = "23.11";

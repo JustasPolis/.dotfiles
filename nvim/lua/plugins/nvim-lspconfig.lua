@@ -82,28 +82,10 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 
 		mason_lspconfig.setup({
-			ensure_installed = { "tsserver", "lua_ls", "rust_analyzer", "gopls" },
+			ensure_installed = { "tsserver", "rust_analyzer", "gopls" },
 		})
 
 		mason_lspconfig.setup_handlers({
-			require("lspconfig").lua_ls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				settings = {
-					Lua = {
-						workspace = { checkThirdParty = false },
-						telemetry = { enable = false },
-						completion = {
-							callSnippet = "Replace",
-						},
-						diagnostics = {
-							globals = { "vim" },
-						},
-						hint = { enable = true },
-					},
-				},
-				filetypes = require("lspconfig").lua_ls.filetypes,
-			}),
 			require("lspconfig").tsserver.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
@@ -137,11 +119,24 @@ return {
 			}),
 		})
 
-		require("lspconfig").sourcekit.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = require("lspconfig").sourcekit.filetypes,
-		})
+	require("lspconfig").lua_ls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					Lua = {
+						workspace = { checkThirdParty = false },
+						telemetry = { enable = false },
+						completion = {
+							callSnippet = "Replace",
+						},
+						diagnostics = {
+							globals = { "vim" },
+						},
+						hint = { enable = true },
+					},
+				},
+				filetypes = require("lspconfig").lua_ls.filetypes,
+			})
 
 		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 		for name, icon in pairs(signs) do

@@ -11,6 +11,7 @@
     users = { justin = import ./home.nix; };
   };
 
+  environment.pathsToLink = [ "/libexec" ];
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
     if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
