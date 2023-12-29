@@ -35,6 +35,8 @@
     wofi
     eww-wayland
     glib
+    imagemagick
+    lf
   ];
 
   home.stateVersion = "23.11";

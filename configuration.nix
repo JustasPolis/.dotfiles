@@ -6,6 +6,8 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = { justin = import ./home.nix; };
