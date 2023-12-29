@@ -37,6 +37,7 @@
     glib
     imagemagick
     lf
+    swayimg
   ];
 
   home.stateVersion = "23.11";
