@@ -11,7 +11,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager,auto-cpufreq, ... }@inputs:
     let inherit (self) outputs;
     in {
       nixosConfigurations = {
