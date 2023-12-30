@@ -39,6 +39,7 @@
     imagemagick
     lf
     swayimg
+    stylua
   ];
 
   home.stateVersion = "23.11";
