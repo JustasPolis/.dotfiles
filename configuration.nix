@@ -75,6 +75,7 @@
   fd
   bat
   brightnessctl
+  pamixer
   ];
 
   fonts.packages = with pkgs; [
