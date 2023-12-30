@@ -41,6 +41,8 @@
     swayimg
     stylua
     wl-clipboard
+    rustup
+    gcc13
   ];
 
   home.stateVersion = "23.11";
