@@ -40,6 +40,7 @@
     lf
     swayimg
     stylua
+    wl-clipboard
   ];
 
   home.stateVersion = "23.11";
