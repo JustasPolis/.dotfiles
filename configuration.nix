@@ -74,6 +74,7 @@
   starship
   fd
   bat
+  brightnessctl
   ];
 
   fonts.packages = with pkgs; [
