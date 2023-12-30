@@ -79,6 +79,7 @@
   bat
   brightnessctl
   pamixer
+  socat
   ];
 
   fonts.packages = with pkgs; [
