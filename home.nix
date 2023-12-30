@@ -42,7 +42,7 @@
     stylua
     wl-clipboard
     rustup
-    gcc13
+    vlc
   ];
 
   home.stateVersion = "23.11";

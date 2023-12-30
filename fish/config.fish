@@ -5,3 +5,4 @@ set fzf_fd_opts --hidden --max-depth 3
 alias imgpreview="swayimg -c swayimg 2> /dev/null"
 set EDITOR nvim
 
+

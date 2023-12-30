@@ -14,7 +14,7 @@
   };
 
   environment.pathsToLink = [ "/libexec" ];
-  programs.auto-cpufreq.enable = true;
+ # programs.auto-cpufreq.enable = true;
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
     if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
