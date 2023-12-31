@@ -43,6 +43,7 @@
     wl-clipboard
     rustup
     vlc
+    sway-audio-idle-inhibit
   ];
 
   home.stateVersion = "23.11";

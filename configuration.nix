@@ -13,8 +13,10 @@
     users = { justin = import ./home.nix; };
   };
 
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
   environment.pathsToLink = [ "/libexec" ];
- # programs.auto-cpufreq.enable = true;
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
     if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
@@ -80,6 +82,7 @@
   brightnessctl
   pamixer
   socat
+  killall
   ];
 
   fonts.packages = with pkgs; [
