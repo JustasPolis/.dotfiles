@@ -38,10 +38,11 @@
     stylua
     wl-clipboard
     rustup
-    vlc
     sway-audio-idle-inhibit
     firefox
     mullvad
+    celluloid
+    transmission
   ];
 
   home.stateVersion = "23.11";
