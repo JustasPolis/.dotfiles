@@ -41,6 +41,7 @@
     vlc
     sway-audio-idle-inhibit
     firefox
+    mullvad
   ];
 
   home.stateVersion = "23.11";

@@ -10,7 +10,10 @@ let
     in ''
       export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
       gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme 'Dracula'
+      gsettings set $gnome_schema gtk-theme 'rose-pine'
+      gsettings set $gnome_schema font-antialiasing 'grayscale'
+      gsettings set $gnome_schema font-hinting 'slight'
+      gsettings set $gnome_schema font-name 'Roboto medium, 10'
     '';
   };
 
