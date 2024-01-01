@@ -90,6 +90,7 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
+  services.mullvad-vpn.enable = true;
 
   environment.systemPackages = with pkgs; [ 
   git

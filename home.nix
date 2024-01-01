@@ -42,7 +42,7 @@
     firefox
     mullvad
     celluloid
-    transmission
+    transmission-gtk
   ];
 
   home.stateVersion = "23.11";
