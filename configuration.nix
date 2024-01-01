@@ -23,9 +23,7 @@
        exec "Hyprland" > /dev/null
     end
   '';
-  users.users.justin.shell = pkgs.fish;
-  programs.fish.interactiveShellInit = ''
-      set fish_greeting
+  users.users.justin.shell = pkgs.fish; programs.fish.interactiveShellInit = '' set fish_greeting
   '';
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -108,5 +106,11 @@
     lidEventCommands = "systemctl suspend";
   };
   system.stateVersion = "23.11";
+
+  security.pam.loginLimits = [
+    { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
+  ];
+
+  programs.dconf.enable = true;
 
 }

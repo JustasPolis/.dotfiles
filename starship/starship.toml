@@ -1,12 +1,15 @@
-# Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+format = """
+$directory\
+$git_branch\
+$character\
+"""
 
-# Inserts a blank line between shell prompts
 add_newline = false
 
 [directory]
 truncate_to_repo = false
 read_only = ''
+truncation_symbol = '…/'
 
 [git_branch]
 format = '[$symbol$branch]($style) '
@@ -16,15 +19,9 @@ style = 'bold #c4a7e7'
 [cmd_duration]
 format = ''
 
-[git_status]
-disabled = true
-
-format = """
-$directory\
-$vcsh\
-$git_branch\
-$character
-"""
 [character]
 success_symbol = '[❯](bold purple)'
 error_symbol = '[❯](bold purple)'
+
+[package]
+disabled = true
