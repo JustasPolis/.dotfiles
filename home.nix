@@ -12,6 +12,7 @@
   home.file.".config/starship.toml".source = ./starship/starship.toml;
   home.file.".config/nvim".source = ./nvim;
   home.file.".config/swayimg/config".source = ./swayimg/config;
+  
   home.packages = with pkgs; [
     kitty
     nixfmt
@@ -39,10 +40,7 @@
     rustup
     vlc
     sway-audio-idle-inhibit
-    rose-pine-gtk-theme
     firefox
-    glib
-    nwg-look
   ];
 
   home.stateVersion = "23.11";
