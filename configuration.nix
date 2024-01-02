@@ -64,10 +64,14 @@ in {
   networking.hostName = "nixos"; # Define your hostname.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
+
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   services.blueman.enable = true;
-  hardware.bluetooth.powerOnBoot = true; 
+  hardware.bluetooth.powerOnBoot = true;
 
   networking.networkmanager.enable = true;
 

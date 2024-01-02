@@ -5,10 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    auto-cpufreq = {
-        url = "github:AdnanHodzic/auto-cpufreq";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = { self, nixpkgs, home-manager,auto-cpufreq, ... }@inputs:
@@ -19,7 +16,6 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
           ./configuration.nix
-          auto-cpufreq.nixosModules.default
           ];
         };
       };
