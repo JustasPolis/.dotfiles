@@ -40,7 +40,7 @@
     wl-clipboard
     rustup
     sway-audio-idle-inhibit
-    firefox
+    firefox-unwrapped
     mullvad
     celluloid
     transmission-gtk
