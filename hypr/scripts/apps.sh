@@ -2,19 +2,19 @@
 
 entries="Firefox Celluloid Transmission Kitty"
 
-pwr=$(printf '%s\n' $entries | wofi -i --dmenu | awk '{print tolower($2)}')
+pwr=$(printf '%s\n' $entries | wofi -i --dmenu | awk '{print tolower($1)}')
 
 case $pwr in
-Transmission)
+transmission)
 	hyprctl dispatch exec transmission-gtk
 	;;
-Firefox)
+firefox)
 	hyprctl dispatch exec firefox
 	;;
-Celluloid)
+celluloid)
 	hyprctl dispatch exec celluloid
 	;;
-Kitty)
+kitty)
 	hyprctl dispatch exec kitty
 	;;
 
