@@ -2,7 +2,7 @@
 
 entries="Firefox Celluloid Transmission Kitty"
 
-pwr=$(printf '%s\n' $entries | wofi -i --dmenu | awk '{print tolower($1)}')
+pwr=$(printf '%s\n' $entries | wofi --dmenu | awk '{print tolower($1)}')
 
 case $pwr in
 transmission)
