@@ -7,7 +7,7 @@ return {
 			lua = { "stylua" },
 			rust = { "rustfmt" },
 			go = { "gofmt" },
-			bash = { "shfmt" },
+			sh = { "shfmt" },
 			nix = { "nixfmt" },
 		},
 	},

@@ -20,8 +20,7 @@ let
     '';
   };
 
-in
-{
+in {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
@@ -44,7 +43,9 @@ in
        exec "Hyprland" > /dev/null
     end
   '';
-  users.users.justin.shell = pkgs.fish; programs.fish.interactiveShellInit = '' set fish_greeting
+  users.users.justin.shell = pkgs.fish;
+  programs.fish.interactiveShellInit = ''
+    set fish_greeting
   '';
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -64,7 +65,8 @@ in
   programs.hyprland.enable = true;
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   services.blueman.enable = true;
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.powerOnBoot =
+    true; # powers up the default Bluetooth controller on boot
 
   networking.networkmanager.enable = true;
 
@@ -92,35 +94,35 @@ in
   nixpkgs.config.allowUnfree = true;
   services.mullvad-vpn.enable = true;
 
-  environment.systemPackages = with pkgs; [ 
-  git
-  dbus
-  fzf
-  fishPlugins.fzf-fish
-  starship
-  fd
-  bat
-  brightnessctl
-  pamixer
-  socat
-  killall
-  configure-gtk
-  glib
-  rose-pine-gtk-theme
-  xdg-utils
-  bibata-cursors
+  environment.systemPackages = with pkgs; [
+    git
+    dbus
+    fzf
+    fishPlugins.fzf-fish
+    starship
+    fd
+    bat
+    brightnessctl
+    pamixer
+    socat
+    killall
+    configure-gtk
+    glib
+    rose-pine-gtk-theme
+    xdg-utils
+    bibata-cursors
   ];
 
- services.dbus.enable = true;
- xdg.portal = {
+  services.dbus.enable = true;
+  xdg.portal = {
     enable = true;
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  roboto
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    roboto
   ];
 
   networking.firewall.enable = true;
@@ -142,7 +144,10 @@ in
   };
   system.stateVersion = "23.11";
 
-  security.pam.loginLimits = [
-    { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
-  ];
+  security.pam.loginLimits = [{
+    domain = "@users";
+    item = "rtprio";
+    type = "-";
+    value = 1;
+  }];
 }

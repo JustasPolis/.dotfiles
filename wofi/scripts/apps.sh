@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-entries="Firefox Celluloid Transmission Kitty"
+      entries="Firefox Celluloid Transmission Kitty"
 
 pwr=$(printf '%s\n' $entries | wofi -i --dmenu | awk '{print tolower($2)}')
 
