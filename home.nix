@@ -12,6 +12,7 @@
   home.file.".config/starship.toml".source = ./starship/starship.toml;
   home.file.".config/nvim".source = ./nvim;
   home.file.".config/swayimg/config".source = ./swayimg/config;
+  home.file.".config/gtk-4.0".source = ./gtk-4.0;
   
   home.packages = with pkgs; [
     kitty
