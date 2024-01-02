@@ -8,7 +8,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, home-manager,auto-cpufreq, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager,... }@inputs:
     let inherit (self) outputs;
     in {
       nixosConfigurations = {
