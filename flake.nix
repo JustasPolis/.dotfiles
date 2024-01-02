@@ -6,17 +6,19 @@
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
+    auto-cpufreq = {
+      url = "github:AdnanHodzic/auto-cpufreq";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager,... }@inputs:
+  outputs = { self, nixpkgs, home-manager, auto-cpufreq, ... }@inputs:
     let inherit (self) outputs;
     in {
       nixosConfigurations = {
         justin = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [
-          ./configuration.nix
-          ];
+          modules = [ ./configuration.nix auto-cpufreq.nixosModules.default ];
         };
       };
     };
