@@ -7,6 +7,8 @@ return {
 			lua = { "stylua" },
 			rust = { "rustfmt" },
 			go = { "gofmt" },
+			bash = { "shfmt" },
+			nix = { "nixfmt" },
 		},
 	},
 	keys = {

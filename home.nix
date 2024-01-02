@@ -45,6 +45,7 @@
     mullvad
     celluloid
     transmission-gtk
+    shfmt
   ];
 
   home.stateVersion = "23.11";
