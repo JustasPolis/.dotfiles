@@ -17,6 +17,7 @@ let
       gsettings set $gnome_schema cursor-theme 'Bibata-Modern-Ice'
       gsettings set $gnome_schema cursor-size 24
       gsettings set $gnome_schema toolbar-icons-size 'small'
+      gsettings set org.gnome.mutter auto-maximize 'false'
     '';
   };
 
@@ -40,6 +41,7 @@ in {
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
     if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
+       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XAUTHORITY
        exec "Hyprland" > /dev/null
     end
   '';
@@ -65,8 +67,7 @@ in {
   programs.hyprland.enable = true;
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   services.blueman.enable = true;
-  hardware.bluetooth.powerOnBoot =
-    true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.powerOnBoot = true; 
 
   networking.networkmanager.enable = true;
 
@@ -109,16 +110,8 @@ in {
     configure-gtk
     glib
     rose-pine-gtk-theme
-    xdg-utils
     bibata-cursors
   ];
-
-  services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
