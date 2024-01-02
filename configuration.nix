@@ -41,7 +41,6 @@ in {
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
     if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
-       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XAUTHORITY
        exec "Hyprland" > /dev/null
     end
   '';
@@ -97,7 +96,6 @@ in {
 
   environment.systemPackages = with pkgs; [
     git
-    dbus
     fzf
     fishPlugins.fzf-fish
     starship
