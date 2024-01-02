@@ -6,3 +6,4 @@ alias imgpreview="swayimg -c swayimg 2> /dev/null"
 set EDITOR nvim
 
 
+

@@ -13,6 +13,7 @@
   home.file.".config/nvim".source = ./nvim;
   home.file.".config/swayimg/config".source = ./swayimg/config;
   home.file.".config/gtk-4.0".source = ./gtk-4.0;
+  home.file.".config/wofi".source = ./wofi;
   
   home.packages = with pkgs; [
     kitty

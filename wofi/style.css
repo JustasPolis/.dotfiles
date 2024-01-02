@@ -1,0 +1,88 @@
+* {
+    font-family:'Roboto';
+    font-size: 14px;
+ }
+
+ /* Window */
+
+ window {
+    margin: 0px;
+    padding: 10px;
+    border: 3px solid #c4a7e7;
+    background-color: #26233a;
+    animation: slideIn 0.5s ease-in-out both;
+ }
+
+ @keyframes slideIn {
+    0% {
+       opacity: 0;
+    }
+
+    100% {
+       opacity: 1;
+    }
+ }
+
+ /* Inner Box */
+
+ #inner-box {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background-color: #26233a;
+    animation: fadeIn 0.5s ease-in-out both;
+ }
+
+ @keyframes fadeIn {
+    0% {
+       opacity: 0;
+    }
+
+    100% {
+       opacity: 1;
+    }
+ }
+
+ /* Outer Box */
+
+ #outer-box {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background-color: #26233a;
+ }
+
+ /* Scroll */
+
+ #scroll {
+    margin: 0px;
+    padding: 10px;
+    border: none;
+ }
+
+ /* Input */
+
+ #input {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    color: #e0def4;
+    background-color: #44475a;
+    animation: fadeIn 0.5s ease-in-out both;
+ }
+
+ /* Text */
+
+ #text {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    color: #e0def4;
+    animation: fadeIn 0.5s ease-in-out both;
+ }
+
+ /* Selected Entry */
+ 
+ #entry:selected #text {
+    color: #191724;
+ }
