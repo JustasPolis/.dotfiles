@@ -80,9 +80,7 @@ in {
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Vilnius";
-
   i18n.defaultLocale = "en_US.UTF-8";
-
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -106,7 +104,8 @@ in {
   environment.systemPackages = with pkgs; [
     git
     fzf
-    fishPlugins.fzf-fish starship
+    fishPlugins.fzf-fish
+    starship
     fd
     bat
     brightnessctl
@@ -181,10 +180,15 @@ in {
           options = [ "NOPASSWD" ];
         }
         {
-          command = "/run/current-system/sw/bin/power-settings";
+          command = "/run/current-system/sw/bin/cpupower";
           options = [ "NOPASSWD" ];
         }
+        {
+          command =
+            "/run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference";
+          options = [ "NOPASSWD" ];
 
+        }
       ];
       groups = [ "wheel" ];
     }];
