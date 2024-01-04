@@ -45,6 +45,7 @@
     celluloid
     transmission-gtk
     shfmt
+    qutebrowser
   ];
 
   home.stateVersion = "23.11";

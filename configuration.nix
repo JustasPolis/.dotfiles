@@ -20,7 +20,10 @@ let
       gsettings set org.gnome.mutter auto-maximize 'false'
     '';
   };
-
+  power-settings = pkgs.writeShellScriptBin "power-settings" ''
+    sudo cpupower frequency-set --governor powersave
+    echo "balance_power" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
+  '';
 in {
   imports = [
     ./hardware-configuration.nix
@@ -40,10 +43,11 @@ in {
   environment.pathsToLink = [ "/libexec" ];
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
-    if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
-       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
-       exec "Hyprland" > /dev/null
-    end
+    power-settings
+      if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
+         dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
+         exec "Hyprland" > /dev/null
+      end
   '';
   users.users.justin.shell = pkgs.fish;
   programs.fish.interactiveShellInit = ''
@@ -102,8 +106,7 @@ in {
   environment.systemPackages = with pkgs; [
     git
     fzf
-    fishPlugins.fzf-fish
-    starship
+    fishPlugins.fzf-fish starship
     fd
     bat
     brightnessctl
@@ -114,6 +117,8 @@ in {
     glib
     rose-pine-gtk-theme
     bibata-cursors
+    power-settings
+    linuxKernel.packages.linux_xanmod_latest.cpupower
   ];
 
   fonts.packages = with pkgs; [
@@ -134,6 +139,7 @@ in {
     HandleLidSwitchDocked=ignore
   '';
 
+  programs.auto-cpufreq.enable = false;
   programs.auto-cpufreq.settings = {
     charger = {
       governor = "performance";
@@ -158,4 +164,29 @@ in {
     value = 1;
   }];
 
+  security.sudo = {
+    enable = true;
+    extraRules = [{
+      commands = [
+        {
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "${pkgs.systemd}/bin/reboot";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "${pkgs.systemd}/bin/poweroff";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/power-settings";
+          options = [ "NOPASSWD" ];
+        }
+
+      ];
+      groups = [ "wheel" ];
+    }];
+  };
 }
