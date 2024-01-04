@@ -1,9 +1,7 @@
 { config, pkgs, lib, inputs, outputs, ... }:
 let
   configure-gtk = pkgs.writeTextFile {
-    name = "configure-gtk";
-    destination = "/bin/configure-gtk";
-    executable = true;
+    name = "configure-gtk"; destination = "/bin/configure-gtk"; executable = true;
     text = let
       schema = pkgs.gsettings-desktop-schemas;
       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
@@ -43,11 +41,11 @@ in {
   environment.pathsToLink = [ "/libexec" ];
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
-    power-settings
-      if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
-         dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
-         exec "Hyprland" > /dev/null
-      end
+    sudo systemctl stop bluetooth
+       if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
+          dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
+          exec "Hyprland" > /dev/null
+       end
   '';
   users.users.justin.shell = pkgs.fish;
   programs.fish.interactiveShellInit = ''
@@ -118,6 +116,7 @@ in {
     bibata-cursors
     power-settings
     linuxKernel.packages.linux_xanmod_latest.cpupower
+    mpv
   ];
 
   fonts.packages = with pkgs; [
@@ -177,6 +176,14 @@ in {
         }
         {
           command = "${pkgs.systemd}/bin/poweroff";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/systemctl stop bluetooth";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/systemctl start bluetooth";
           options = [ "NOPASSWD" ];
         }
         {
