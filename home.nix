@@ -13,7 +13,7 @@
   home.file.".config/swayimg/config".source = ./swayimg/config;
   home.file.".config/gtk-4.0".source = ./gtk-4.0;
   home.file.".config/wofi".source = ./wofi;
-  home.file.".config/qutebrowser/config.py".source = ./qutebrowser/config.py;
+  home.file.".config/eww".source = ./eww;
 
   home.packages = with pkgs; [
     kitty
@@ -46,7 +46,7 @@
     celluloid
     transmission-gtk
     shfmt
-    qutebrowser
+    floorp
   ];
 
   home.stateVersion = "23.11";

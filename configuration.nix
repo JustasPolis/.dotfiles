@@ -1,7 +1,9 @@
 { config, pkgs, lib, inputs, outputs, ... }:
 let
   configure-gtk = pkgs.writeTextFile {
-    name = "configure-gtk"; destination = "/bin/configure-gtk"; executable = true;
+    name = "configure-gtk";
+    destination = "/bin/configure-gtk";
+    executable = true;
     text = let
       schema = pkgs.gsettings-desktop-schemas;
       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
@@ -137,18 +139,6 @@ in {
     HandleLidSwitchDocked=ignore
   '';
 
-  programs.auto-cpufreq.enable = false;
-  programs.auto-cpufreq.settings = {
-    charger = {
-      governor = "performance";
-      turbo = "auto";
-    };
-
-    battery = {
-      governor = "powersave";
-      turbo = "auto";
-    };
-  };
   services.acpid = {
     enable = true;
     lidEventCommands = "systemctl suspend";
@@ -161,6 +151,10 @@ in {
     type = "-";
     value = 1;
   }];
+
+  boot.kernelParams = [
+    "quiet"
+  ];
 
   security.sudo = {
     enable = true;
