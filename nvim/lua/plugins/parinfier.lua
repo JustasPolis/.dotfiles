@@ -1,5 +1,5 @@
 return {
-	"gpander/nvim-parinfier",
+	"gpanders/nvim-parinfer",
 	lazy = true,
 	event = "BufEnter *.yuck",
 }

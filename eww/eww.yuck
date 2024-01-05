@@ -1,0 +1,7 @@
+(defwindow powermenu
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true
+  :geometry (geometry :width "100%" :height "100%")
+  ("Testing..."))
+
