@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"mfussenegger/nvim-dap",
 	},
-	lazy = false,
+	lazy = true,
 	keys = {
 		{
 			"<leader>dc",
