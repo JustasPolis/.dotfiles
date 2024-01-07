@@ -1,5 +1,17 @@
 { config, pkgs, lib, inputs, outputs, ... }:
 let
+  dbus-hyprland-environment = pkgs.writeTextFile {
+    name = "dbus-hyprland-environment";
+    destination = "/bin/dbus-hyprland-environment";
+    executable = true;
+
+    text = ''
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
+      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+      systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+    '';
+  };
+
   configure-gtk = pkgs.writeTextFile {
     name = "configure-gtk";
     destination = "/bin/configure-gtk";
@@ -97,11 +109,19 @@ in {
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   nixpkgs.config.allowUnfree = true;
   services.mullvad-vpn.enable = true;
 
   environment.systemPackages = with pkgs; [
     git
+    dbus
+    dbus-hyprland-environment
     fzf
     fishPlugins.fzf-fish
     starship
@@ -125,6 +145,7 @@ in {
     roboto
   ];
 
+  services.dbus.enable = true;
   networking.firewall.enable = true;
 
   security.pam.services.swaylock = { };
@@ -151,9 +172,7 @@ in {
     value = 1;
   }];
 
-  boot.kernelParams = [
-    "quiet"
-  ];
+  boot.kernelParams = [ "quiet" ];
 
   security.sudo = {
     enable = true;

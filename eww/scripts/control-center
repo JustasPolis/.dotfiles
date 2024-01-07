@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ccstate=`eww -c ~/.config/eww/bar2 get control-rev`
 
