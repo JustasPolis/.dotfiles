@@ -1,327 +1,251 @@
-(defvar IMAGE "images/profile.png")
-(defpoll username :interval "48h"  "whoami")
+(include "variables.yuck")
 
-(defpoll uptime :interval "50s" "uptime -p | sed -e 's/up //;s/ hours,/h/;s/ hour,/h/;s/ minutes/m/;s/ minute/m/'")
+(defwidget tray []
+  (box
+    :class "tray"
+    :halign "end"
+    :space-evenly false
+    (box
+      :class "tray-item wifi"
+      :spacing 0
+      :space-evenly false
+      (image :class "icon wifi-icon" :path wifi-icon :image-height "20")
+      (label :class "text wifi-text" :text wifi-strength))
+    (box
+      :class "tray-item vol"
+      :spacing 0
+      :space-evenly false
+      (image :class "icon vol-icon" :path vol-icon :image-height "20")
+      (label :class "text vol-text" :text "${vol-num}%"))
+    (box
+      :class "tray-item bat"
+      :spacing 0
+      :space-evenly false
+      (image :class "icon bat-icon" :path bat-icon :image-height "26")
+      (label :class "text bat-text" :text "${bat-num}%"))
+    (box
+      :class "tray-item br"
+      :spacing 0
+      :space-evenly false
+      (image :class "icon br-icon" :path "images/brightness.svg" :image-height "20")
+      (label :class "text vol-text" :text "${br}%"))
+    ))
 
-(defpoll time_hour :interval "5m"
-       "date +\"%I\"")
-(defpoll time_year :interval "5m"
-       "date +\"%C\"")
-(defpoll time_min :interval "5s"
-       "date +\"%M\"")
-(defpoll time_mer :interval "12h"
-        "date +\"%p\"")
-(defpoll time_day :interval "30m"
-       "date +\"%d\"")
-(defpoll time_month :interval "48h"
-      "date +\%m")
-(defpoll time_day_name :interval "30m"
-       "date +\"%A\"")
-(defpoll time_month_name :interval "48h"
-      "date +\%B")
+(defwidget workspaces []
+  (box
+    :class "workspaces"
+    :halign "center"
+    :hexpand false
+    ; :visible {center-option == "workspaces" ? true : false}
+    (literal :content numworkspaces)))
 
-(defpoll song :interval "3s"  "~/.config/eww/bar/scripts/music_info --song")
-(defpoll song_artist :interval "3s"  "~/.config/eww/leftbar/scripts/music_info --artist")
-(defpoll song_status :interval "3s"  "~/.config/eww/leftbar/scripts/music_info --status")
-(defpoll loop_status :interval "5s"  "~/.config/eww/leftbar/scripts/music_info --loop_ic")
-(defpoll song_time :interval "1s"  "~/.config/eww/leftbar/scripts/music_info --time")
+(defwidget time []
+  (box
+    :class "time"
+    :space-evenly false
+    :spacing 0
+    (label :class "text" :text "")
+    (image :class "icon clock-icon" :path "images/clock.svg" :image-width "20" :image-height "20")
+    (label :class "text" :text "${hours}󰇙${mins}")))
 
-(defpoll battery :interval "15s" "./scripts/battery --bat")
-(defpoll memory :interval "15s" "scripts/memory")
-(defpoll cpu :interval "17s" "scripts/cpu")
+(defwidget date []
+  (box
+    :class "date"
+    :halign "start" 
+    :spacing 0
+    :space-evenly false
+    (image :class "icon date-icon" :path "images/calendar.svg" :image-width "20" :image-height "20")
+    (label :class "text" :text "${day} ${day-num} ${month}, ${year}")))
 
+(defwidget left []
+  (box
+    :class "left"
+    :halign "start"
+    :space-evenly false
+    :spacing 0
+    (time)
+    (date)))
 
-(defpoll wifi_icon :interval "15s" "./scripts/wifi wifi")
-(defpoll wifi_col :interval "15s" "scripts/wifi wifi_col")
-(defpoll wifi_bg :interval "17s" "scripts/wifi wifi_bg")
+(defwidget lock []
+  (box
+    :class {power-option == 1 ? "pwr-active pwr-widget" : "pwr-inactive pwr-widget"}
+    :orientation "h"
+    :spacing 10
+    :space-evenly false
+    (image :path {power-option == 1 ? "images/lock-selected.svg" : "images/lock.svg"} :image-width 20 :image-height 20)
+    (revealer
+      :transition "slideright"
+      :reveal {power-reveal == 1 ? true : false}
+      :duration "250ms"
+    (label :text "Lock"))))
 
-(defpoll notif_icon :interval "15s" "./scripts/notifs notifs")
-(defpoll notif_col :interval "15s" "scripts/notifs notifs_col")
-(defpoll notif_bg :interval "17s" "scripts/notifs notifs_bg")
+(defwidget logout []
+  (box
+    :class {power-option == 2 ? "pwr-active pwr-widget" : "pwr-inactive widget"}
+    :orientation "h"
+    :spacing 10
+    :space-evenly false
+    (image :path {power-option == 2 ? "images/logout-selected.svg" : "images/logout.svg"} :image-width 20 :image-height 20)
+    (revealer
+      :transition "slideright"
+      :reveal {power-reveal == 2 ? true : false}
+      :duration "250ms"
+    (label :text "Logout"))))
 
+(defwidget reboot []
+  (box
+    :class {power-option == 3 ? "pwr-active pwr-widget" : "pwr-inactive widget"}
+    :orientation "h"
+    :spacing 10
+    :space-evenly false
+    (image :path {power-option == 3 ? "images/reboot-selected.svg" : "images/reboot.svg"} :image-width 20 :image-height 20)
+    (revealer
+      :transition "slideright"
+      :reveal {power-reveal == 3 ? true : false}
+      :duration "250ms"
+    (label :text "Reboot"))))
 
-(defpoll vol_icon :interval "15s" "./scripts/vol vol")
-(defpoll vol_col :interval "15s" "scripts/vol vol_col")
-(defpoll vol_bg :interval "17s" "scripts/vol vol_bg")
+(defwidget shutdown []
+  (box
+    :class {power-option == 4 ? "pwr-active pwr-widget" : "pwr-inactive pwr-widget"}
+    :orientation "h"
+    :spacing 10
+    :space-evenly false
+    (image :path {power-option == 4 ? "images/shutdown-selected.svg" : "images/shutdown.svg"} :image-width 20 :image-height 20)
+    (revealer
+      :transition "slideright"
+      :reveal {power-reveal == 4 ? true : false}
+      :duration "250ms"
+    (label :text "Shutdown"))))
 
-(defpoll volume_percent :interval "6s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-(defpoll mic_percent :interval "6s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-(defpoll brightness :interval "6s" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defwidget powermenu []
+  (box
+    :class "powermenu"
+    :spacing 25
+    :space-evenly false
+    :orientation "h"
+    (lock)
+    (logout)
+    (reboot)
+    (shutdown)))
 
+(defwidget fullscreen []
+  (box
+    :class {screenshot-option == 1 ? "ss-active ss-widget" : "ss-inactive ss-widget"}
+    :spacing 10
+    :space-evenly false
+    :orientation "h"
+    (image :path {screenshot-option == 1 ? "images/screenshot-selected.svg" : "images/screenshot.svg"} :image-width 20 :image-height 20)
+    (revealer
+      :transition "slideright"
+      :reveal {screenshot-reveal == 1 ? true : false}
+      :duration "250ms"
+      (label :text "Fullscreen"))))
 
-(defwidget profile []
-  (box :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(box :class "profile_picture" :halign "center" :style "background-image: url('${IMAGE});")))
-			;;	(label :class "profile_greeting" :halign "center" :wrap "true" :limit-width 25 :text username)))
+(defwidget delay []
+  (box
+    :class {screenshot-option == 2 ? "ss-active ss-widget" : "ss-inactive ss-widget"}
+    :spacing 10
+    :space-evenly false
+    :orientation "h"
+    (image :path {screenshot-option == 2 ? "images/alarm-selected.svg" : "images/alarm.svg"} :image-width 20 :image-height 20)
+    (revealer
+      :transition "slideright"
+      :reveal {screenshot-reveal == 2 ? true : false}
+      :duration "250ms"
+      (label :text "3s"))))
 
-(defwidget time [] 
-		(box  
-             :orientation "v" 
-             :space-evenly "false" 
-             :vexpand "false" 
-             :hexpand "false" 
-             :spacing 0
-		(box  
-             :orientation "h" 
-             :space-evenly "false" 
-             :vexpand "false" 
-             :halign "start"
-             :hexpand "false" 
-             :spacing 0
-			 (label :class "hour_class" 
-                    :valign "start" 
-                    :halign "start"
-                    :wrap "true" 
-                    :limit-width 25 
-                    :text time_hour)
-			 (label :class "minute_class" 
-                    :valign "start" 
-                    :halign "start" 
-                    :wrap "true" 
-                    :limit-width 25 
-                    :text time_min)
-			 (label :class "mer_class" 
-                    :valign "start" 
-                    :halign "start" 
-                    :wrap "true" 
-                    :text time_mer))
-            (box :orientation "h" 
-              :spacing 0 
-              :space-evenly "false" 
-              :halign "start"
-              :vexpand "false" :hexpand "false" 
-			  (label :class "day_class" 
-                     :valign "start" 
-                     :text time_day)
-			  (label :class "time_sep"
-                     :valign "start" 
-                     :text " ")
-			  (label :class "month_class" 
-                     :valign "start" 
-                     :text time_month)
-			  (label :class "year_class" 
-                     :valign "start" 
-                     :text time_year))
-            (box :orientation "h" 
-              :spacing 0 
-              :space-evenly "false" 
-              :halign "start"
-              :vexpand "false" :hexpand "false" 
-			  (label :class "day_class_n" 
-                     :valign "start" 
-                     :text time_day_name)
-			  (label :class "time_sep_class"
-                     :valign "start" 
-                     :text ", ")
-			  (label :class "month_class_n" 
-                     :valign "start" 
-                     :text time_month_name))))
+(defwidget region []
+  (box
+    :class {screenshot-option == 3 ? "ss-active ss-widget" : "ss-inactive ss-widget"}
+    :spacing 10
+    :space-evenly false
+    :orientation "h"
+    (image :path {screenshot-option == 3 ? "images/crop-selected.svg" : "images/crop.svg"} :image-width 20 :image-height 20)
+    (revealer
+      :transition "slideright"
+      :reveal {screenshot-reveal == 3 ? true : false}
+      :duration "250ms"
+      (label :text "Region"))))
 
-(defwidget music []
-		(box :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
-			(box :orientation "v" :spacing 5 :space-evenly "false" :vexpand "false" :hexpand "false" :class "msc_bg"
-				(label :halign "start" :class "song" :wrap "false" :limit-width 12 :text song)
-				(label :halign "start" :class "song_artist" :wrap "true" :limit-width 15 :text song_artist))))
+(defwidget screenshooter []
+  (box
+    :class "screenshooter"
+    :spacing 25
+    :space-evenly false
+    :orientation "h"
+    (fullscreen)
+    (delay)
+    (region)))
 
-(defwidget music_ctl []
-				(box :orientation "v" :spacing 1 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false" :class "msc_ctl_bg"
-					(button :class "song_btn_prev" :onclick "~/.config/eww/leftbar/scripts/music_info --prev" "")
-					(button :class "song_btn_play" :onclick "~/.config/eww/leftbar/scripts/music_info --toggle" song_status)
-					(button :class "song_btn_next" :onclick "~/.config/eww/leftbar/scripts/music_info --next" "")
-					(button :class "song_btn_loop" :onclick "~/.config/eww/leftbar/scripts/music_info --loop" loop_status)))
+(defwidget center []
+  (box
+    :spacing 0
+    :space-evenly false
+    (box
+      :visible {center-option == "screenshooter" ? true : false}
+      (revealer
+        :transition "crossfade"
+        :reveal {reveal-option == "screenshooter" ? true : false}
+        :duration "500ms"
+        (screenshooter)))
+    (box
+      :visible {center-option == "workspaces" ? true : false}
+      (revealer
+        :transition "crossfade"
+        :reveal {reveal-option == "workspaces" ? true : false}
+        :duration "500ms"
+        (workspaces)))
+    (box
+      :visible {center-option == "powermenu" ? true : false}
+      (revealer
+        :transition "crossfade"
+        :reveal {reveal-option == "powermenu" ? true : false}
+        :duration "500ms"
+        (powermenu)))))
 
+(defwidget bar []
+  (centerbox
+    :orientation "h"
+    :class "bar"
+    (left)
+    (center)
+    (tray)))
 
-(defwidget music_prog []
-			(box :orientation "v" :spacing 5 :space-evenly "false" :vexpand "false" :hexpand "false" :class "music_prog_bg"
-				(scale :value song_time :halign "start" :class "song_prog")))
-
-
-(defwidget main []
-  (box :class "bg" :orientation "h" :space-evenly "false"))
-
-
-(defwidget sep []
-  (box :class "sep" :orientation "h" :space-evenly "false"))
-
-
-(defwidget system []
-  (box :class "sys_win" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 13 
-      (box :class "sys_bat_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-      (circular-progress :value battery
-                :class "sys_bat"
-                :thickness 100
-            (label :text " "
-                :class "cc_cc"
-                :limit-width 2
-                :show_truncated false
-                :wrap false))
-            (label :text "BAT"
-                :class "sys_icon_bat"
-                :limit-width 4
-                :show_truncated false
-                :wrap false))
-      (box :class "sys_cpu_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-      (circular-progress :value cpu
-                :class "sys_cpu"
-                :thickness 100
-            (label :text " "
-                :class "cc_cc"
-                :limit-width 2
-                :show_truncated false
-                :wrap false))
-            (label :text "CPU"
-                :class "sys_icon_cpu"
-                :limit-width 4
-                :show_truncated false
-                :wrap false))
-      (box :class "sys_mem_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-      (circular-progress :value memory
-                :class "sys_mem"
-                :thickness 100
-            (label :text " "
-                :class "cc_cc"
-                :limit-width 2
-                :show_truncated false
-                :wrap false
-                :angle 0.0))
-            (label :text "MEM"
-                :class "sys_icon_mem"
-                :limit-width 4
-                :show_truncated false
-                :wrap false))))
-
-
-		(defwidget audio []
-			(box :vexpand "false" :hexpand "false"
-				(box :orientation "h" :spacing 25 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-					(box :class "volume_bar" :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
-                            (scale :flipped "true" :orientation "v" :min 0 :max 101 :value volume_percent :onchange "amixer -D pulse sset Master {}%" )
-                            (label  :text "" :class "vol_icon"))
-					(box :class "mic_bar" :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
-                            (scale :flipped "true" :orientation "v" :min 0 :max 101 :value mic_percent :active "false")
-                            (label  :text "" :class "mic_icon")))))
-
-
-
-(defwidget systray []
-  (box :class "sus_tray" :valign "center"  :space-evenly "false" :orientation "h"
-    (box :orientation "h" :hexpand "false" :vexpand "false" :space-evenly "false"
-      (button :class "wifi_but" :onclick "networkmanager_dmenu" :style "color: ${wifi_col}; background-color: ${wifi_bg};"  wifi_icon)
-      (button :class "notif_but" :onclick "dunstctl set-paused toggle" :style "color: ${notif_col}; background-color: ${notif_bg};"  notif_icon))
-    (box :orientation "h" :hexpand "false" :vexpand "false" :space-evenly "false"
-      (button :class "vol_but" :onclick "amixer -D pulse set Master toggle" :style "color: ${vol_col}; background-color: ${vol_bg};"  vol_icon)
-      (button :class "log_but" :onclick "bspc quit" "")
-      (button :class "log_but" :onclick "poweroff" ""))))
-
-
-(defwidget stats []
-  (box :orientation "h" :space-evenly "false" 
-;;    (label :class "br_icon" :text "")
-	  (box :class "bright" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-          (scale :orientation "h" :min 0 :max 100 :value brightness :onchange "brightnessctl set {}%" ))))
-
-
-
-
-
-
-
-
-
-
-(defwindow main
-  :geometry (geometry :anchor "left center"
-             :width "500px"
-             :height "90%"
-             :x "0px"
-             :y "20px")
-  (main))
-
-
-(defwindow pfp
-  :geometry (geometry :anchor "left top"
-             :width "190px"
-             :height "23"
-             :x "0px"
-             :y "65px")
-  (profile))
-
-
-(defwindow time
-  :geometry (geometry :anchor "left top"
-             :width "260px"
-             :height "100"
-             :x "220px"
-             :y "100px")
-  (time))
-
-
-(defwindow song :stacking "fg" :focusable "false" :screen 1
-  :geometry (geometry 
-             :width "260px"
-             :height "140px"
-             :x "0px"
-             :y "300px")
-  (music))
-
-(defwindow song_ctl :stacking "fg" :focusable "false" :screen 1
-  :geometry (geometry 
-             :width "70px"
-             :height "187px"
-             :x "270px"
-             :y "310px")
-  (music_ctl))
-
-
-(defwindow song_prog :stacking "fg" :focusable "false" :screen 1
-  :geometry (geometry 
-             :width "250px"
-             :height "30px"
-             :x "10px"
-             :y "460px")
-  (music_prog))
-
-(defwindow seper :stacking "fg" :focusable "false" :screen 1
-  :geometry (geometry 
-             :width "420px"
-             :height "2px"
-             :x "25px"
-             :y "270px")
-  (sep))
-
-
-(defwindow sys_usg
+(defwindow bar
+  :stacking "fg"
+  :monitor "0"
+  :exclusive true
+  :namespace "bar"
   :geometry (geometry
-             :width "420px"
-             :height "160px"
-             :x "10px"
-             :y "510px")
-  (system))
+              :x "0px"
+              :y "0%"
+              :width "100%"
+              :height "0%"
+              :anchor "top center")
+  (bar))
 
+(defwidget corners []
+  (box
+    :class "corners-box"
+    (box
+      :class "corners-left"
+      :hexpand false
+      :halign "start")
+    (box
+      :class "corners-right"
+      :hexpand false
+      :halign "end")))
 
-
-(defwindow audio
+(defwindow corners
+  :stacking "fg"
+  :monitor "0"
+  :exclusive false
+  :namespace "corners"
   :geometry (geometry
-             :width "0px"
-             :height "160px"
-             :x "370px"
-             :y "307px")
-  (audio))
-
-
-(defwindow sys_tray
-  :geometry (geometry
-             :width "100px"
-             :height "120px"
-             :x "15px"
-             :y "730px")
-  (systray))
-
-
-(defwindow quote
-  :geometry (geometry
-             :width "295px"
-             :height "10px"
-             :x "5px"
-             :y "695px")
-  (stats))
+              :x "0px"
+              :y "0px"
+              :width "100%"
+              :height "0%"
+              :anchor "top center")
+  (corners))

@@ -1,26 +1,40 @@
 #!/bin/bash
 
-    if [ "$(systemctl status NetworkManager | grep 'inactive')" ]; then
-        icon=""
-        col="#d78787"
-        bg="#0f0f17"
-    fi
-    
-    if [ "$(nmcli g | grep -oE 'disconnected')" ]; then
-        icon="" # disconnected
-        col="#bfc9db"
-        bg="#0f0f17"
-    else
-        icon="" # connected
-        col="#0f0f17"
-        bg="#bfc9db"
-    fi
+strength=`iwconfig | grep "Link Quality=" | awk -F'=' '{ print $2 }' | awk -F'/' '{ print $1 }'`
+state=`iwconfig | grep ESSID | awk -F':' '{ print $2 }' | xargs`
+wf=`echo "$strength*100/70" | bc`
 
+icon() {
+  if [[ $wf -eq 0 ]]; then
+    echo "images/wifi-off.svg"
+  elif [[ $wf -le 30 ]]; then
+#   echo "images/wifi-none.svg"
+    echo "images/wifi-low"
+  elif [[ $wf -le 60 ]]; then
+#   echo "images/wifi-low.svg"
+    echo "images/wifi-medium.svg"
+  elif [[ $wf -gt 60 ]]; then
+#   echo "images/wifi-medium.svg"
+    echo "images/wifi-high.svg"
+# elif [[ $wf -gt 75 ]]; then
+#   echo "images/wifi-high.svg"
+  else
+    echo "images/wifi-off.svg"
+  fi
+}
 
-if [ $1 = "wifi" ]; then
-    echo $icon
-elif [ $1 = "wifi_col"  ]; then
-    echo $col
-elif [ $1 = "wifi_bg" ]; then
-    echo $bg
+percentage() {
+  echo "$wf%"
+}
+
+if [[ $1 == icon ]]; then
+  icon
+elif [[ $1 == percentage ]]; then
+  percentage
+elif [[ $1 == name ]]; then
+  if [[ $state == "off/any" ]]; then
+    echo "Disconnected"
+  else
+    iwconfig wlan0 | grep ESSID | awk -F'"' '{ print $2 }' | xargs
+  fi
 fi

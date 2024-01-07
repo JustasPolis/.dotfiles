@@ -45,7 +45,6 @@ in {
   programs.fish.loginShellInit = ''
     sudo systemctl stop bluetooth
        if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
-          dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
           exec "Hyprland" > /dev/null
        end
   '';
