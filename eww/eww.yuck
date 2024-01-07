@@ -1,6 +1,6 @@
-(include "~/.dotfiles/eww/yuck/widgets.yuck")
-(include "~/.dotfiles/eww/yuck/windows.yuck")
-(include "~/.dotfiles/eww/yuck/setup.yuck")
+(include "yuck/widgets.yuck")
+(include "yuck/windows.yuck")
+(include "yuck/setup.yuck")
 
 (defpoll nightlight      :interval "10h" `scripts/nightlight get`)
 (defpoll powerprofile    :interval "10h" `scripts/powerprofile get`)
