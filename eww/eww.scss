@@ -1,484 +1,422 @@
-* {
-  all: unset;
+*{
+	all: unset;
+	font-family: feather;
+	font-family: JetBrainsMono NF;
 }
 
-window {
-  background-color: #121212;
-  color: #ffd5cd;
-  font-family: Museo Sans;
+
+/** tooltip!! **/
+tooltip.background {
+    background-color: #0f0f17;
+    font-size: 18;
+    border-radius: 10px;
+    color: #bfc9db;
 }
 
-button {
-  all: unset;
-  background-color: #121212;
-  padding: 10px;
+tooltip label {
+    margin: 6px;
 }
 
-.musicart {
-  background-size: 260px;
-  min-height: 260px;
-  min-width: 260px;
-  margin: 20px;
+/** time **/
+.hour_class {
+    color: #bec8da;
+    font-size: 42px;
+    font-weight: bold;
+    margin: 15px 0px 0px 10px;
+}
+
+.minute_class {
+    color: #bec8da;
+    font-size: 42px;
+    margin: 15px 10px 0px 20px;
+}
+
+.mer_class {
+    color: #767c87;
+    font-size: 22px;
+    margin: 15px 0px 0px 0px;
+}
+
+
+.day_class {
+    color: #767c88;
+    font-size: 30px;
+    margin: 0px 0px 10px 10px;
+}
+
+.month_class {
+    color: #767c88;
+    font-size: 30px;
+    margin: 0px 10px 10px 10px;
+}
+
+.year_class {
+    color: #767c88;
+    font-size: 30px;
+    margin: 0px 20px 10px 10px;
+}
+
+
+.time_sep_class {
+    color: #bec8da;
+    font-size: 18px;
+    margin: 0px 0px 0px 0px;
+}
+
+.day_class_n {
+    color: #767c88;
+    font-size: 18px;
+    margin: 0px 0px 5px 10px;
+}
+
+.month_class_n {
+    color: #767c88;
+    font-size: 18px;
+    margin: 0px 0px 5px 0px;
+}
+
+
+
+
+
+.sep {
+    background-color: #bfc9db;
+    border-radius: 8px;
+}
+
+.profile_picture {
+	background-image: url('images/profile.png');
+	background-size: 180px;
+	background-position: 50% 35%;
+	min-height: 180px;
+	min-width: 180px;
+	margin: 0px 0px 0px 0px;
+	border-radius: 10px 0px 50px 0px;
+}
+
+.profile_greeting {
+	color: #b5e8e0;
+	font-size : 18px;
+	font-weight : normal;
+	margin : 0px 0px 0px 10px;
+}
+
+.profile_username {
+	color: #a1bdce;
+	font-size : 36px;
+	font-weight : bold;
+	margin : -15px 0px 0px 0px;
+}
+
+
+.bg {
+    background-color: #0f0f17;
+    border-radius: 0px;
+}
+
+.bg_alt {
+    background-color: #13141c;
+    border-radius: 16px;
+}
+.close_btn {
+    font-size: 44px;
+    color: #767c88;
+    margin: 0px 0px 0px 10px;
+}
+.exit_btn {
+    font-size: 56px;
+    color: #d78787;
+}
+.close_bg {
+    background-color: #13141c;
+    border-radius: 0px 20px 0px 40px;
+}
+.win {
+    background-color: #13141c;
+    border-radius: 18px;
+}
+
+
+
+.cc_cc {
+    font-size: 28;
+    margin: 32px;
+}
+
+.sys_icon_bat, .sys_icon_mem, .sys_icon_cpu{
+    font-size: 24;
+    margin: 20px 0px 0px 0px;
+}
+.sys_win {
+    background-color: #14141c;
+    border-radius: 18px;
+}
+.sys_cpu {
+  color: #bfc9db;
+    background-color: #0f0f17;
   border-radius: 10px;
 }
-
-.musictitle {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.musicartist {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-.musicbtn button {
-  font-size: 12px;
-}
-
-.musicbtn button:hover {
-  color: #D35D6E;
-}
-
-.music-slider scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 5px;
-  min-width: 240px;
-  margin-bottom: 20px;
-}
-
-.music-slider scale trough highlight {
-  all: unset;
-  background-color: #ffd5cd;
-  color: #000000;
+.sys_bat {
+  color: #bfc9db;
+    background-color: #0f0f17;
   border-radius: 10px;
 }
-
-.music-slider slider {
-  all: unset;
-  color: #ffd5cd;
-}
-
-.number_day {
-  padding-top: 10px;
-  font-size: 35px;
-  color: #D35D6E;
-}
-
-.month {
-  font-weight: bold;
-}
-
-.weather-icon-side {
-  font-size: 45px;
-  font-family: Iosevka;
-  margin: 5px 30px 5px 30px;
-}
-
-.weather-stat-side {
-  font-size: 16px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-  font-weight: bold;
-  color: #D35D6E;
-}
-
-.temperature-side {
-  font-size: 16px;
-  font-weight: 900;
-  padding-top: 15px;
-  padding-left: 10px;
-}
-
-.musicart-side {
-  background-size: 92px;
-  min-height: 90px;
-  min-width: 90px;
-  margin: 15px 5px 15px 15px;
-  border-radius: 6px;
-}
-
-.musicinfo-side {
-  font-size: 15px;
-  margin-top: 25px;
-  margin-left: 5px;
-  font-weight: bold;
-  // margin: 20px;
-  border-radius: 10px;
-  // border: 1px solid white;
-  min-width: 40px;
-}
-
-.musicbtn-side {
-  padding-left: 20px;
-  padding-top: 8px;
-  padding-bottom: 5px;
-}
-
-.musicbtn-side button {
-  font-size: 16px;
-  padding-right: 30px;
-}
-
-.musicbtn-side button:hover {
-  color: #D35D6E;
-}
-
-.pause-play-side {
-  color: #D35D6E;
-}
-
-.pause-play-side:hover {
-  color: #ffd5cd;
-}
-
-.time-side {
-  margin: 20px 65px 0 65px;
-  font-size: 60px;
-}
-
-.minute-side {
-  color: #D35D6E;
-}
-
-.day-side {
-  font-size: 16px;
-  font-weight: bold;
-  color: #90c861;
-}
-
-
-.sliders-side slider {
-  all: unset;
-  color: #ffd5cd;
-}
-
-.slider-vol-side {
-  margin-top: 10px;
-}
-
-.slider-vol-side scale trough highlight {
-  all: unset;
-  background-color: #c47eb7;
-  color: #000000;
+.sys_mem {
+  color: #bfc9db;
+    background-color: #0f0f17;
   border-radius: 10px;
 }
+.sys_icon_bat {
+    color: #bfc9db;
+}
+.sys_icon_cpu {
+    color: #bfc9db;
+}
+.sys_icon_mem {
+    color: #bfc9db;
+}
+.sys_bat_box {
+	border-radius: 16px;
+    margin: 30px 0px 10px 50px;
+  }
+.sys_cpu_box {
+	border-radius: 16px;
+    margin: 30px 50px 10px 50px;
+  }
+.sys_mem_box {
+	border-radius: 16px;
+    margin: 30px 50px 15px 0px;
+  }
 
-.slider-bright-side scale trough highlight {
-  all: unset;
-  background-color: #84afdb;
-  color: #000000;
-  border-radius: 10px;
+
+.storage_bar scale trough highlight {
+	all: unset;
+    background-image: linear-gradient(to top, #91ab7a 30%, #afbea2 50%, #ccefad 100% *50);
+	border-radius: 24px;
+}
+.bright_bar scale trough highlight {
+	all: unset;
+    background-image: linear-gradient(to top, #e0b089 30%, #e4c9af 50%, #ebd0b7 100% *50);
+	border-radius: 24px;
+}
+.volume_bar scale trough highlight {
+	all: unset;
+    background-color: #bfc9db;
+	border-radius: 24px;
+}
+.mic_bar scale trough highlight {
+	all: unset;
+    background-color: #bfc9db;
+	border-radius: 24px;
+}
+scale trough {
+	all: unset;
+	background-color: #232232;
+	border-radius: 24px;
+	min-height: 130px;
+	min-width: 14px;
+	margin : 10px 0px 0px 0px;
 }
 
-.slider-ram-side scale trough highlight {
-  all: unset;
-  background-color: #D35D6E;
-  color: #000000;
-  border-radius: 10px;
+.vol_icon, .brg_icon, .stor_icon, .mic_icon {
+    font-size: 26;
+}
+.vol_icon {
+    color: #bfc9db;
+}
+.mic_icon {
+    color: #bfc9db;
+}
+.brg_icon {
+    color: #e4c9af;
+}
+.stor_icon {
+    color: #afbea2;
 }
 
-.slider-battery-side scale trough highlight {
-  all: unset;
-  background-color: #90c861;
-  color: #000000;
-  border-radius: 10px;
+.fetch_img {
+	background-size: cover;	
+	background-position: center;
+	min-height: 140px;
+	min-width: 100px;
+	margin: 13px;
+	border-radius: 16px;
 }
 
-.slider-vol-side scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 5px;
-  min-width: 170px;
-  margin-top: 10px;
-  margin-left: 20px;
+
+.fetch_text_2 , .fetch_text_3 {
+    font-size: 20px;
+	font-weight : normal;
+	margin : 0px 35px 0px 0px;
 }
 
-.slider-bright-side scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 5px;
-  min-width: 170px;
-  margin-top: 10px;
-  margin-left: 16px;
+.fetch_text_1 {
+    font-size: 20px;
+	font-weight : normal;
+	margin : 20px 35px 0px 0px;
+}
+.fetch_icon_2 , .fetch_icon_3 {
+    font-size: 24px;
+	font-weight : bold;
+	margin : 0px 0px 0px 35px;
+}
+.fetch_icon_1 {
+    font-size: 24px;
+	font-weight : bold;
+	margin : 20px 0px 0px 35px;
+}
+.fetch_sep_1 {
+    font-size: 24px;
+	font-weight : bold;
+    color: #95939f;
+	margin : 20px 0px 0px 0px;
+}
+.fetch_sep {
+    font-size: 24px;
+	font-weight : bold;
+    color: #95939f;
+	margin : 0px 0px 0px 0px;
+}
+.fetch_icon_1 {
+    color: #d7beda;
+}
+.fetch_text_1 {
+    color: #d7beda;
 }
 
-.slider-ram-side scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 5px;
-  min-width: 170px;
-  margin-top: 10px;
-  margin-left: 17px;
+.fetch_icon_2 {
+    color: #e4c9af;
+}
+.fetch_text_2 {
+    color: #e4c9af;
 }
 
-.slider-battery-side scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 5px;
-  min-width: 170px;
-  margin-top: 10px;
-  margin-left: 13px;
+.fetch_icon_3 {
+    color: #d78787;
+}
+.fetch_text_3 {
+    color: #d78787;
 }
 
-.label-battery-side, .label-bright-side, .label-ram-side, .label-vol-side {
-  margin-top: 10px;
-  font-family: Iosevka;
-  margin-left: 35px;
-  font-size: 25px;
+
+
+.msc_bg {
+	background-size: cover;	
+	background-position: center;
+    background-image: url("images/minimal.jpg");
+	min-height: 140px;
+	min-width: 140px;
+	margin: 0px;
+	border-radius: 16px;
 }
 
-.label-bright-side {
-  color: #84afdb;
+.song {
+    font-size: 24px;
+	font-weight : bold;
+    color: #bfc9db;
+	margin : 10px 0px 0px 15px;
+}
+.song_artist {
+    font-size: 18px;
+	font-weight : bold;
+    color: #bfc9db;
+	margin : 0px 0px 0px 15px;
 }
 
-.label-ram-side {
-  font-size: 30px;
-  color: #D35D6E;
+
+.song_btn_prev, .song_btn_next, .song_btn_loop {
+    font-size: 30px;
+    font-weight: normal;
+    color: #bfc9db;
+	margin : 4px 20px 0px 20px;
+}
+.song_btn_play {
+    font-weight: normal;
+    font-size: 34px;
+    color: #bfc9db;
+	margin : 4px 20px 0px 20px;
 }
 
-.label-battery-side {
-  font-size: 18px;
-  color: #90c861;
+.msc_ctl_bg {
+    background-color: #13141c;
+	border-radius: 12px;
 }
 
-.label-vol-side {
-  color: #c47eb7;
+
+.song_prog scale trough highlight {
+	all: unset;
+    background-color: #bfc9db;
+	border-radius: 8px;
+}
+.song_prog scale trough {
+	all: unset;
+	background-color: #232232;
+	border-radius: 8px;
+	min-height: 5px;
+	min-width: 220px;
+	margin : 15px;
+}
+.music_prog_bg {
+    background-color: #13141c;
+    border-radius: 8px;
 }
 
-.search-side {
-  border-radius: 12px;
-  background-color: #272626;
-  margin: 20px 30px 20px 30px;
+
+.sus_tray {
+    background-color: #14141c;
+    border-radius: 8px;
+}
+.wifi_but {
+    border-radius: 18px 10px 18px 10px;
+    padding: 15px;
+    font-size: 32px;
+    margin: 15px;
 }
 
-.search-side:hover {
-  color: #D35D6E;
+.notif_but {
+    border-radius: 18px 10px 18px 10px;
+    padding: 15px;
+    font-size: 32px;
+    margin: 15px;
 }
 
-.sysbtn button {
-  font-size: 30px;
+
+.vol_but {
+    border-radius: 18px 10px 18px 10px;
+    padding: 15px;
+    font-size: 32px;
+    margin: 15px;
 }
 
-.shutdown-side ~ button:hover {
-  color: #D35D6E;
+.log_but {
+    border-radius: 18px 10px 18px 10px;
+    padding: 15px;
+    font-size: 32px;
+    background-color: #0f0f17;
+    color: #bbc5d7;
+    margin: 15px;
 }
 
-.shutdown-side {
-  color: #D35D6E;
+.bright_box {
+    border-radius: 10px;
+    background-color: #14141c;
 }
 
-.shutdown-side:hover {
-  color: #ffd5cd;
+.bright scale trough highlight {
+	all: unset;
+    background-color: #bfc9db;
+	border-radius: 8px 20px 2px 8px;
 }
-
-.reboot-side {
-  color: #84afdb;
+.bright scale trough {
+	all: unset;
+	background-color: #232232;
+	border-radius: 8px;
+	min-height: 10px;
+	min-width: 450px;
+	margin : 15px;
 }
-
-.lock-side {
-  color: #ffd5cd;
-}
-
-.suspend-side {
-  color: #c47eb7;
-}
-
-.logout-side {
-  color: #90c861;
-}
-
-.calendar_title {
-  margin: 20px 20px 0 20px;
-  font-size: 16px;
-}
-
-.search-full {
-  font-size: 60px;
-  margin-right: 5px;
-}
-
-.search-full:hover {
-  color: #D35D6E;
-}
-
-.power-full {
-  font-size: 60px;
-  color: #D35D6E;
-}
-
-.power-full:hover {
-  color: #ffd5cd;
-}
-
-.reboot-full {
-  font-size: 60px;
-  color: #84afdb
-}
-
-.reboot-full:hover {
-  color: #D35D6E
-}
-
-.lock-full {
-  font-size: 60px;
-  color: #ffd5cd
-}
-
-.lock-full:hover {
-  color: #D35D6E
-}
-
-.suspend-full {
-  font-size: 60px;
-  color: #c47eb7
-}
-
-.suspend-full:hover {
-  color: #D35D6E
-}
-
-.logout-full {
-  font-size: 60px;
-  color: #90c861
-}
-
-.logout-full:hover {
-  color: #D35D6E
-}
-
-.pfp {
-  background-image: url("$HOME/.config/eww/images/eww.png");
-  background-repeat: no-repeat;
-  background-size: 200px;
-  background-position: center;
-  min-height: 200px;
-  min-width: 200px;
-  margin: 80px 20px 0 65px;
-  border-radius: 500px;
-}
-
-.pfptxt {
-  margin-top: 100px;
-  color: #D35D6E;
-  font-size: 36px;
-}
-
-.subpfptxt {
-  margin-top: 10px;
-  font-size: 24px;
-}
-
-.weather-icon {
-  font-size: 120px;
-  margin-left: 40px;
-  font-family: Iosevka;
-}
-
-.weather-stat {
-  font-size: 30px;
-  padding-top: 50px;
-  padding-bottom: 25px;
-  font-weight: bold;
-  color: #D35D6E;
-}
-
-.temperature {
-  font-size: 48px;
-  font-weight: 900;
-}
-
-.weather-quote {
-  margin: 25px 10px 40px 10px;
-  font-size: 20px;
-}
-
-.weather-quote-head, .weather-quote-tail {
-  font-size: 18px;
-  // font-weight: bold;
-  // color: #90c861
-}
-
-.l1, .l2, .l3, .l4, .l5, .l6 {
-  font-size: 25px;
-  font-weight: 600;
-}
-
-.home-dir {
-  margin: 10px;
-}
-
-.l1:hover, .l3:hover, .l4:hover, .l6:hover {
-  color: #D35D6E;
-}
-
-.l1, .l6 {
-  color: #84afdb;
-}
-
-.l2, .l5 {
-  color: #ffd5cd;
-}
-
-.l3, .l4 {
-  color: #c47eb7;
-}
-
-.l5:hover, .l2:hover {
-  color: #D35D6E;
-}
-
-.quote-main {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 20px;
-  // margin-bottom: 20px;
-  margin-left: 20px;
-  color: #A5b3c0;
-}
-
-.quote-author {
-  font-size: 18px;
-  margin-right: 30px;
-  margin-bottom: 10px;
-  color: #84afdb;
-}
-
-.quote-tail {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-left: 20px;
-  color: #A5b3c0;
-}
-
-.screenshot-icon {
-  color: #ffd5cd;
-  font-size: 80px;
-  margin-right: 15px;
-  font-family: Iosevka;
-}
-
-.vpn-icon {
-  font-size: 80px;
-  margin-right: 5px;
-}
-
-.vpn-icon:hover {
-  color: #ffd5cd;
-}
-
-.disturb-icon {
-  font-size: 80px;
-}
-
-.disturb-icon:hover {
-  color: #ffd5cd;
+.br_icon {
+    font-size: 38;
+    color: #bfc9db;
+    margin: 0px 0px 0px 20px;
 }
