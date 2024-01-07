@@ -262,7 +262,7 @@
  (defwindow player 
       :geometry (geometry :x "1056px" :y "308px" :width "300px" :height "400px")
                (player))
- (defwindow profile :namespace 'profile' :stacking 'bt' :monitor 0 :exclusive: 'false' :focusable: 'true'
+ (defwindow profile :namespace 'profile' :stacking 'bt' :monitor 0 :exclusive 'false' :focusable 'true'
        :geometry (geometry :x "5%" :y "0%" :width "10%" :height "10%" :anchor "left center")
                 (profile))
  (defwindow weather :namespace 'weather' :stacking 'bg' :monitor 0
