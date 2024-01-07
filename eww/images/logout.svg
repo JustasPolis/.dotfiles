@@ -1,16 +1,7 @@
-<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_1_2)">
-<mask id="mask0_1_2" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="257">
-<path d="M256 0.0104065H0V256.01H256V0.0104065Z" fill="white"/>
-</mask>
-<g mask="url(#mask0_1_2)">
-<path d="M160 42.6771H53.3333V192.011C53.3333 203.792 62.8846 213.344 74.6666 213.344H160" stroke="#F5F5F5" stroke-width="21.3333" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M170.667 160.011L202.667 128.011M202.667 128.011L170.667 96.0105M202.667 128.011H96" stroke="#F5F5F5" stroke-width="21.3333" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<defs>
-<clipPath id="clip0_1_2">
-<rect width="256" height="256" fill="white"/>
-</clipPath>
-</defs>
-</svg>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_105_1815)"> <path d="M15 4.00098H5V18.001C5 19.1055 5.89543 20.001 7 20.001H15" stroke="#f5f5f5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/> <path d="M16 15.001L19 12.001M19 12.001L16 9.00098M19 12.001H9" stroke="#f5f5f5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/> </g> <defs> <clipPath id="clip0_105_1815"> <rect fill="white" height="24" transform="translate(0 0.000976562)" width="24"/> </clipPath> </defs> </g>
+</svg>
