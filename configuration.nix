@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, unstable ... }:
+{ config, pkgs, lib, inputs, outputs, nixpkgs-unstable, ... }:
 let
   dbus-hyprland-environment = pkgs.writeTextFile {
     name = "dbus-hyprland-environment";
@@ -108,7 +108,7 @@ in {
   };
 
   nixpkgs.config.allowUnfree = true;
-  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.enable = false;
 
   environment.systemPackages = with pkgs; [
     git
@@ -127,7 +127,7 @@ in {
     bibata-cursors
     power-settings
     linuxKernel.packages.linux_xanmod_latest.cpupower
-    mpv
+    nixpkgs-unstable.legacyPackages.${pkgs.system}.mpv
   ];
 
   fonts.packages = with pkgs; [
