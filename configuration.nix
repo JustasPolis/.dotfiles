@@ -67,6 +67,7 @@ in {
   boot.loader.systemd-boot.configurationLimit = 2;
   nix.settings.auto-optimise-store = true;
   nix.optimise.automatic = true;
+  xdg.portal.enable = false;
 
   nix.gc = {
     automatic = true;
@@ -108,7 +109,7 @@ in {
   };
 
   nixpkgs.config.allowUnfree = true;
-  services.mullvad-vpn.enable = false;
+  services.mullvad-vpn.enable = true;
 
   environment.systemPackages = with pkgs; [
     git

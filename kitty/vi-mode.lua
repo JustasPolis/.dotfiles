@@ -1,13 +1,20 @@
-local api = vim.api
-local orig_buf = api.nvim_get_current_buf()
-local term_buf = api.nvim_create_buf(false, true)
-api.nvim_set_current_buf(term_buf)
+vim.wo.statuscolumn = ""
+vim.wo.signcolumn = "no"
 vim.bo.scrollback = 100000
-local term_chan = api.nvim_open_term(0, {})
-api.nvim_chan_send(term_chan, table.concat(api.nvim_buf_get_lines(orig_buf, 0, -1, true), "\r\n"))
-vim.fn.chanclose(term_chan)
-api.nvim_buf_set_lines(orig_buf, 0, -1, true, api.nvim_buf_get_lines(term_buf, 0, -1, true))
-api.nvim_set_current_buf(orig_buf)
-api.nvim_buf_delete(term_buf, { force = true })
+local orig_buf = vim.api.nvim_get_current_buf()
+local lines = vim.api.nvim_buf_get_lines(orig_buf, 0, -1, false)
+while #lines > 0 and vim.trim(lines[#lines]) == "" do
+	lines[#lines] = nil
+end
+local buf = vim.api.nvim_create_buf(false, true)
+local channel = vim.api.nvim_open_term(buf, {})
 vim.bo.modified = false
-api.nvim_win_set_cursor(0, {api.nvim_buf_line_count(0), 0})
+vim.api.nvim_chan_send(channel, table.concat(lines, "\r\n"))
+vim.api.nvim_set_current_buf(buf)
+vim.keymap.set("n", "q", "<cmd>qa!<cr>", { silent = true, buffer = buf })
+vim.api.nvim_create_autocmd("TermEnter", { buffer = buf, command = "stopinsert" })
+vim.o.laststatus = 0
+vim.defer_fn(function()
+	-- go to the end of the terminal buffer
+	vim.cmd.startinsert()
+end, 10)

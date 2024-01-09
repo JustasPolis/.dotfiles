@@ -35,7 +35,7 @@ return {
 						statusline = 100,
 					},
 					disabled_filetypes = {
-						statusline = { "alpha" },
+						statusline = { "alpha", "fish" },
 						winbar = {},
 					},
 				},
