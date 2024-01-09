@@ -53,10 +53,9 @@ in {
   environment.pathsToLink = [ "/libexec" ];
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
-    sudo systemctl stop bluetooth
-       if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
-          exec "Hyprland" > /dev/null
-       end
+    if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
+       exec "Hyprland" > /dev/null
+    end
   '';
   users.users.justin.shell = pkgs.fish;
   programs.fish.interactiveShellInit = ''
@@ -85,14 +84,14 @@ in {
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   services.blueman.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.powerOnBoot = false;
 
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Vilnius";
   i18n.defaultLocale = "en_US.UTF-8";
+
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   services.pipewire = {
@@ -110,6 +109,7 @@ in {
 
   nixpkgs.config.allowUnfree = true;
   services.mullvad-vpn.enable = true;
+  services.dbus.enable = true;
 
   environment.systemPackages = with pkgs; [
     git
