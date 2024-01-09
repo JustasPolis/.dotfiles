@@ -7,6 +7,7 @@ let
 
     text = ''
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
+      systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     '';
   };
 
@@ -66,7 +67,12 @@ in {
   boot.loader.systemd-boot.configurationLimit = 2;
   nix.settings.auto-optimise-store = true;
   nix.optimise.automatic = true;
-  xdg.portal.enable = false;
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = false;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   nix.gc = {
     automatic = true;
@@ -74,8 +80,8 @@ in {
     options = "--delete-older-than 3d";
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  networking.hostName =
+    "nixos"; # Define your hostname. nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.hyprland = {
     enable = true;
@@ -114,6 +120,7 @@ in {
   environment.systemPackages = with pkgs; [
     git
     fzf
+    dbus-hyprland-environment
     fishPlugins.fzf-fish
     starship
     fd
@@ -128,7 +135,9 @@ in {
     bibata-cursors
     power-settings
     linuxKernel.packages.linux_xanmod_latest.cpupower
-    nixpkgs-unstable.legacyPackages.${pkgs.system}.mpv
+    mpv
+    nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprshot
+    hyprshade
   ];
 
   fonts.packages = with pkgs; [
