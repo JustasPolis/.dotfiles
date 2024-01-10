@@ -1,21 +1,31 @@
 #!/usr/bin/env bash
 
+external_monitor_connected=$(hyprctl monitors -j | jq -e 'map(.name == "DP-1" or .name == "DP-2") | any')
+
+if $external_monitor_connected; then
+	hyprctl keyword monitor eDP-1, disable
+fi
+
 handle() {
-	case $1 in
-	monitoradded*)
-		# Check if there are 2 or more monitors
-		if [ $(hyprctl monitors -j | jq length) -ge 2 ]; then
-			active_workspace=hyprctl activeworkspace -j | jq '.id'
-			hyprctl keyword monitor eDP-1, disable
-			hyprctl dispatch workspace $active_workspace
-		fi
+	echo $1
+	case $input in
+	'monitoradded>>eDP-1')
+		echo "Matched eDP1"
 		;;
-	monitorremoved*)
-		if [ $(hyprctl monitors -j | jq length) -eq 0 ]; then
-			active_workspace=hyprctl activeworkspace -j | jq '.id'
-			hyprctl keyword monitor eDP-1,2560x1600@90,0x0,2
-			hyprctl dispatch workspace $active_workspace
-		fi
+	'monitoradded>>DP-1')
+		hyprctl keyword monitor eDP-1, disable
+		;;
+	'monitoradded>>DP-2')
+		hyprctl keyword monitor eDP-1, disable
+		;;
+	'monitorremoved>>DP-1')
+		hyprctl keyword monitor eDP-1,2560x1600@90,0x0,2
+		;;
+	'monitorremoved>>DP-2')
+		hyprctl keyword monitor eDP-1,2560x1600@90,0x0,2
+		;;
+	'monitorremoved>>eDP-1')
+		echo "Matched DP1"
 		;;
 	esac
 }

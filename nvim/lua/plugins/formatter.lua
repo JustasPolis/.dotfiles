@@ -8,6 +8,7 @@ return {
 			rust = { "rustfmt" },
 			go = { "gofmt" },
 			sh = { "shfmt" },
+			bash = { "shfmt" },
 			nix = { "nixfmt" },
 		},
 	},
