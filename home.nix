@@ -15,6 +15,8 @@
   home.file.".config/wofi".source = ./wofi;
   home.file.".config/eww".source = ./eww;
 
+  nixpkgs.config = { allowUnfree = true; };
+
   home.packages = with pkgs; [
     kitty
     nixfmt
@@ -47,6 +49,7 @@
     transmission-gtk
     shfmt
     floorp
+    google-chrome
   ];
 
   home.stateVersion = "23.11";

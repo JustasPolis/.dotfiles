@@ -24,7 +24,9 @@ let
       gsettings set $gnome_schema gtk-theme 'rose-pine'
       gsettings set $gnome_schema font-antialiasing 'grayscale'
       gsettings set $gnome_schema font-hinting 'slight'
-      gsettings set $gnome_schema font-name 'Roboto medium, 10'
+      gsettings set $gnome_schema font-name 'Roboto Medium, 10'
+      gsettings set $gnome_schema document-font-name 'Roboto Medium, 10'
+      gsettings set $gnome_schema monospace-font-name 'JetBrainsMono NF Medium, 13'
       gsettings set $gnome_schema cursor-theme 'Bibata-Modern-Ice'
       gsettings set $gnome_schema cursor-size 24
       gsettings set $gnome_schema toolbar-icons-size 'small'
