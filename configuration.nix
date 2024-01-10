@@ -116,7 +116,7 @@ in {
   };
 
   nixpkgs.config.allowUnfree = true;
-  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.enable = false;
   services.dbus.enable = true;
 
   environment.systemPackages = with pkgs; [

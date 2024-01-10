@@ -4,7 +4,7 @@ clock
 timestr=%R
 datestr=%a, %e of %B
 
-image=~/.config/wallpapers/firewatch_winter.png
+image=~/.config/wallpapers/winter.jpg
 indicator
 indicator-radius=100
 
