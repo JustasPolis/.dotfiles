@@ -7,25 +7,28 @@ if $external_monitor_connected; then
 fi
 
 handle() {
-	echo $1
-	case $input in
-	'monitoradded>>eDP-1')
-		echo "Matched eDP1"
-		;;
+	case $1 in
 	'monitoradded>>DP-1')
+		echo "monitor DP1 added"
 		hyprctl keyword monitor eDP-1, disable
 		;;
 	'monitoradded>>DP-2')
+		echo "monitor DP2 added"
 		hyprctl keyword monitor eDP-1, disable
 		;;
 	'monitorremoved>>DP-1')
-		hyprctl keyword monitor eDP-1,2560x1600@90,0x0,2
+		hyprctl keyword monitor eDP-1, 2560x1600@90,0x0,2
+		echo "monitor DP1 removed"
 		;;
 	'monitorremoved>>DP-2')
-		hyprctl keyword monitor eDP-1,2560x1600@90,0x0,2
+		hyprctl keyword monitor eDP-1, 2560x1600@90,0x0,2
+		echo "monitor dp2 removed"
+		;;
+	'monitoradded>>eDP-1')
+		echo "monitor edp-1 added"
 		;;
 	'monitorremoved>>eDP-1')
-		echo "Matched DP1"
+		echo "monitor edp-1 removed"
 		;;
 	esac
 }

@@ -9,7 +9,7 @@ indicator
 indicator-radius=100
 
 
-indicator-thickness=20
+indicator-thickness=5
 indicator-caps-lock
 
 # Define all colors
@@ -22,11 +22,11 @@ inside-caps-lock-color=ffffff00
 inside-ver-color=ffffff00
 inside-wrong-color=ffffff00
 
-ring-color=ffffff
+ring-color=ffebbcba
 ring-clear-color=ffffff
 ring-caps-lock-color=ffffff
-ring-ver-color=ffffff
-ring-wrong-color=ffffff
+ring-ver-color=ffebbcba
+ring-wrong-color=ffeb6f92
 
 line-color=00000000
 line-clear-color=ffffffFF
@@ -34,7 +34,7 @@ line-caps-lock-color=ffffffFF
 line-ver-color=ffffffFF
 line-wrong-color=ffffffFF
 
-text-color=ffffff
+text-color=ff9ccfd8
 text-clear-color=ffffff
 text-ver-color=ffffff
 text-wrong-color=ffffff
