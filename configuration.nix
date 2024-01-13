@@ -1,11 +1,7 @@
 { config, pkgs, lib, inputs, outputs, nixpkgs-unstable, nixpkgs-personal, ... }:
 let
   dbus-hyprland-environment = pkgs.writeTextFile {
-    name = "dbus-hyprland-environment";
-    destination = "/bin/dbus-hyprland-environment";
-    executable = true;
-
-    text = ''
+    name = "dbus-hyprland-environment"; destination = "/bin/dbus-hyprland-environment"; executable = true; text = ''
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
       systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     '';
@@ -18,16 +14,14 @@ let
       schema = pkgs.gsettings-desktop-schemas;
       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
     in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme 'rose-pine'
-      gsettings set $gnome_schema font-antialiasing 'grayscale'
-      gsettings set $gnome_schema font-hinting 'slight'
-      gsettings set $gnome_schema font-name 'Roboto Medium, 10'
-      gsettings set $gnome_schema document-font-name 'Roboto Medium, 10'
-      gsettings set $gnome_schema monospace-font-name 'JetBrainsMono NF Medium, 13'
-      gsettings set $gnome_schema cursor-theme 'Bibata-Modern-Ice'
-      gsettings set $gnome_schema cursor-size 24 gsettings set $gnome_schema toolbar-icons-size 'small' gsettings set org.gnome.mutter auto-maximize 'false'
+      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS gnome_schema=org.gnome.desktop.interface gsettings set $gnome_schema gtk-theme 'rose-pine'
+           gsettings set $gnome_schema font-antialiasing 'grayscale'
+           gsettings set $gnome_schema font-hinting 'slight'
+           gsettings set $gnome_schema font-name 'Roboto Medium, 10'
+           gsettings set $gnome_schema document-font-name 'Roboto Medium, 10'
+           gsettings set $gnome_schema monospace-font-name 'JetBrainsMono NF Medium, 13'
+           gsettings set $gnome_schema cursor-theme 'Bibata-Modern-Ice'
+           gsettings set $gnome_schema cursor-size 24 gsettings set $gnome_schema toolbar-icons-size 'small' gsettings set org.gnome.mutter auto-maximize 'false'
     '';
   };
   power-settings = pkgs.writeShellScriptBin "power-settings" ''
@@ -105,7 +99,7 @@ in {
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   services.blueman.enable = true;
-  hardware.bluetooth.powerOnBoot = false;
+  hardware.bluetooth.powerOnBoot = true;
 
   networking.networkmanager.enable = true;
 
@@ -178,8 +172,32 @@ in {
   services.acpid = {
     enable = true;
     lidEventCommands = "systemctl suspend";
-    acEventCommands = "power-settings";
   };
+
+  services.acpid.handlers = {
+    ac-power = {
+      event = "ac_adapter/*";
+      action = ''
+        vals=($1)  # space separated string to array of multiple values
+        case ''${vals[3]} in
+            00000000)
+                echo unplugged >> /tmp/acpi.log
+                sleep 3
+        sudo cpupower frequency-set --governor powersave
+                ;;
+            00000001)
+                echo plugged in >> /tmp/acpi.log
+                sleep 3
+        cpupower frequency-set --governor performance
+                ;;
+            *)
+                echo unknown >> /tmp/acpi.log
+                ;;
+        esac
+      '';
+    };
+  };
+
   system.stateVersion = "23.11";
 
   security.pam.loginLimits = [{
