@@ -1,7 +1,10 @@
 { config, pkgs, lib, inputs, outputs, nixpkgs-unstable, nixpkgs-personal, ... }:
 let
   dbus-hyprland-environment = pkgs.writeTextFile {
-    name = "dbus-hyprland-environment"; destination = "/bin/dbus-hyprland-environment"; executable = true; text = ''
+    name = "dbus-hyprland-environment";
+    destination = "/bin/dbus-hyprland-environment";
+    executable = true;
+    text = ''
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
       systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     '';
@@ -178,22 +181,20 @@ in {
     ac-power = {
       event = "ac_adapter/*";
       action = ''
-        vals=($1)  # space separated string to array of multiple values
-        case ''${vals[3]} in
-            00000000)
-                echo unplugged >> /tmp/acpi.log
-                sleep 3
-        sudo cpupower frequency-set --governor powersave
-                ;;
-            00000001)
-                echo plugged in >> /tmp/acpi.log
-                sleep 3
-        cpupower frequency-set --governor performance
-                ;;
-            *)
-                echo unknown >> /tmp/acpi.log
-                ;;
-        esac
+         vals=($1)  # space separated string to array of multiple values
+         case ''${vals[3]} in
+             00000000)
+        /run/current-system/sw/bin/cpupower frequency-set --governor powersave
+        echo "balance_power" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference 
+                 ;;
+             00000001)
+        /run/current-system/sw/bin/cpupower frequency-set --governor performance
+        echo "performance" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference 
+                 ;;
+             *)
+                 echo unknown >> /tmp/acpi.log
+                 ;;
+         esac
       '';
     };
   };
