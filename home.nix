@@ -24,7 +24,6 @@
     jq
     yq-go
     neovim
-    swaylock-effects
     neofetch
     swayidle
     hyprpaper

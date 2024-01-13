@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, nixpkgs-unstable, ... }:
+{ config, pkgs, lib, inputs, outputs, nixpkgs-unstable, nixpkgs-personal, ... }:
 let
   dbus-hyprland-environment = pkgs.writeTextFile {
     name = "dbus-hyprland-environment";
@@ -10,7 +10,6 @@ let
       systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     '';
   };
-
   configure-gtk = pkgs.writeTextFile {
     name = "configure-gtk";
     destination = "/bin/configure-gtk";
@@ -28,15 +27,24 @@ let
       gsettings set $gnome_schema document-font-name 'Roboto Medium, 10'
       gsettings set $gnome_schema monospace-font-name 'JetBrainsMono NF Medium, 13'
       gsettings set $gnome_schema cursor-theme 'Bibata-Modern-Ice'
-      gsettings set $gnome_schema cursor-size 24
-      gsettings set $gnome_schema toolbar-icons-size 'small'
-      gsettings set org.gnome.mutter auto-maximize 'false'
+      gsettings set $gnome_schema cursor-size 24 gsettings set $gnome_schema toolbar-icons-size 'small' gsettings set org.gnome.mutter auto-maximize 'false'
     '';
   };
   power-settings = pkgs.writeShellScriptBin "power-settings" ''
-    sudo cpupower frequency-set --governor powersave
-    echo "balance_power" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
-  '';
+        ac_adapter_status=$(cat /sys/class/power_supply/ACAD/online)
+
+    if [[ $ac_adapter_status -eq 1 ]]; then
+        # If ACAD/online is 1, set the governor to performance
+        sudo cpupower frequency-set --governor performance
+        echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
+    elif [[ $ac_adapter_status -eq 0 ]]; then
+        # If ACAD/online is 0, set the governor to powersave
+        sudo cpupower frequency-set --governor powersave
+        echo "balance_power" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
+    else
+        # Handle other cases if needed
+        echo "Unexpected value in AC status: $ac_adapter_status"
+    fi  '';
 in {
   imports = [
     ./hardware-configuration.nix
@@ -82,8 +90,13 @@ in {
     options = "--delete-older-than 3d";
   };
 
-  networking.hostName =
-    "nixos"; # Define your hostname. nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  powerManagement.resumeCommands = ''
+    echo "This should show up in the journal after resuming."
+  '';
+
+  networking.hostName = "nixos"; # Define your hostname.
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.hyprland = {
     enable = true;
@@ -140,6 +153,7 @@ in {
     mpv
     nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprshot
     hyprshade
+    nixpkgs-personal.legacyPackages.${pkgs.system}.swaylock
   ];
 
   fonts.packages = with pkgs; [
@@ -150,6 +164,7 @@ in {
   networking.firewall.enable = true;
 
   security.pam.services.swaylock = { };
+  security.pam.services.waylock = { };
 
   services.upower.enable = true;
 
@@ -163,6 +178,7 @@ in {
   services.acpid = {
     enable = true;
     lidEventCommands = "systemctl suspend";
+    acEventCommands = "power-settings";
   };
   system.stateVersion = "23.11";
 
@@ -174,6 +190,10 @@ in {
   }];
 
   boot.kernelParams = [ "quiet" ];
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTR{power/wakeup}="enabled"
+  '';
 
   security.sudo = {
     enable = true;
