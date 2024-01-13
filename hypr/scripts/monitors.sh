@@ -7,6 +7,7 @@ if $external_monitor_connected; then
 fi
 
 handle() {
+	result=$(hyprctl activeworkspace -j | jq '.id')
 	case $1 in
 	'monitoradded>>DP-1')
 		echo "monitor DP1 added"
@@ -17,11 +18,11 @@ handle() {
 		hyprctl keyword monitor eDP-1, disable
 		;;
 	'monitorremoved>>DP-1')
-		hyprctl keyword monitor eDP-1,2560x1600@90,auto,2 
+		hyprctl keyword monitor eDP-1,2560x1600@90,auto,2
 		echo "monitor DP1 removed"
 		;;
 	'monitorremoved>>DP-2')
-		hyprctl keyword monitor eDP-1,2560x1600@90,auto,2 
+		hyprctl keyword monitor eDP-1,2560x1600@90,auto,2
 		echo "monitor dp2 removed"
 		;;
 	'monitoradded>>eDP-1')
