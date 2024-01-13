@@ -48,7 +48,6 @@
     transmission-gtk
     shfmt
     floorp
-    google-chrome
   ];
 
   home.stateVersion = "23.11";

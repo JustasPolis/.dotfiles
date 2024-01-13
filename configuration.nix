@@ -150,7 +150,8 @@ in {
     mpv
     nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprshot
     hyprshade
-    nixpkgs-personal.legacyPackages.${pkgs.system}.swaylock
+    #nixpkgs-personal.legacyPackages.${pkgs.system}.swaylock
+    nixpkgs-unstable.legacyPackages.${pkgs.system}.swaylock-effects
   ];
 
   fonts.packages = with pkgs; [
