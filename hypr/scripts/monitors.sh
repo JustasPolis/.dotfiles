@@ -7,7 +7,6 @@ if $external_monitor_connected; then
 fi
 
 handle() {
-	result=$(hyprctl activeworkspace -j | jq '.id')
 	case $1 in
 	'monitoradded>>DP-1')
 		echo "monitor DP1 added"
