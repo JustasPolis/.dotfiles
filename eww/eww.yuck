@@ -1,0 +1,37 @@
+(defwidget center []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :class "center-modules"
+    ("center")))
+
+(defwidget end []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "end"
+    :class "center-modules"
+    ("end")))
+
+(defwidget start []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "start"
+    :class "start-modules"
+    ("start")))
+
+(defwidget bar-stuff []
+  (box :class "bar-class"
+    :orientation "h"
+    (start)
+    (center)
+    (end)))
+
+
+(defwindow panel
+  :geometry (geometry :x "0%" :y "0%" :width "98%" :height "55px" :anchor "top center")
+  :stacking "bg"
+  :exclusive "false"
+  :focusable "true"
+  :namespace "top-bar"
+  :monitor 0
+  (bar-stuff))
