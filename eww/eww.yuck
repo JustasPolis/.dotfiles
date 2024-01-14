@@ -1,4 +1,5 @@
 (defvar brightness-reveal false)
+(defpoll brightness-lvl :interval "3s" "scripts/brightness")
 
 (defwidget center []
   (box :orientation "h"
@@ -12,7 +13,7 @@
   (eventbox :onhover "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww update brightness-reveal=true"
     :onhoverlost "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww update brightness-reveal=false"
     (box :class "brightness-box" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-      (box :class "brightness-icon" :style "background-image: url('~/.dotfiles/icons/bri-high.svg');")
+      (box :class "brightness-icon" :style "background-image: url('icons/bri-high.svg');")
       (revealer :transition "slideright" :reveal brightness-reveal :duration "350ms"
         (scale :class "brightness-scale" :width 100 :active true :value brightness-lvl :min 0 :max 101 :orientation "h" :onchange "brightnessctl s {}%")))))
 
