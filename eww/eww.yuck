@@ -1,23 +1,35 @@
+(defvar brightness-reveal false)
+
 (defwidget center []
   (box :orientation "h"
     :space-evenly false
     :halign "center"
     :class "center-modules"
-    ("center")))
+    (label :text "center")))
+
+
+(defwidget brightness []
+  (eventbox :onhover "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww update brightness-reveal=true"
+    :onhoverlost "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww update brightness-reveal=false"
+    (box :class "brightness-box" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
+      (box :class "brightness-icon" :style "background-image: url('~/.dotfiles/icons/bri-high.svg');")
+      (revealer :transition "slideright" :reveal brightness-reveal :duration "350ms"
+        (scale :class "brightness-scale" :width 100 :active true :value brightness-lvl :min 0 :max 101 :orientation "h" :onchange "brightnessctl s {}%")))))
+
 
 (defwidget end []
   (box :orientation "h"
     :space-evenly false
     :halign "end"
     :class "center-modules"
-    ("end")))
+    (brightness)))
 
 (defwidget start []
   (box :orientation "h"
     :space-evenly false
     :halign "start"
     :class "start-modules"
-    ("start")))
+    (label :text "start")))
 
 (defwidget bar-stuff []
   (box :class "bar-class"
@@ -28,10 +40,10 @@
 
 
 (defwindow panel
-  :geometry (geometry :x "0%" :y "0%" :width "98%" :height "55px" :anchor "top center")
-  :stacking "bg"
-  :exclusive "false"
-  :focusable "true"
+  :geometry (geometry :x "0%" :y "0%" :width "100%" :height "40px" :anchor "top center")
+  :stacking "bt"
+  :exclusive "true"
+  :focusable "false"
   :namespace "top-bar"
   :monitor 0
   (bar-stuff))

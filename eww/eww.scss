@@ -1,4 +1,4 @@
-$bg: #232634;
+$bg: #191724;
 $bg-alt: #292c3c;
 $fg: #cdd6f4;
 $fg-alt: #bac2de;
@@ -24,10 +24,6 @@ $gray-alt: #5b6078;
   transition: 200ms ease-out;
 }
 
-.panel {
-  background-color: #232634;
-}
-
 .genwin {
   background-color: #232634;
   border-radius: 15px;
@@ -42,6 +38,13 @@ $gray-alt: #5b6078;
   border-radius: 10px;
   color: $purple;
 }
+
+.bar-class {
+  background-color: $bg;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 15px;
+ }
 
 .control-center-launcher {
   font-family: "Favorites";
