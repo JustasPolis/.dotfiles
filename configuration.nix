@@ -157,6 +157,7 @@ in {
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     roboto
+    material-icons
   ];
 
   networking.firewall.enable = true;
