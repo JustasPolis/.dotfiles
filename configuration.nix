@@ -48,7 +48,7 @@ in {
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -57,13 +57,15 @@ in {
 
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  #systemd.services.NetworkManager-wait-online.enable = false;
   services.devmon.enable = true;
   environment.pathsToLink = [ "/libexec" ];
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
-    if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
-       exec "Hyprland" > /dev/null
-    end
+    echo disabled | sudo tee /sys/devices/*/*/*/power/wakeup 
+      if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
+         exec "Hyprland" > /dev/null
+      end
   '';
   users.users.justin.shell = pkgs.fish;
   programs.fish.interactiveShellInit = ''
@@ -87,10 +89,24 @@ in {
     options = "--delete-older-than 3d";
   };
 
-  powerManagement.resumeCommands = ''
-    echo "This should show up in the journal after resuming."
-  '';
-
+  systemd.services."before-suspend" = {
+    description = "Sets up the suspend";
+    wantedBy = [ "suspend.target" ];
+    before = [ "systemd-suspend.service" ];
+    script = ''
+      echo "$(date '+%Y-%m-%d %H:%M:%S') going to sleep" >> /home/justin/suspend.log
+    '';
+    serviceConfig.Type = "oneshot";
+  };
+  systemd.services."after-suspend" = {
+    description = "sets up after suspend";
+    wantedBy = [ "suspend.target" ];
+    after = [ "systemd-suspend.service" ];
+    script = ''
+      echo "$(date '+%Y-%m-%d %H:%M:%S') woke up" >> /home/justin/suspend.log
+    '';
+    serviceConfig.Type = "oneshot";
+  };
   networking.hostName = "nixos"; # Define your hostname.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -213,7 +229,7 @@ in {
   boot.kernelParams = [ "quiet" ];
 
   services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTR{power/wakeup}="enabled"
+    ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTR{power/wakeup}="disabled"
   '';
 
   security.sudo = {
@@ -247,6 +263,12 @@ in {
         {
           command =
             "/run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference";
+          options = [ "NOPASSWD" ];
+
+        }
+        {
+          command =
+            "/run/current-system/sw/bin/tee /sys/devices/*/*/*/power/wakeup";
           options = [ "NOPASSWD" ];
 
         }
