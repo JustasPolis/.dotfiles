@@ -1,7 +1,7 @@
-your_predefined_command=nvim
+predefined_command=lf
 
 # Launch Kitty with the predefined command
-kitty -e $your_predefined_command
+kitty -e $predefined_command
 
 # Get the PID of the last background process (Kitty)
 kitty_pid=$!
