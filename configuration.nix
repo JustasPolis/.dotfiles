@@ -48,7 +48,7 @@ in {
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -95,6 +95,8 @@ in {
     before = [ "systemd-suspend.service" ];
     script = ''
       echo "$(date '+%Y-%m-%d %H:%M:%S') going to sleep" >> /home/justin/suspend.log
+      /run/current-system/sw/bin/rfkill block bluetooth
+      /run/current-system/sw/bin/rfkill block wlan
     '';
     serviceConfig.Type = "oneshot";
   };
@@ -104,6 +106,8 @@ in {
     after = [ "systemd-suspend.service" ];
     script = ''
       echo "$(date '+%Y-%m-%d %H:%M:%S') woke up" >> /home/justin/suspend.log
+      /run/current-system/sw/bin/rfkill unblock bluetooth
+      /run/current-system/sw/bin/rfkill unblock wlan
     '';
     serviceConfig.Type = "oneshot";
   };
@@ -188,6 +192,9 @@ in {
     HandleLidSwitch=ignore
     HandleLidSwitchExternalPower=ignore
     HandleLidSwitchDocked=ignore
+    LidSwitchIgnoreInhibited=yes
+    HandleHibernateKey=ignore
+    HandleSuspendKey=ignore
   '';
 
   services.acpid = {
@@ -230,6 +237,7 @@ in {
 
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTR{power/wakeup}="disabled"
+    ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
   '';
 
   security.sudo = {
