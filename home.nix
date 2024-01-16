@@ -14,6 +14,7 @@
   home.file.".config/gtk-4.0".source = ./gtk-4.0;
   home.file.".config/wofi".source = ./wofi;
   home.file.".config/eww".source = ./eww;
+  home.file.".config/lf".source = ./lf;
 
   nixpkgs.config = { allowUnfree = true; };
 
