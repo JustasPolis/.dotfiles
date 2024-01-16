@@ -8,17 +8,11 @@ set previewer ~/.dotfiles/lf/preview.sh
 
 map s shell
 
-cmd open ${{
-  case $(file --mime-type $f -b) in
-    image/vnd.djvu|application/pdf|application/octet-stream) setsid -f mupdf $fx >/dev/null 2>&1 ;;
-    text/*) nvim $fx;;
-    image/x-xcf|image/svg+xml) setsid -f gimp $f >/dev/null 2>&1 ;;
-    image/*) nsxiv $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\)\(_large\)*$" | sxiv -aio 2>/dev/null | lf-select ;;
-    audio/*) mpv --audio-display=no $f ;;
-    video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-    application/pdf|application/vnd*|application/epub*) setsid -f mupdf $fx >/dev/null 2>&1 ;;
-    *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
-  esac
+cmd open &{{
+    case $(file --mime-type -Lb $f) in
+        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
 }}
 
 map <enter> open

@@ -23,6 +23,7 @@
     nixfmt
     ripgrep
     jq
+    file
     yq-go
     neovim
     neofetch
@@ -37,6 +38,7 @@
     wofi
     eww-wayland
     imagemagick
+    perl538Packages.FileMimeInfo
     lf
     swayimg
     stylua

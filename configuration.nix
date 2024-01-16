@@ -107,7 +107,7 @@ in {
     script = ''
       percentage=$(/run/current-system/sw/bin/upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'percentage:\s+\K\d+')
       echo "$(date '+%Y-%m-%d %H:%M:%S') woke up battery $percentage%" >> /home/justin/suspend.log
-      /run/current-system/sw/bin/rfkill unblock bluetooth
+     # /run/current-system/sw/bin/rfkill unblock bluetooth
       /run/current-system/sw/bin/rfkill unblock wlan
     '';
     serviceConfig.Type = "oneshot";
