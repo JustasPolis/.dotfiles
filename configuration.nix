@@ -19,8 +19,7 @@ let
     in ''
       export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS gnome_schema=org.gnome.desktop.interface gsettings set $gnome_schema gtk-theme 'rose-pine'
            gsettings set $gnome_schema font-antialiasing 'grayscale'
-           gsettings set $gnome_schema font-hinting 'slight'
-           gsettings set $gnome_schema font-name 'Roboto Medium, 10'
+           gsettings set $gnome_schema font-hinting 'slight' gsettings set $gnome_schema font-name 'Roboto Medium, 10'
            gsettings set $gnome_schema document-font-name 'Roboto Medium, 10'
            gsettings set $gnome_schema monospace-font-name 'JetBrainsMono NF Medium, 13'
            gsettings set $gnome_schema cursor-theme 'Bibata-Modern-Ice'
@@ -57,7 +56,6 @@ in {
 
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-  #systemd.services.NetworkManager-wait-online.enable = false;
   services.devmon.enable = true;
   environment.pathsToLink = [ "/libexec" ];
   programs.fish.enable = true;
@@ -281,11 +279,7 @@ in {
             "/run/current-system/sw/bin/tee /sys/devices/*/*/*/power/wakeup";
           options = [ "NOPASSWD" ];
         }
-        {
-          command =
-            "/run/current-system/sw/bin/tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode";
-          options = [ "NOPASSWD" ];
-        }
+
       ];
       groups = [ "wheel" ];
     }];
