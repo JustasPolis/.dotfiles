@@ -280,9 +280,11 @@ in {
           options = [ "NOPASSWD" ];
         }
         {
-          command = "/run/current-system/sw/bin/tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode";
+          command =
+            "/run/current-system/sw/bin/tee /sys/bus/platform/drivers/ideapad_acpi/*";
           options = [ "NOPASSWD" ];
         }
+
       ];
       groups = [ "wheel" ];
     }];
