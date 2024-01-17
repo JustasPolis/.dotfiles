@@ -1,16 +1,16 @@
 set hidden true
 set ignorecase true
 set icons true
-set shell fish
+set shell sh
 set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
 set drawbox
 set previewer ~/.dotfiles/lf/preview.sh
 
 map s shell
 
-cmd open &{{
+cmd open ${{
     case $(file --mime-type -Lb $f) in
-        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        text/*) kitten @ launch --type=tab nvim $fx;;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}

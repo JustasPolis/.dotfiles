@@ -60,8 +60,8 @@ in {
   environment.pathsToLink = [ "/libexec" ];
   programs.fish.enable = true;
   programs.fish.loginShellInit = ''
-    echo 1 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
-    echo disabled | sudo tee /sys/devices/*/*/*/power/wakeup 
+    echo 1 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode > /dev/null 
+    echo disabled | sudo tee /sys/devices/*/*/*/power/wakeup > /dev/null 
       if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
          exec "Hyprland" > /dev/null
       end
