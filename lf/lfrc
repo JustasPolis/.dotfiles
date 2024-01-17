@@ -10,7 +10,7 @@ map s shell
 
 cmd open ${{
     case $(file --mime-type -Lb $f) in
-        text/*) kitten @ launch --type=tab nvim $fx;;
+        text/*) kitten @ launch --type=tab --tab-title "nvim $f" nvim $fx;;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}

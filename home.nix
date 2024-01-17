@@ -15,6 +15,7 @@
   home.file.".config/wofi".source = ./wofi;
   home.file.".config/eww".source = ./eww;
   home.file.".config/lf".source = ./lf;
+  home.file.".config/bat".source = ./bat;
 
   nixpkgs.config = { allowUnfree = true; };
 
