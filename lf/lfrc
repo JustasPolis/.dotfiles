@@ -6,16 +6,41 @@ set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
 set drawbox
 set previewer ~/.dotfiles/lf/preview.sh
 
+
 map s shell
 
 cmd open ${{
     case $(file --mime-type -Lb $f) in
         text/*) kitten @ launch --type=tab --tab-title "nvim $f" nvim $fx;;
+        image/*) kitten @launch --type=tab --tab-title "img $f" sh -c "swayimg $f 2>/dev/null";;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
 
+cmd trash ${{
+    trash-put "$fx"
+}}
+
+# Custom Functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
 map <enter> open
 map <esc> quit
+map p paste
+map x cut
+map y copy
+map md mkdir
+map mf mkfile
+map d trash
 
 

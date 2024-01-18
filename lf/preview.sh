@@ -31,7 +31,7 @@ case "$MIME" in
     # any plain text file that doesn't have a specific handler
     *text/plain*)
         # return false to always repaint, in case terminal size changes
-        bat --force-colorization --theme=ansi --paging=never --style=changes,numbers \
+        bat --force-colorization --paging=never --style=changes,numbers \
             --terminal-width $(($2 - 3)) "$1" && false
         ;;
     *)
