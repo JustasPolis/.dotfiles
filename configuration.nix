@@ -149,6 +149,7 @@ in {
   nixpkgs.config.allowUnfree = true;
   services.mullvad-vpn.enable = false;
   services.dbus.enable = true;
+  hardware.i2c.enable = true;
 
   environment.systemPackages = with pkgs; [
     git
@@ -171,7 +172,7 @@ in {
     mpv
     nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprshot
     hyprshade
-    #nixpkgs-personal.legacyPackages.${pkgs.system}.swaylock
+    nixpkgs-personal.legacyPackages.${pkgs.system}.ddcutil
     nixpkgs-unstable.legacyPackages.${pkgs.system}.swaylock-effects
   ];
 

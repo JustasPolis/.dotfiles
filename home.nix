@@ -53,7 +53,6 @@
     shfmt
     floorp
     trash-cli
-    google-chrome
   ];
 
   home.stateVersion = "23.11";
