@@ -161,6 +161,7 @@ in {
     bat
     brightnessctl
     pamixer
+    pulseaudio
     socat
     killall
     configure-gtk

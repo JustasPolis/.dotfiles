@@ -1,5 +1,5 @@
 (defvar brightness-reveal false)
-(defpoll brightness-lvl :interval "0s" "scripts/brightness")
+(defpoll brightness-lvl :interval "1s" "scripts/brightness")
 (defpoll date :interval "60s" "date +'%H:%M %y-%m-%d'")
 (defpoll bluetooth :interval "1s" "scripts/bluetooth -i")
 (defpoll bluetooth-state :interval "3s" "scripts/bluetooth -l")
@@ -23,7 +23,7 @@
     (box :class "brightness-box" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
       (box :class "brightness-icon" :style "background-image: url('icons/bri-high.svg');")
       (revealer :transition "slideright" :reveal brightness-reveal :duration "350ms"
-        (scale :class "brightness-scale" :width 100 :active true :value brightness-lvl :min 0 :max 101 :orientation "h" :onchange "ddcutil --bus 16 --skip-ddc-checks setvcp 10 {}")))))
+        (scale :class "brightness-scale" :width 100 :active true :value 30.0 :min 0 :max 101 :orientation "h" :onchange "ddcutil --bus 16 --skip-ddc-checks setvcp 10 {}")))))
 
 
 (defwidget bluetooth []
