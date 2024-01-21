@@ -122,7 +122,6 @@ in {
   };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-  services.blueman.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
   networking.networkmanager.enable = true;
@@ -130,20 +129,14 @@ in {
   time.timeZone = "Europe/Vilnius";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  sound.enable = true;
   security.rtkit.enable = true;
+  hardware.pulseaudio.enable = true;
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   users.users.justin = {
     isNormalUser = true;
     description = "Justin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -161,13 +154,13 @@ in {
     bat
     brightnessctl
     pamixer
-    pulseaudio
     socat
     killall
     configure-gtk
     glib
     rose-pine-gtk-theme
     bibata-cursors
+    jc
     power-settings
     linuxKernel.packages.linux_xanmod_latest.cpupower
     mpv
