@@ -8,6 +8,7 @@
   home.file.".config/swayidle/config".source = ./swayidle/config;
   home.file.".config/swaylock/config".source = ./swaylock/config;
   home.file.".config/fish/config.fish".source = ./fish/config.fish;
+  home.file.".config/fish/functions".source = ./fish/functions;
   home.file.".config/starship.toml".source = ./starship/starship.toml;
   home.file.".config/nvim".source = ./nvim;
   home.file.".config/swayimg/config".source = ./swayimg/config;
