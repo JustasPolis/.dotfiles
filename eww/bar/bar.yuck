@@ -1,4 +1,3 @@
-(defvar brightness-reveal false)
 (deflisten brightness-lvl "bar/scripts/brightness.sh")
 (defpoll date :interval "60s" "date +'%H:%M'")
 (defpoll bluetooth :interval "1s" "bar/scripts/bluetooth -i")
@@ -6,6 +5,7 @@
 (deflisten battery "bar/scripts/battery.sh")
 (deflisten wifi "bar/scripts/wifi.sh")
 (deflisten audio "bar/scripts/audio.sh")
+(deflisten power-settings "bar/scripts/power-settings.sh")
 
 
 (defwidget clock []
@@ -22,8 +22,8 @@
 
 
 (defwidget bluetooth [] (eventbox :onhover "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww open bluetooth-window"
-    (box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-      (label :class "bluetooth-icon" :text "󰂯"))))
+                         (box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
+                           (label :class "bluetooth-icon" :text "󰂯"))))
 
 (defwidget brightness []
   (eventbox :onhover "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww open brightness-window"
@@ -33,33 +33,43 @@
 (defwidget battery []
   (eventbox :onhover "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww open brightness-window"
     (box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-      (label :class "battery-icon" :text {battery.icon} :style {battery.style} ))))
+      (label :class "battery-icon" :text {battery.icon} :style {battery.style}))))
 
 (defwidget wifi []
   (eventbox 
     :onhover "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww open brightness-window"
     (box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-      (label :class "wifi-icon" :text {wifi.text} :style {wifi.style} ))))
+      (label :class "wifi-icon" :text {wifi.text} :style {wifi.style}))))
 
 (defwidget audio []
   (eventbox
     :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     (box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-      (label :class "audio-icon" :text {audio.icon} :style {audio.style} ))))
+      (label :class "audio-icon" :text {audio.icon} :style {audio.style}))))
 
 (defwidget powermenu []
   (eventbox :onhover "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww open brightness-window"
     (box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-      (label :class "powermenu-icon" :text "power_settings_new" ))))
+      (label :class "powermenu-icon" :text "power_settings_new"))))
 
 (defwidget mic []
   (eventbox :onhover "/home/justin/.nix-profile/bin/eww -c $HOME/.config/eww open brightness-window"
     (box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-      (label :class "mic-icon" :text "󰍬" ))))
+      (label :class "mic-icon" :text "󰍬"))))
 
+(defwidget power-settings []
+  (eventbox :onhover "$HOME/.config/eww/bar/scripts/windows.sh open_power_settings_window"
+    (box :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
+      (label :class "power-settings-icon"  :text {power-settings.icon} :style {power-settings.style}))))
 
-
-
+(defwidget memory []
+    (box :class "mem-widget" :halign "center" :valign "center" :height 24 :width 24
+      (circular-progress :value 60
+          :class "memory-circular-progress"
+          :thickness 3
+       (box :class "test" :vexpand false :hexpand false :halign "center" :valign "center"
+        (label :class "iconmem" :height 2 :width 2 :text "M" :vexpand false :hexpand false))))) 
+           
 
 (defwidget end []
   (box :orientation "h"
@@ -80,7 +90,8 @@
     :space-evenly false
     :halign "start"
     :class "start-modules"
-    (label :text "start")))
+    (memory)
+    (power-settings)))
 
 (defwidget bar-widget []
   (box :class "bar-class"
@@ -93,7 +104,6 @@
   (box :class "bluetooth-main-widget"
     :orientation "h"
     (label :text "hello World")))
-
 
 (defwindow main-bar-window
   :geometry (geometry :x "0%" :y "0%" :width "100%" :height "50px" :anchor "top center")

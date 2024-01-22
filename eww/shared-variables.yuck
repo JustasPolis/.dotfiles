@@ -1,0 +1,3 @@
+(defvar brightness-reveal false)
+(defvar power-settings-window-open false)
+

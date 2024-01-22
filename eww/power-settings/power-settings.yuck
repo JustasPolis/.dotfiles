@@ -1,0 +1,13 @@
+(defwidget power-settings-main-widget []
+    (box :class "power-settings-main-widget-box" :orientation "h" :height 200 :width 200 :halign "start" :valign "start"
+  (eventbox :onhoverlost "$HOME/.config/eww/power-settings/power-settings.sh close-window"
+      (label :text "hello world"))))
+
+(defwindow power-settings-window
+  :geometry (geometry :x "0%" :y "1%" :width "96%" :height "200px" :anchor "top center")
+  :stacking "fg"
+  :exclusive "true"
+  :focusable "false"
+  :namespace "power-settings-window"
+  :monitor 0
+  (power-settings-main-widget))

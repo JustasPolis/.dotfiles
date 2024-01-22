@@ -1,6 +1,6 @@
 return {
 	"elkowar/yuck.vim",
 	lazy = true,
-  enabled = false,
+  enabled = true,
 	event = "BufEnter *.yuck",
 }

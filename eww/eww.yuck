@@ -1,1 +1,3 @@
 (include "bar/bar.yuck")
+(include "power-settings/power-settings.yuck")
+(include "shared-variables.yuck")

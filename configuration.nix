@@ -121,6 +121,8 @@ in {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
+  programs.direnv.enable = true;
+
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true;
 
