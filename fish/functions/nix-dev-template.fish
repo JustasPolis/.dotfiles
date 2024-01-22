@@ -1,4 +1,4 @@
-function initialize_nix_project
+function nix-dev-template
     set template $argv[1]
 
     # Check if a language is provided
@@ -8,7 +8,7 @@ function initialize_nix_project
     end
 
     # Run nix flake init with the specified language
-    nix flake init --template "github:the-nix-way/dev-templates#$language"
+    nix flake init --template "github:the-nix-way/dev-templates#$template"
     
     # Check if the nix flake init command succeeded
     if test $status -eq 0
