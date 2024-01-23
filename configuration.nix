@@ -27,7 +27,7 @@ let
     '';
   };
   power-settings = pkgs.writeShellScriptBin "power-settings"
-    (builtins.readFile "~/.dotfiles/scripts/power-settings.sh");
+    (builtins.readFile "/home/justin/.dotfiles/scripts/power-settings");
 in {
   imports = [
     ./hardware-configuration.nix
