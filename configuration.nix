@@ -1,35 +1,6 @@
-{ config, pkgs, lib, inputs, outputs, unstable, fork, ... }:
-let
-  dbus-hyprland-environment = pkgs.writeTextFile {
-    name = "dbus-hyprland-environment";
-    destination = "/bin/dbus-hyprland-environment";
-    executable = true;
-    text = ''
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
-      systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    '';
-  };
-  configure-gtk = pkgs.writeTextFile {
-    name = "configure-gtk";
-    destination = "/bin/configure-gtk";
-    executable = true;
-    text = let
-      schema = pkgs.gsettings-desktop-schemas;
-      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-    in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS gnome_schema=org.gnome.desktop.interface gsettings set $gnome_schema gtk-theme 'rose-pine'
-           gsettings set $gnome_schema font-antialiasing 'grayscale'
-           gsettings set $gnome_schema font-hinting 'slight' gsettings set $gnome_schema font-name 'Roboto Medium, 10'
-           gsettings set $gnome_schema document-font-name 'Roboto Medium, 10'
-           gsettings set $gnome_schema monospace-font-name 'JetBrainsMono NF Medium, 13'
-           gsettings set $gnome_schema cursor-theme 'Bibata-Modern-Ice'
-           gsettings set $gnome_schema cursor-size 24 gsettings set $gnome_schema toolbar-icons-size 'small' gsettings set org.gnome.mutter auto-maximize 'false'
-    '';
-  };
-  power-settings = pkgs.writeShellScriptBin "power-settings"
-    (builtins.readFile "/home/justin/.dotfiles/scripts/power-settings");
-in {
+{ config, pkgs, lib, inputs, outputs, unstable, fork, ... }: {
   imports = [
+    ./scripts/scripts.nix
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -135,7 +106,6 @@ in {
   environment.systemPackages = with pkgs; [
     git
     fzf
-    dbus-hyprland-environment
     fishPlugins.fzf-fish
     starship
     fd
@@ -144,12 +114,10 @@ in {
     pamixer
     socat
     killall
-    configure-gtk
     glib
     rose-pine-gtk-theme
     bibata-cursors
     jc
-    power-settings
     linuxKernel.packages.linux_xanmod_latest.cpupower
     mpv
     unstable.hyprshot
