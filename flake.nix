@@ -7,18 +7,26 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-personal.url = "github:JustasPolis/nixpkgs/master";
+    nixpkgs-fork.url = "github:JustasPolis/nixpkgs/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, nixpkgs-personal
+  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, nixpkgs-fork
     , ... }@inputs:
     let inherit (self) outputs;
     in {
       nixosConfigurations = {
-        justin = nixpkgs.lib.nixosSystem {
+        justin = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
-            inherit inputs outputs nixpkgs-unstable nixpkgs-personal;
+            unstable = import nixpkgs-unstable {
+              system = system;
+              config.allowUnfree = true;
+            };
+            fork = import nixpkgs-fork {
+              system = system;
+              config.allowUnfree = true;
+            };
+            inherit inputs outputs;
           };
           modules = [ ./configuration.nix ];
         };

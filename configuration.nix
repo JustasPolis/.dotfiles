@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, nixpkgs-unstable, nixpkgs-personal, ... }:
+{ config, pkgs, lib, inputs, outputs, unstable, fork, ... }:
 let
   dbus-hyprland-environment = pkgs.writeTextFile {
     name = "dbus-hyprland-environment";
@@ -166,10 +166,10 @@ in {
     power-settings
     linuxKernel.packages.linux_xanmod_latest.cpupower
     mpv
-    nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprshot
+    unstable.hyprshot
     hyprshade
-    nixpkgs-personal.legacyPackages.${pkgs.system}.ddcutil
-    nixpkgs-unstable.legacyPackages.${pkgs.system}.swaylock-effects
+    fork.ddcutil
+    unstable.swaylock-effects
   ];
 
   fonts.packages = with pkgs; [

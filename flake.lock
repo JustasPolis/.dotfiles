@@ -106,7 +106,7 @@
         "type": "github"
       }
     },
-    "nixpkgs-personal": {
+    "nixpkgs-fork": {
       "locked": {
         "lastModified": 1705605929,
         "narHash": "sha256-/nwZ5WFf+J91iBig3hMJgj8fmqkDLUWLlT9LGnO8YvY=",
@@ -159,7 +159,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-personal": "nixpkgs-personal",
+        "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
