@@ -4,6 +4,8 @@
     ./programs
     ./boot
     ./services
+    ./systemd
+    ./security
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -31,30 +33,6 @@
     options = "--delete-older-than 3d";
   };
 
-  systemd.services."before-suspend" = {
-    description = "Sets up the suspend";
-    wantedBy = [ "suspend.target" ];
-    before = [ "systemd-suspend.service" ];
-    script = ''
-      percentage=$(/run/current-system/sw/bin/upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'percentage:\s+\K\d+')
-      echo "$(date '+%Y-%m-%d %H:%M:%S') going to sleep battery $percentage%" >> /home/justin/suspend.log
-      /run/current-system/sw/bin/rfkill block bluetooth
-      /run/current-system/sw/bin/rfkill block wlan
-    '';
-    serviceConfig.Type = "oneshot";
-  };
-  systemd.services."after-suspend" = {
-    description = "sets up after suspend";
-    wantedBy = [ "suspend.target" ];
-    after = [ "systemd-suspend.service" ];
-    script = ''
-       percentage=$(/run/current-system/sw/bin/upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'percentage:\s+\K\d+')
-       echo "$(date '+%Y-%m-%d %H:%M:%S') woke up battery $percentage%" >> /home/justin/suspend.log
-      # /run/current-system/sw/bin/rfkill unblock bluetooth
-       /run/current-system/sw/bin/rfkill unblock wlan
-    '';
-    serviceConfig.Type = "oneshot";
-  };
   networking.hostName = "nixos"; # Define your hostname.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -67,7 +45,6 @@
   time.timeZone = "Europe/Vilnius";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  security.rtkit.enable = true;
   hardware.pulseaudio.enable = true;
 
   users.users.justin = {
@@ -109,65 +86,5 @@
   ];
 
   networking.firewall.enable = true;
-
-  security.pam.services.swaylock = { };
-  security.pam.services.waylock = { };
-
   system.stateVersion = "23.11";
-
-  security.pam.loginLimits = [{
-    domain = "@users";
-    item = "rtprio";
-    type = "-";
-    value = 1;
-  }];
-
-  security.sudo = {
-    enable = true;
-    extraRules = [{
-      commands = [
-        {
-          command = "${pkgs.systemd}/bin/systemctl suspend";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "${pkgs.systemd}/bin/reboot";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "${pkgs.systemd}/bin/poweroff";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "/run/current-system/sw/bin/systemctl stop bluetooth";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "/run/current-system/sw/bin/systemctl start bluetooth";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "/run/current-system/sw/bin/cpupower";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command =
-            "/run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command =
-            "/run/current-system/sw/bin/tee /sys/devices/*/*/*/power/wakeup";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command =
-            "/run/current-system/sw/bin/tee /sys/bus/platform/drivers/ideapad_acpi/*";
-          options = [ "NOPASSWD" ];
-        }
-
-      ];
-      groups = [ "wheel" ];
-    }];
-  };
 }
