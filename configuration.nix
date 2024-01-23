@@ -1,6 +1,6 @@
 { config, pkgs, lib, inputs, outputs, unstable, fork, ... }: {
   imports = [
-    ./scripts/scripts.nix
+    ./scripts
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
