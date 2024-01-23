@@ -2,21 +2,21 @@
 
   home.username = "justin";
   home.homeDirectory = "/home/justin";
-  home.file.".config/hypr".source = ./hypr;
-  home.file.".config/kitty".source = ./kitty;
-  home.file.".config/wallpapers".source = ./wallpapers;
-  home.file.".config/swayidle/config".source = ./swayidle/config;
-  home.file.".config/swaylock/config".source = ./swaylock/config;
-  home.file.".config/fish/config.fish".source = ./fish/config.fish;
-  home.file.".config/fish/functions".source = ./fish/functions;
-  home.file.".config/starship.toml".source = ./starship/starship.toml;
-  home.file.".config/nvim".source = ./nvim;
-  home.file.".config/swayimg/config".source = ./swayimg/config;
-  home.file.".config/gtk-4.0".source = ./gtk-4.0;
-  home.file.".config/wofi".source = ./wofi;
-  #home.file.".config/eww".source = ./eww;
-  home.file.".config/lf".source = ./lf;
-  home.file.".config/bat".source = ./bat;
+  home.file.".config/hypr".source = ./.config/hypr;
+  home.file.".config/kitty".source = ./.config/kitty;
+  home.file.".config/wallpapers".source = ./.config/wallpapers;
+  home.file.".config/swayidle/config".source = ./.config/swayidle/config;
+  home.file.".config/swaylock/config".source = ./.config/swaylock/config;
+  home.file.".config/fish/config.fish".source = ./.config/fish/config.fish;
+  home.file.".config/fish/functions".source = ./.config/fish/functions;
+  home.file.".config/starship.toml".source = ./.config/starship/starship.toml;
+  home.file.".config/nvim".source = ./.config/nvim;
+  home.file.".config/swayimg/config".source = ./.config/swayimg/config;
+  home.file.".config/gtk-4.0".source = ./.config/gtk-4.0;
+  home.file.".config/wofi".source = ./.config/wofi;
+  #home.file.".config/eww".source = ./.config/eww;
+  home.file.".config/lf".source = ./.config/lf;
+  home.file.".config/bat".source = ./.config/bat;
 
   nixpkgs.config = { allowUnfree = true; };
 
