@@ -33,9 +33,6 @@
     hyprpaper
     neovim
     eza
-    clang
-    nodejs
-    go
     lua-language-server
     wofi
     eww-wayland
@@ -45,10 +42,8 @@
     swayimg
     stylua
     wl-clipboard
-    rustup
     sway-audio-idle-inhibit
     firefox-unwrapped
-    mullvad
     celluloid
     transmission-gtk
     shfmt
