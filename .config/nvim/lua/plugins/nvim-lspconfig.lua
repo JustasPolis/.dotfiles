@@ -82,7 +82,7 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 
 		mason_lspconfig.setup({
-			ensure_installed = { "tsserver", "rust_analyzer", "gopls" },
+			ensure_installed = { "tsserver", "gopls" },
 		})
 
 		mason_lspconfig.setup_handlers({
