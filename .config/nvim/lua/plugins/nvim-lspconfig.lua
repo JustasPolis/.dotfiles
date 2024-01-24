@@ -91,17 +91,6 @@ return {
 				on_attach = on_attach,
 				filetypes = require("lspconfig").tsserver.filetypes,
 			}),
-			require("lspconfig").rust_analyzer.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				settings = {
-					["rust-analyzer"] = {
-						checkOnSave = { command = "clippy" },
-						diagnostics = { experimental = { enable = false } },
-					},
-				},
-				filetypes = require("lspconfig").rust_analyzer.filetypes,
-			}),
 			require("lspconfig").gopls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
@@ -119,24 +108,36 @@ return {
 			}),
 		})
 
-	require("lspconfig").lua_ls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				settings = {
-					Lua = {
-						workspace = { checkThirdParty = false },
-						telemetry = { enable = false },
-						completion = {
-							callSnippet = "Replace",
-						},
-						diagnostics = {
-							globals = { "vim" },
-						},
-						hint = { enable = true },
-					},
+		require("lspconfig").rust_analyzer.setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {
+				["rust-analyzer"] = {
+					checkOnSave = { command = "clippy" },
+					diagnostics = { experimental = { enable = false } },
 				},
-				filetypes = require("lspconfig").lua_ls.filetypes,
-			})
+			},
+			filetypes = require("lspconfig").rust_analyzer.filetypes,
+		})
+
+		require("lspconfig").lua_ls.setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {
+				Lua = {
+					workspace = { checkThirdParty = false },
+					telemetry = { enable = false },
+					completion = {
+						callSnippet = "Replace",
+					},
+					diagnostics = {
+						globals = { "vim" },
+					},
+					hint = { enable = true },
+				},
+			},
+			filetypes = require("lspconfig").lua_ls.filetypes,
+		})
 
 		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 		for name, icon in pairs(signs) do

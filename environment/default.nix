@@ -21,6 +21,9 @@
     hyprshade
     fork.ddcutil
     unstable.swaylock-effects
+    curl
+    unzip
+    gzip
   ];
 }
 
