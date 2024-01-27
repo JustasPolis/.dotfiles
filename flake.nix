@@ -30,10 +30,9 @@
               system = system;
               config.allowUnfree = true;
             };
-            local = import local { inherit pkgs; };
             inherit inputs outputs;
           };
-          modules = [ ./configuration.nix local.nixosModules.hello ];
+          modules = [ ./configuration.nix ];
         };
       };
     };
