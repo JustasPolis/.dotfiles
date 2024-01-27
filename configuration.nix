@@ -10,7 +10,7 @@
     ./environment
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
-    inputs.hello.nixosModules.default
+    #inputs.hello.nixosModules.default
   ];
 
   home-manager = {
@@ -18,7 +18,7 @@
     users = { justin = import ./home.nix; };
   };
 
-  services.hello.enable = true;
+  #services.hello.enable = true;
 
   nix.settings.auto-optimise-store = true;
   nix.optimise.automatic = true;
