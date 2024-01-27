@@ -36,7 +36,7 @@
     curl
     unzip
     gzip
-    local.hello
+    local
   ];
 }
 

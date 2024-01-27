@@ -13,7 +13,10 @@
 
   outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, nixpkgs-fork, local
     , ... }@inputs:
-    let inherit (self) outputs;
+    let
+      inherit (self) outputs;
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
         justin = nixpkgs.lib.nixosSystem rec {
@@ -27,7 +30,7 @@
               system = system;
               config.allowUnfree = true;
             };
-            local = import local { system = system; };
+            local = import local { inherit pkgs; };
             inherit inputs outputs;
           };
           modules = [ ./configuration.nix ];
