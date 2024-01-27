@@ -1,5 +1,24 @@
 {
   "nodes": {
+    "hello": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1706390922,
+        "narHash": "sha256-deQrYk1CtBAuXCUd7u62rx1QeTeFfgUzAjuR8C4IqTA=",
+        "owner": "JustasPolis",
+        "repo": "hello-flakes",
+        "rev": "fae296bde086a87acfea84be38ef40a9d54b2210",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JustasPolis",
+        "ref": "main",
+        "repo": "hello-flakes",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -24,7 +43,7 @@
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "systems": "systems",
         "wlroots": "wlroots",
         "xdph": "xdph"
@@ -92,16 +111,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1705133751,
-        "narHash": "sha256-rCIsyE80jgiOU78gCWN3A0wE0tR2GI5nH6MlS+HaaSQ=",
-        "owner": "NixOS",
+        "lastModified": 1706304414,
+        "narHash": "sha256-undaQcpN/YBG7bMi1ePsU4NM+S49+ZkWf691I+SaHxY=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9b19f5e77dd906cb52dade0b7bd280339d2a1f3d",
+        "rev": "57fd1ef33b4de5ca16850e484f76b87a19b974b1",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "owner": "nixos",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -140,6 +158,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1705133751,
+        "narHash": "sha256-rCIsyE80jgiOU78gCWN3A0wE0tR2GI5nH6MlS+HaaSQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9b19f5e77dd906cb52dade0b7bd280339d2a1f3d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1706098335,
         "narHash": "sha256-r3dWjT8P9/Ah5m5ul4WqIWD8muj5F+/gbCdjiNVBKmU=",
         "owner": "nixos",
@@ -156,9 +190,10 @@
     },
     "root": {
       "inputs": {
+        "hello": "hello",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
