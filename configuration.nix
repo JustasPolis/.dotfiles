@@ -10,7 +10,7 @@
     ./environment
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
-    inputs.local.nixosModules.default
+    inputs.hello.nixosModules.default
   ];
 
   home-manager = {

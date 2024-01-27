@@ -90,25 +90,6 @@
         "type": "github"
       }
     },
-    "local": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1706378859,
-        "narHash": "sha256-8GOByWXFZmBLyq8onbmy0Hy9hHmMOW4GSIs0n0qLldQ=",
-        "owner": "JustasPolis",
-        "repo": "hello-flakes",
-        "rev": "4a997f08d768884fdcaf33bebae0bd064d7e95ba",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JustasPolis",
-        "ref": "main",
-        "repo": "hello-flakes",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1705133751,
@@ -159,21 +140,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1706304414,
-        "narHash": "sha256-undaQcpN/YBG7bMi1ePsU4NM+S49+ZkWf691I+SaHxY=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "57fd1ef33b4de5ca16850e484f76b87a19b974b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1706098335,
         "narHash": "sha256-r3dWjT8P9/Ah5m5ul4WqIWD8muj5F+/gbCdjiNVBKmU=",
         "owner": "nixos",
@@ -192,8 +158,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "local": "local",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
