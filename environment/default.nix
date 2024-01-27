@@ -36,7 +36,6 @@
     curl
     unzip
     gzip
-    local
   ];
 }
 
