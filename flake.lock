@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1706390922,
-        "narHash": "sha256-deQrYk1CtBAuXCUd7u62rx1QeTeFfgUzAjuR8C4IqTA=",
+        "lastModified": 1706391002,
+        "narHash": "sha256-rVE38xbPccKPVn1ev1o7PT3SLepFZn4vtnIurrEXplc=",
         "owner": "JustasPolis",
         "repo": "hello-flakes",
-        "rev": "fae296bde086a87acfea84be38ef40a9d54b2210",
+        "rev": "0e40ffb42961eeaee59f8c563b2d25cf6013d461",
         "type": "github"
       },
       "original": {
