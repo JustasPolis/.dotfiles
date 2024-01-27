@@ -1,4 +1,16 @@
 { config, pkgs, unstable, fork, ... }: {
+  nixpkgs.overlays = [
+    (final: prev: {
+      ddcutil = prev.ddcutil.overrideAttrs (previousAttrs: rec {
+        version = "2.1.0";
+        src = prev.fetchurl {
+          url = "https://www.ddcutil.com/tarballs/ddcutil-${version}.tar.gz";
+          hash = "sha256-YiJrkxcoLVI/GTW8S5gMHFY30zjs0xnj5yZPmBCF5q0=";
+        };
+      });
+    })
+  ];
+
   environment.pathsToLink = [ "/libexec" ];
   environment.systemPackages = with pkgs; [
     git
@@ -19,7 +31,7 @@
     mpv
     unstable.hyprshot
     hyprshade
-    fork.ddcutil
+    ddcutil
     unstable.swaylock-effects
     curl
     unzip

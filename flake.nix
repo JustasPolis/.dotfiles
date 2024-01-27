@@ -8,9 +8,10 @@
     hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-fork.url = "github:JustasPolis/nixpkgs/master";
+    local.url = "git+file:///home/justin/.projects/nix-test";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, nixpkgs-fork
+  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, nixpkgs-fork, local
     , ... }@inputs:
     let inherit (self) outputs;
     in {
