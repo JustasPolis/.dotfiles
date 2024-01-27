@@ -6,7 +6,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-fork.url = "github:JustasPolis/nixpkgs/master";
-    hello.url = "github:JustasPolis/hello-flakes/main";
+    hello.url = "github:JustasPolis/hello-flakes";
   };
 
   outputs = { nixpkgs, nixpkgs-unstable, nixpkgs-fork, ... }@inputs: {
