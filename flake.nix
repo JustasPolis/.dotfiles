@@ -33,7 +33,7 @@
             local = import local { inherit pkgs; };
             inherit inputs outputs;
           };
-          modules = [ ./configuration.nix ];
+          modules = [ ./configuration.nix local.nixosModules.hello ];
         };
       };
     };
