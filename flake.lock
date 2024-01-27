@@ -114,11 +114,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1706368274,
-        "narHash": "sha256-M0xdsRJswdkUo7GCiZ/E4w4rI59ZfgpQpZlbSpVT8Dw=",
+        "lastModified": 1706377587,
+        "narHash": "sha256-V/hiLN4p8AL3eSlIaQqU3MwxFaBv4RHntXgD5pGlI7A=",
         "ref": "refs/heads/master",
-        "rev": "b77fb333a4d5d7fc4668700860923a73025319ba",
-        "revCount": 22,
+        "rev": "d423c22177b3468d7446ffd7a51e7d7f45c88600",
+        "revCount": 24,
         "type": "git",
         "url": "file:///home/justin/.projects/nix-test"
       },

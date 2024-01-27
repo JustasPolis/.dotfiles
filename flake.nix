@@ -11,29 +11,23 @@
     local.url = "git+file:///home/justin/.projects/nix-test";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, nixpkgs-fork, local
-    , ... }@inputs:
-    let
-      inherit (self) outputs;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      nixosConfigurations = {
-        justin = nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          specialArgs = {
-            unstable = import nixpkgs-unstable {
-              system = system;
-              config.allowUnfree = true;
-            };
-            fork = import nixpkgs-fork {
-              system = system;
-              config.allowUnfree = true;
-            };
-            inherit inputs outputs;
+  outputs = { nixpkgs, nixpkgs-unstable, nixpkgs-fork, ... }@inputs: {
+    nixosConfigurations = {
+      justin = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          unstable = import nixpkgs-unstable {
+            system = system;
+            config.allowUnfree = true;
           };
-          modules = [ ./configuration.nix ];
+          fork = import nixpkgs-fork {
+            system = system;
+            config.allowUnfree = true;
+          };
+          inherit inputs;
         };
+        modules = [ ./configuration.nix ];
       };
     };
+  };
 }
