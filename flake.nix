@@ -27,6 +27,7 @@
               system = system;
               config.allowUnfree = true;
             };
+            local = import local { system = system; };
             inherit inputs outputs;
           };
           modules = [ ./configuration.nix ];

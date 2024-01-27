@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, fork, ... }: {
+{ config, pkgs, unstable, fork, local, ... }: {
   nixpkgs.overlays = [
     (final: prev: {
       ddcutil = prev.ddcutil.overrideAttrs (previousAttrs: rec {
@@ -36,6 +36,7 @@
     curl
     unzip
     gzip
+    local.hello
   ];
 }
 
