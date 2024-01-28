@@ -11,6 +11,7 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hello.nixosModules.default
+    inputs.nordvpn.nixosModules.default
   ];
 
   home-manager = {
@@ -19,6 +20,7 @@
   };
 
   services.hello.enable = true;
+  programs.nordvpn.enable = true;
 
   nix.settings.auto-optimise-store = true;
   nix.optimise.automatic = true;
@@ -46,7 +48,7 @@
     shell = pkgs.fish;
     isNormalUser = true;
     description = "Justin";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "nordvpn" ];
   };
 
   nixpkgs.config.allowUnfree = true;

@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1706391002,
-        "narHash": "sha256-rVE38xbPccKPVn1ev1o7PT3SLepFZn4vtnIurrEXplc=",
+        "lastModified": 1706424984,
+        "narHash": "sha256-GrrBsf/uUqrOqp5+MqrLVogC4NmMm1y7i7oAiUNFH2A=",
         "owner": "JustasPolis",
         "repo": "hello-flakes",
-        "rev": "0e40ffb42961eeaee59f8c563b2d25cf6013d461",
+        "rev": "71719f784cdf7e3c00d7712e4580603a132a952f",
         "type": "github"
       },
       "original": {
@@ -188,6 +188,40 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1706436897,
+        "narHash": "sha256-/NXOtZIKTWw2vza5dMc7YSMPqcUMaPfGP+sGEmfWWig=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9a9ed628da061820b9039a6795cb233f08816c76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nordvpn": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1706451805,
+        "narHash": "sha256-5YyEiv3kFAlzDWdQLqyAxqO26/ycUgaEL32jozwby9w=",
+        "owner": "JustasPolis",
+        "repo": "nordvpn-linux",
+        "rev": "f8883aae21b52d69530ea52f5a1e2dbc98dfad80",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JustasPolis",
+        "ref": "main",
+        "repo": "nordvpn-linux",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "hello": "hello",
@@ -195,7 +229,8 @@
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-fork": "nixpkgs-fork",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nordvpn": "nordvpn"
       }
     },
     "systems": {

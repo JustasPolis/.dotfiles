@@ -7,6 +7,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-fork.url = "github:JustasPolis/nixpkgs/master";
     hello.url = "github:JustasPolis/hello-flakes/main";
+    nordvpn.url = "github:JustasPolis/nordvpn-linux/main";
   };
 
   outputs = { nixpkgs, nixpkgs-unstable, nixpkgs-fork, ... }@inputs: {
