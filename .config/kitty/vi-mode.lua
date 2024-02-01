@@ -18,3 +18,4 @@ vim.defer_fn(function()
 	-- go to the end of the terminal buffer
 	vim.cmd.startinsert()
 end, 10)
+
