@@ -3,13 +3,6 @@ return {
 	lazy = true,
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{
-			"williamboman/mason.nvim",
-			opts = { ui = { border = "rounded" } },
-			run = ":MasonUpdate",
-			cmd = "Mason",
-		},
-		{ "williamboman/mason-lspconfig.nvim" },
 		{ "folke/neodev.nvim" },
 	},
 	config = function()
@@ -79,35 +72,6 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-		local mason_lspconfig = require("mason-lspconfig")
-
-		mason_lspconfig.setup({
-			ensure_installed = { "tsserver", "gopls" },
-		})
-
-		mason_lspconfig.setup_handlers({
-			require("lspconfig").tsserver.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				filetypes = require("lspconfig").tsserver.filetypes,
-			}),
-			require("lspconfig").gopls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				settings = {
-					gopls = {
-						completeUnimported = true,
-						usePlaceholders = true,
-						analyses = {
-							unusedparams = true,
-						},
-						staticcheck = true,
-						gofumpt = true,
-					},
-				},
-			}),
-		})
-
 		require("lspconfig").rust_analyzer.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
@@ -120,8 +84,23 @@ return {
 			filetypes = require("lspconfig").rust_analyzer.filetypes,
 		})
 
-		require("lspconfig").lua_ls.setup({
+		require("lspconfig").gopls.setup({
 			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {
+				gopls = {
+					completeUnimported = true,
+					usePlaceholders = true,
+					analyses = {
+						unusedparams = true,
+					},
+					staticcheck = true,
+					gofumpt = true,
+				},
+			},
+		})
+
+		require("lspconfig").lua_ls.setup({ capabilities = capabilities,
 			on_attach = on_attach,
 			settings = {
 				Lua = {
