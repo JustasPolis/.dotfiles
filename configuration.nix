@@ -20,7 +20,6 @@
   };
 
   services.hello.enable = true;
-  programs.nordvpn.enable = true;
 
   nix.settings.auto-optimise-store = true;
   nix.optimise.automatic = true;
@@ -39,7 +38,8 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
-  networking.firewall.enable = true;
+
+  networking.firewall = { enable = true; };
 
   time.timeZone = "Europe/Vilnius";
   i18n.defaultLocale = "en_US.UTF-8";

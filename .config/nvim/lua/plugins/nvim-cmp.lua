@@ -65,7 +65,7 @@ return {
 			---@diagnostic disable-next-line: missing-fields
 			completion = {
 				completeopt = "menu,menuone,noinsert",
-        -- TODO: refactor for swift
+				-- TODO: refactor for swift
 				--get_trigger_characters = function()
 				-- return { "(" }
 				-- end,
@@ -154,7 +154,7 @@ return {
 			sources = {
 				{
 					name = "nvim_lsp",
-          -- TODO: Refactor for swift
+					-- TODO: Refactor for swift
 					--entry_filter = function(entry, _)
 					--  if entry.completion_item.label == "()" then
 					--    return false
@@ -174,7 +174,7 @@ return {
 			---@diagnostic disable-next-line: missing-fields
 			view = {
 				docs = {
-					auto_open = false,
+					auto_open = true,
 				},
 			},
 			window = {

@@ -208,11 +208,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1706451805,
-        "narHash": "sha256-5YyEiv3kFAlzDWdQLqyAxqO26/ycUgaEL32jozwby9w=",
+        "lastModified": 1706593980,
+        "narHash": "sha256-yscJzrLc8okLf1f9co/IjafuGYS2OBtJgljXtV4UN6g=",
         "owner": "JustasPolis",
         "repo": "nordvpn-linux",
-        "rev": "f8883aae21b52d69530ea52f5a1e2dbc98dfad80",
+        "rev": "4b398ee0a1eab6f5b83df8f6ebb903943297948e",
         "type": "github"
       },
       "original": {
