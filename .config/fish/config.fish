@@ -12,3 +12,6 @@ set -g fish_key_bindings fish_vi_key_bindings
 bind yy fish_clipboard_copy
 bind p fish_clipboard_paste
 
+abbr --add nvim-clean 'rm -rf ~/.config/nvim'
+abbr --add nvim-test 'rsync -avz --copy-links --chmod=D2755,F744 ~/.dotfiles/.config/nvim ~/.config/nvim'
+
