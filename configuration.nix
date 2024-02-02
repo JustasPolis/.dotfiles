@@ -125,8 +125,8 @@
   };
 
   networking = {
-    hostname = "nixos";
-    networkManager = { enable = true; };
+    hostName = "nixos";
+    networkmanager = { enable = true; };
     firewall = { enable = true; };
   };
 
