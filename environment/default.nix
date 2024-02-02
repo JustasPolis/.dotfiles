@@ -36,6 +36,8 @@
     curl
     unzip
     gzip
+    home-manager
+    unstable.neovim
   ];
 }
 

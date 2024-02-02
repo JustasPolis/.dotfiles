@@ -10,23 +10,31 @@
     nordvpn.url = "github:JustasPolis/nordvpn-linux/main";
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, nixpkgs-fork, ... }@inputs: {
-    nixosConfigurations = {
-      justin = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-        specialArgs = {
-          unstable = import nixpkgs-unstable {
-            system = system;
-            config.allowUnfree = true;
+  outputs =
+    { nixpkgs, nixpkgs-unstable, nixpkgs-fork, home-manager, ... }@inputs: {
+      nixosConfigurations = {
+        justin = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = {
+            unstable = import nixpkgs-unstable {
+              system = system;
+              config.allowUnfree = true;
+            };
+            fork = import nixpkgs-fork {
+              system = system;
+              config.allowUnfree = true;
+            };
+            inherit inputs;
           };
-          fork = import nixpkgs-fork {
-            system = system;
-            config.allowUnfree = true;
-          };
-          inherit inputs;
+          modules = [ ./configuration.nix ];
         };
-        modules = [ ./configuration.nix ];
+      };
+      homeConfigurations = {
+        "justin" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./home.nix ];
+        };
       };
     };
-  };
 }
