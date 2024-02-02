@@ -35,25 +35,24 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-
 keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-keymap('n', "<C-m>", "*``cgn", opts)
+keymap("n", "<C-m>", "*``cgn", opts)
 
-keymap('n', '<leader>a', ':wqa<CR>', opts)
-keymap('n', '<leader>o', ':normal o<CR>', opts)
-keymap('n', '<leader>O', ':normal O<CR>', opts)
-keymap('n', '<C-w>', ':silent write<CR>', opts)
-vim.keymap.set('n', '<ESC>', function()
-  for _, win in pairs(vim.api.nvim_list_wins()) do
-    if vim.api.nvim_win_get_config(win).relative == 'win' then
-      vim.api.nvim_exec_autocmds("User", { pattern = "FloatWindowClose" })
-      vim.api.nvim_win_close(win, false)
-    elseif vim.api.nvim_win_get_config(win).relative == 'editor' then
-      vim.api.nvim_exec_autocmds("User", { pattern = "FloatWindowClose" })
-      vim.api.nvim_win_close(win, false)
-    end
-  end
+keymap("n", "<leader>a", ":wqa<CR>", opts)
+keymap("n", "<leader>o", ":normal o<CR>", opts)
+keymap("n", "<leader>O", ":normal O<CR>", opts)
+keymap("n", "<C-w>", ":silent write<CR>", opts)
+vim.keymap.set("n", "<ESC>", function()
+	for _, win in pairs(vim.api.nvim_list_wins()) do
+		if vim.api.nvim_win_get_config(win).relative == "win" then
+			vim.api.nvim_exec_autocmds("User", { pattern = "FloatWindowClose" })
+			vim.api.nvim_win_close(win, false)
+		elseif vim.api.nvim_win_get_config(win).relative == "editor" then
+			vim.api.nvim_exec_autocmds("User", { pattern = "FloatWindowClose" })
+			vim.api.nvim_win_close(win, false)
+		end
+	end
 end, opts)
