@@ -3,7 +3,6 @@ return {
 	name = "rose-pine",
 	lazy = false,
 	commit = "92762f4",
-	enabled = true,
 	priority = 1000,
 	opts = {},
 	config = function()

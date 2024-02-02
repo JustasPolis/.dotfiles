@@ -3,7 +3,6 @@ return {
 	lazy = true,
 	version = false,
 	event = { "BufReadPost", "BufNewFile" },
-  enabled = false,
 	build = ":TSUpdate",
 	config = function()
 		---@diagnostic disable-next-line: missing-fields
