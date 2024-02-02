@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   dbus-hyprland-environment = pkgs.writeTextFile {
     name = "dbus-hyprland-environment";
@@ -43,9 +43,6 @@ let
     fi
   '';
 in {
-  environment.systemPackages = with pkgs; [
-    dbus-hyprland-environment
-    configure-gtk
-    power-settings
-  ];
+  environment.systemPackages =
+    [ dbus-hyprland-environment configure-gtk power-settings ];
 }
