@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, unstable, fork, local, ... }: {
+{ pkgs, inputs, outputs, ... }: {
   imports = [
     ./scripts
     ./programs

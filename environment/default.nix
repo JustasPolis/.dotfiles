@@ -38,6 +38,7 @@
     gzip
     home-manager
     unstable.neovim
+    nil
   ];
 }
 

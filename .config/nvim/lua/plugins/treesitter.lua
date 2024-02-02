@@ -1,7 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	lazy = true,
-	version = false,
 	event = { "BufReadPost", "BufNewFile" },
 	build = ":TSUpdate",
 	config = function()
@@ -15,7 +14,7 @@ return {
 				"python",
 				"rust",
 				"tsx",
-        "nix",
+				"nix",
 				"typescript",
 				"vimdoc",
 				"vim",
@@ -29,7 +28,5 @@ return {
 			auto_install = true,
 			highlight = { enable = true, additional_vim_regex_highlighting = false },
 		})
-		---@diagnostic disable-next-line: deprecated
-		vim.treesitter.language.register("bash", "zsh")
 	end,
 }
