@@ -10,6 +10,7 @@ return {
 			sh = { "shfmt" },
 			bash = { "shfmt" },
 			nix = { "nixfmt" },
+			fish = { "fish_indent" },
 		},
 	},
 	keys = {

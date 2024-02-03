@@ -2,18 +2,27 @@ return {
 	"rose-pine/neovim",
 	name = "rose-pine",
 	lazy = false,
-	commit = "92762f4",
 	priority = 1000,
 	opts = {},
 	config = function()
 		local opts = {
 			variant = "main",
 			dark_variant = "main",
-			bold_vert_split = false,
-			dim_nc_background = false,
-			disable_background = true,
-			disable_float_background = true,
-			disable_italics = false,
+			--bold_vert_split = false,
+			--dim_inactive_windows = false,
+			--disable_float_background = true,
+
+			styles = {
+				bold = true,
+				italic = true,
+				transparency = true,
+			},
+
+			enable = {
+				terminal = false,
+				legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+				migrations = true, -- Handle deprecated options automatically
+			},
 
 			groups = {
 				background = "base",

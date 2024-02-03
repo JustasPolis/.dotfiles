@@ -81,6 +81,7 @@
       home-manager
       unstable.neovim
       nil
+      alejandra
     ];
   };
 

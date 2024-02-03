@@ -3,8 +3,8 @@ return {
 	event = "VeryLazy",
 	opts = {
 		cmdline = {
-			enabled = true, -- enables the Noice cmdline UI
-			view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+			enabled = true,
+			view = "cmdline_popup",
 			format = {
 				cmdline = { pattern = "^:", icon = "󱦰", lang = "vim" },
 				search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
@@ -12,26 +12,23 @@ return {
 				filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
 				lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
 				help = { pattern = "^:%s*he?l?p?%s+", icon = "?" },
-				input = {}, -- Used by input()
-				-- lua = false, -- to disable a format, set to `false`
+				input = {},
 			},
 		},
 		messages = {
-			-- NOTE: If you enable messages, then the cmdline is enabled automatically.
-			-- This is a current Neovim limitation.
-			enabled = true, -- enables the Noice messages UI
-			view = "notify", -- default view for messages
-			view_error = "notify", -- view for errors
-			view_warn = "notify", -- view for warnings
-			view_history = "messages", -- view for :messages
-			view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+			enabled = true,
+			view = "notify",
+			view_error = "notify",
+			view_warn = "notify",
+			view_history = "messages",
+			view_search = "virtualtext",
 		},
 		lsp = {
 			progress = {
 				enabled = false,
 				format = "lsp_progress",
 				format_done = "lsp_progress_done",
-				throttle = 1000 / 30, -- frequency to update lsp progress message
+				throttle = 1000 / 30,
 				view = "mini",
 			},
 			override = {
@@ -41,27 +38,26 @@ return {
 			},
 			hover = {
 				enabled = false,
-				silent = false, -- set to true to not show a message if hover is not available
-				view = nil, -- when nil, use defaults from documentation
-				opts = {}, -- merged with defaults from documentation
+				silent = false,
+				view = nil,
+				opts = {},
 			},
 			signature = {
 				enabled = false,
 				auto_open = {
 					enabled = false,
-					trigger = false, -- Automatically show signature help when typing a trigger character from the LSP
-					luasnip = false, -- Will open signature help when jumping to Luasnip insert nodes
-					throttle = 50, -- Debounce lsp signature help request by 50ms
+					trigger = false,
+					luasnip = false,
+					throttle = 50,
 				},
-				view = nil, -- when nil, use defaults from documentation
-				opts = {}, -- merged with defaults from documentation
+				view = nil,
+				opts = {},
 			},
 			message = {
 				enabled = false,
 				view = "notify",
 				opts = {},
 			},
-			-- defaults for hover and signature help
 			documentation = {
 				view = "hover",
 				---@type NoiceViewOptions
@@ -75,11 +71,11 @@ return {
 			},
 		},
 		presets = {
-			bottom_search = false, -- use a classic bottom cmdline for search
-			command_palette = true, -- position the cmdline and popupmenu together
-			long_message_to_split = true, -- long messages will be sent to a split
-			inc_rename = false, -- enables an input dialog for inc-rename.nvim
-			lsp_doc_border = false, -- add a border to hover docs and signature help
+			bottom_search = false,
+			command_palette = true,
+			long_message_to_split = true,
+			inc_rename = false,
+			lsp_doc_border = false,
 		},
 		views = {
 			cmdline_popup = {
