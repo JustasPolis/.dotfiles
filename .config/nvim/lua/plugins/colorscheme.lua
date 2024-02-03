@@ -8,7 +8,6 @@ return {
 		local opts = {
 			variant = "main",
 			dark_variant = "main",
-			bold_vert_split = false,
 			dim_inactive_windows = false,
 			disable_float_background = true,
 
@@ -16,11 +15,6 @@ return {
 				bold = true,
 				italic = true,
 				transparency = true,
-			},
-
-			enable = {
-				terminal = false,
-				migrations = true, -- Handle deprecated options automatically
 			},
 
 			groups = {
