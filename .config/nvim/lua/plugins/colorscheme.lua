@@ -8,9 +8,9 @@ return {
 		local opts = {
 			variant = "main",
 			dark_variant = "main",
-			--bold_vert_split = false,
-			--dim_inactive_windows = false,
-			--disable_float_background = true,
+			bold_vert_split = false,
+			dim_inactive_windows = false,
+			disable_float_background = true,
 
 			styles = {
 				bold = true,
@@ -20,7 +20,6 @@ return {
 
 			enable = {
 				terminal = false,
-				legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
 				migrations = true, -- Handle deprecated options automatically
 			},
 
@@ -117,17 +116,5 @@ return {
 		}
 		require("rose-pine").setup(opts)
 		vim.cmd("colorscheme rose-pine")
-		vim.cmd([[highlight GitSignsAddPreview guibg=none]])
-		vim.cmd([[highlight GitSignsDeletePreview guibg=none]])
-		vim.cmd([[highlight NotifyINFOTitle guifg=#c4a7e7]])
-		vim.cmd([[highlight NotifyINFOIcon guifg=#c4a7e7]])
-		vim.cmd([[highlight NotifyDEBUGTitle guifg=#eb6f92]])
-		vim.cmd([[highlight NotifyDEBUGIcon guifg=#eb6f92]])
-		vim.cmd([[highlight NotifyERRORTitle guifg=#eb6f92]])
-		vim.cmd([[highlight NotifyERRORIcon guifg=#eb6f92]])
-		vim.cmd([[highlight NotifyTRACETitle guifg=#c4a7e7]])
-		vim.cmd([[highlight NotifyTRACEIcon guifg=#c4a7e7]])
-		vim.cmd([[highlight NotifyWARNTitle guifg=#f6c177]])
-		vim.cmd([[highlight NotifyWARNIcon guifg=#f6c177]])
 	end,
 }
