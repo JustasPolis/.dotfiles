@@ -143,10 +143,10 @@ return {
 					end
 					vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
 					vim_item.menu = ({
-						nvim_lsp = "[LSP]",
-						nvim_lua = "[NVIM]",
-						luasnip = "[Snippet]",
-						buffer = "[Buffer]",
+						nvim_lsp = "LSP",
+						nvim_lua = "Lua",
+						luasnip = "Snippet",
+						buffer = "Buffer",
 					})[entry.source.name]
 					return vim_item
 				end,
