@@ -82,6 +82,8 @@
       unstable.neovim
       nil
       alejandra
+      zoxide
+      inputs.gtk-waybar.packages.${pkgs.system}.default
     ];
   };
 
