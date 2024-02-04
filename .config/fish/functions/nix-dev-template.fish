@@ -8,7 +8,7 @@ function nix-dev-template
     end
 
     # Run nix flake init with the specified language
-    nix flake init --template "github:the-nix-way/dev-templates#$template"
+    nix flake init --template "github:JustasPolis/dev-templates#$template"
     
     # Check if the nix flake init command succeeded
     if test $status -eq 0
