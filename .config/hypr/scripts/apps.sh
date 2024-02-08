@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-entries="Firefox Celluloid Transmission Kitty"
+entries="Firefox Celluloid Transmission Kitty Foliate"
 
 pwr=$(printf '%s\n' $entries | wofi --dmenu | awk '{print tolower($1)}')
 
@@ -17,5 +17,7 @@ celluloid)
 kitty)
 	hyprctl dispatch exec kitty
 	;;
-
+foliate)
+	hyprctl dispatch exec foliate
+	;;
 esac
