@@ -9,6 +9,10 @@ return {
 			go = { "gofmt" },
 			sh = { "shfmt" },
 			nix = { "alejandra" },
+			scss = { "prettier" },
+			css = { "prettier" },
+			ts = { "prettier" },
+			js = { "prettier" },
 		},
 	},
 	keys = {

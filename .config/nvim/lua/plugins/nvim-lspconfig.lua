@@ -68,6 +68,7 @@ return {
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 		require("lspconfig").rust_analyzer.setup({
 			capabilities = capabilities,
@@ -101,6 +102,12 @@ return {
 		require("lspconfig").nil_ls.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+		})
+
+		require("lspconfig").cssls.setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+      cmd = { "css-languageserver", "--stdio" }
 		})
 
 		require("lspconfig").lua_ls.setup({
