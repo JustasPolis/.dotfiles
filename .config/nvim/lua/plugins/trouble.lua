@@ -4,7 +4,7 @@ return {
 	lazy = true,
 	opts = {
 		position = "bottom",
-		height = 5,
+		height = 3,
 		padding = false,
 		fold_open = "", -- icon used for open folds
 		fold_closed = "",

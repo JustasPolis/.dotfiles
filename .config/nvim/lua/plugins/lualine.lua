@@ -1,6 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	event = "BufEnter",
+	lazy = false,
 	config = function()
 		local theme = require("lualine.themes.auto")
 		theme.normal.c.bg = "None"
@@ -15,6 +15,10 @@ return {
 			if vim.bo.filetype == "Trouble" then
 				return false
 			elseif vim.bo.filetype == "NvimTree" then
+				return false
+			elseif vim.bo.filetype == "alpha" then
+				return false
+			elseif vim.bo.filetype == "" then
 				return false
 			elseif vim.api.nvim_win_get_config(0).relative == "win" then
 				return false
@@ -36,7 +40,7 @@ return {
 					statusline = 100,
 				},
 				disabled_filetypes = {
-					statusline = { "alpha", "fish" },
+					statusline = {},
 					winbar = {},
 				},
 			},

@@ -10,8 +10,8 @@ end
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
-	lazy = true,
-	event = "BufEnter",
+  lazy = false,
+	priority = 1000,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
@@ -27,12 +27,12 @@ return {
 	},
 	config = function()
 		require("nvim-tree").setup({
-			disable_netrw = true,
+			disable_netrw = false,
 			hijack_netrw = true,
-			respect_buf_cwd = true,
+			respect_buf_cwd = false,
+      update_cwd = true,
 			hijack_cursor = true,
 			on_attach = my_on_attach,
-			sync_root_with_cwd = true,
 			view = {
 				cursorline = true,
 				width = { min = 30, max = 30, padding = 4 },

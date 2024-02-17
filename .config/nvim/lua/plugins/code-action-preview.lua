@@ -1,7 +1,17 @@
 return {
 	"aznhe21/actions-preview.nvim",
-	lazy = false,
+	lazy = true,
 	dependencies = { "nvim-telescope/telescope.nvim" },
+	keys = {
+		{
+			"<leader>ca",
+			mode = { "n", "v" },
+			function()
+				require("actions-preview").code_actions()
+			end,
+			desc = "open code actions floating window",
+		},
+	},
 	config = function()
 		require("actions-preview").setup({
 			telescope = {
@@ -18,6 +28,5 @@ return {
 				},
 			},
 		})
-		vim.keymap.set({ "v", "n" }, "<leader>ca", require("actions-preview").code_actions)
 	end,
 }
