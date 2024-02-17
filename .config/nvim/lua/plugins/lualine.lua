@@ -1,5 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	event = "BufEnter",
 	config = function()
 		local theme = require("lualine.themes.auto")
 		theme.normal.c.bg = "None"
