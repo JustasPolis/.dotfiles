@@ -18,6 +18,6 @@ kitty)
 	hyprctl dispatch exec kitty
 	;;
 foliate)
-	hyprctl dispatch exec foliate
+	hyprctl dispatch exec GTK_THEME=rose-pine-gtk foliate
 	;;
 esac

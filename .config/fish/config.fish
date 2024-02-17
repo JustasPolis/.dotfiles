@@ -11,4 +11,4 @@ set -g fish_key_bindings fish_vi_key_bindings
 
 bind yy fish_clipboard_copy
 bind p fish_clipboard_paste
-zoxide init fish | source
+zoxide init --cmd cd fish | source
