@@ -1,6 +1,6 @@
 return {
 	"aznhe21/actions-preview.nvim",
-	lazy = true,
+	lazy = false,
 	dependencies = { "nvim-telescope/telescope.nvim" },
 	config = function()
 		require("actions-preview").setup({
@@ -18,5 +18,6 @@ return {
 				},
 			},
 		})
+		vim.keymap.set({ "v", "n" }, "<leader>ca", require("actions-preview").code_actions)
 	end,
 }

@@ -85,6 +85,7 @@
       zoxide
       inputs.gtk-waybar.packages.${pkgs.system}.default
       foliate
+      gnumake
     ];
   };
 

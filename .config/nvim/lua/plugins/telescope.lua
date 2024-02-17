@@ -2,7 +2,18 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"folke/trouble.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				lazy = true,
+				cond = function()
+					return vim.fn.executable("make") == 1
+				end,
+			},
+		},
 		cmd = "Telescope",
 		keys = {
 			{
@@ -26,6 +37,13 @@ return {
 				end,
 				desc = "Telescope git files",
 			},
+			{
+				"<leader>so",
+				function()
+					require("telescope.builtin").grep_string()
+				end,
+				desc = "Telescope grep string",
+			},
 		},
 		config = function()
 			require("telescope").setup({
@@ -37,22 +55,14 @@ return {
 						},
 					},
 					preview = {
-						hide_on_startup = false, -- hide previewer when picker starts
+						hide_on_startup = false,
 					},
 					layout_strategy = "horizontal",
 					layout_config = { height = 0.999, width = 0.999 },
 				},
 			})
 
-			pcall(require("telescope").load_extension, "fzf")
-		end,
-	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
-		lazy = true,
-		cond = function()
-			return vim.fn.executable("make") == 1
+			require("telescope").load_extension("fzf")
 		end,
 	},
 }

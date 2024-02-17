@@ -10,7 +10,9 @@ return {
 		fold_closed = "",
 		auto_preview = false,
 		indent_lines = false,
-		include_declaration = {},
+		use_diagnostic_signs = true,
+		auto_open = true,
+		auto_close = true,
 	},
 	cmd = "Trouble",
 	keys = {
@@ -18,12 +20,7 @@ return {
 			"<leader>t",
 			function()
 				local trouble = require("trouble")
-				if not trouble.is_open() then
-					trouble.open()
-					trouble.action("cancel")
-				else
-					trouble.close()
-				end
+				trouble.toggle(nil)
 			end,
 			desc = "Previous trouble/quickfix item",
 		},

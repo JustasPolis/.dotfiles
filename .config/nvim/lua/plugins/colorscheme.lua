@@ -54,9 +54,9 @@ return {
 				LazyH1 = { bg = "none", fg = "#e0def4" },
 				LazyButtonActive = { bg = "none", fg = "#e0def4" },
 				LazySpecial = { bg = "none", fg = "#e0def4" },
-				DiffAdd = { bg = "none", fg = "#5beb82", blend = 0, default = true },
-				DiffChange = { bg = "none", fg = "foam" },
-				DiffDelete = { bg = "none", fg = "love" },
+				DiffAdd = { bg = "none", fg = "#5beb82", blend = 0, nocombine = true },
+				DiffChange = { bg = "none", fg = "foam", blend = 0, nocombine = true },
+				DiffDelete = { bg = "none", fg = "love", blend = 0, nocombine = true },
 				DiffText = { bg = "none", fg = "white" },
 				GitSignsDeletePreview = { bg = "NONE", fg = "love", blend = 0, nocombine = true },
 				GitSignsAddPreview = { bg = "NONE", fg = "#5beb82", blend = 0, nocombine = true },
@@ -82,6 +82,7 @@ return {
 				NotifyERRORTitle = { bg = "none", fg = "#eb6f92" },
 				NotifyERRORIcon = { bg = "none", fg = "#eb6f92" },
 				NoiceVirtualText = { bg = "none", fg = "subtle" },
+				NeogitDiffAddHighlight = { bg = "none", fg = "#5beb82" },
 			},
 		}
 		require("rose-pine").setup(opts)

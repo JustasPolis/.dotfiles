@@ -41,6 +41,7 @@ return {
 				number = false,
 				relativenumber = false,
 			},
+			actions = { open_file = { quit_on_open = true } },
 			renderer = {
 				root_folder_label = false,
 				indent_width = 1,
