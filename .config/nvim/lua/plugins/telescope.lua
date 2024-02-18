@@ -4,7 +4,6 @@ return {
 		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"folke/trouble.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
@@ -57,8 +56,14 @@ return {
 					preview = {
 						hide_on_startup = false,
 					},
-					layout_strategy = "horizontal",
-					layout_config = { height = 0.999, width = 0.999 },
+					layout_strategy = "vertical",
+					layout_config = {
+						height = 0.999,
+						width = 0.999,
+						vertical = {
+							preview_cutoff = 0,
+						},
+					},
 				},
 			})
 

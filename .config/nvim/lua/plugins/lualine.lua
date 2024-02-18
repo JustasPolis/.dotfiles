@@ -51,19 +51,6 @@ return {
 				lualine_x = {},
 				lualine_y = {
 					{
-						"diagnostics",
-						draw_empty = true,
-						separator = "",
-						always_visible = true,
-						color = { fg = "None", bg = "None" },
-						sections = { "error", "warn" },
-						cond = file_type,
-						padding = {
-							left = 0,
-							right = 2,
-						},
-					},
-					{
 						"filetype",
 						icon_only = true,
 						separator = "",
