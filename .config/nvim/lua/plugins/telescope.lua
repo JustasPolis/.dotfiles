@@ -4,6 +4,7 @@ return {
 		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
