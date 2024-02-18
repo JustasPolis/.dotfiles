@@ -3,7 +3,7 @@ return {
 	lazy = true,
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "folke/neodev.nvim" },
+		{ "folke/neodev.nvim", "folke/trouble.nvim" },
 	},
 	config = function()
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
@@ -106,7 +106,7 @@ return {
 		require("lspconfig").cssls.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-      cmd = { "css-languageserver", "--stdio" }
+			cmd = { "css-languageserver", "--stdio" },
 		})
 
 		require("lspconfig").lua_ls.setup({
