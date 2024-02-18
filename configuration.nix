@@ -88,7 +88,6 @@
       gnumake
       wgnord
       btop
-      sqlite
     ];
   };
 
