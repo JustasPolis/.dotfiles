@@ -12,7 +12,7 @@ return {
 		indent_lines = false,
 		use_diagnostic_signs = true,
 		auto_open = true,
-		auto_close = true,
+		auto_close = false,
 	},
 	cmd = "Trouble",
 	keys = {

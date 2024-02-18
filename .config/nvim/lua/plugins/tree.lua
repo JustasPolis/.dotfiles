@@ -10,7 +10,7 @@ end
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
-  lazy = false,
+	lazy = false,
 	priority = 1000,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
@@ -30,7 +30,7 @@ return {
 			disable_netrw = false,
 			hijack_netrw = true,
 			respect_buf_cwd = false,
-      update_cwd = true,
+			update_cwd = true,
 			hijack_cursor = true,
 			on_attach = my_on_attach,
 			view = {
@@ -45,6 +45,13 @@ return {
 			renderer = {
 				root_folder_label = false,
 				indent_width = 1,
+				highlight_git = "none",
+				symlink_destination = false,
+				highlight_diagnostics = "none",
+				highlight_opened_files = "none",
+				highlight_modified = "none",
+				highlight_bookmarks = "none",
+				highlight_clipboard = "name",
 				icons = {
 					padding = " ",
 					show = {
