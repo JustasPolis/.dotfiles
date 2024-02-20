@@ -57,6 +57,18 @@ return {
 					preview = {
 						hide_on_startup = false,
 					},
+					pickers = {
+						live_grep = {
+							file_ignore_patterns = { "node_modules", "target", ".git", ".direnv" },
+							additional_args = function(_)
+								return { "--hidden" }
+							end,
+						},
+						find_files = {
+							file_ignore_patterns = { "node_modules", "target", ".git", ".direnv" },
+							hidden = true,
+						},
+					},
 					layout_strategy = "vertical",
 					layout_config = {
 						height = 0.999,

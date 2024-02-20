@@ -33,6 +33,7 @@ return {
 			update_cwd = true,
 			hijack_cursor = true,
 			on_attach = my_on_attach,
+			git = { enable = true, ignore = true },
 			view = {
 				cursorline = true,
 				width = { min = 30, max = 30, padding = 4 },
