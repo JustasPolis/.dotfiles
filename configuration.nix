@@ -96,6 +96,7 @@
       wgnord
       btop
       inputs.hyprlock.packages.${pkgs.system}.default
+      inputs.hypridle.packages.${pkgs.system}.default
     ];
   };
 

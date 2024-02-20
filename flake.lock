@@ -78,10 +78,29 @@
         "type": "github"
       }
     },
+    "hypridle": {
+      "inputs": {
+        "hyprlang": "hyprlang",
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1708390654,
+        "narHash": "sha256-bg+nEwF19D22e5KqnxGsVC8KR5SS2CoTKnPyBXrRtL4=",
+        "owner": "hyprwm",
+        "repo": "hypridle",
+        "rev": "da2624628b91dcda689e13071744256abb5fa077",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hypridle",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "systems": "systems_2",
         "wlroots": "wlroots",
         "xdph": "xdph"
@@ -128,6 +147,27 @@
     "hyprlang": {
       "inputs": {
         "nixpkgs": [
+          "hypridle",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708212860,
+        "narHash": "sha256-nW3Zrhh9RJcMTvOcXAaKADnJM/g6tDf3121lJtTHnYo=",
+        "owner": "hyprwm",
+        "repo": "hyprlang",
+        "rev": "11d5ccda071c153dfdc18ef65338956a51cef96a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprlang",
+        "type": "github"
+      }
+    },
+    "hyprlang_2": {
+      "inputs": {
+        "nixpkgs": [
           "hyprland",
           "xdph",
           "nixpkgs"
@@ -147,7 +187,7 @@
         "type": "github"
       }
     },
-    "hyprlang_2": {
+    "hyprlang_3": {
       "inputs": {
         "nixpkgs": [
           "hyprlock",
@@ -170,8 +210,8 @@
     },
     "hyprlock": {
       "inputs": {
-        "hyprlang": "hyprlang_2",
-        "nixpkgs": "nixpkgs_4"
+        "hyprlang": "hyprlang_3",
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1708440130,
@@ -250,6 +290,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1702645756,
+        "narHash": "sha256-qKI6OR3TYJYQB3Q8mAZ+DG4o/BR9ptcv9UnRV2hzljc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "40c3c94c241286dd2243ea34d3aef8a488f9e4d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1705133751,
         "narHash": "sha256-rCIsyE80jgiOU78gCWN3A0wE0tR2GI5nH6MlS+HaaSQ=",
         "owner": "NixOS",
@@ -264,7 +320,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1702645756,
         "narHash": "sha256-qKI6OR3TYJYQB3Q8mAZ+DG4o/BR9ptcv9UnRV2hzljc=",
@@ -280,7 +336,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1706098335,
         "narHash": "sha256-r3dWjT8P9/Ah5m5ul4WqIWD8muj5F+/gbCdjiNVBKmU=",
@@ -296,7 +352,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1706436897,
         "narHash": "sha256-/NXOtZIKTWw2vza5dMc7YSMPqcUMaPfGP+sGEmfWWig=",
@@ -313,7 +369,7 @@
     },
     "nordvpn": {
       "inputs": {
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1706593980,
@@ -335,9 +391,10 @@
         "gtk-waybar": "gtk-waybar",
         "hello": "hello",
         "home-manager": "home-manager",
+        "hypridle": "hypridle",
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nordvpn": "nordvpn"
@@ -420,7 +477,7 @@
           "hyprland",
           "hyprland-protocols"
         ],
-        "hyprlang": "hyprlang",
+        "hyprlang": "hyprlang_2",
         "nixpkgs": [
           "hyprland",
           "nixpkgs"
