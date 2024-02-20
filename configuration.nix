@@ -90,13 +90,14 @@
       nil
       alejandra
       zoxide
-      inputs.gtk-waybar.packages.${pkgs.system}.default
+      #inputs.gtk-waybar.packages.${pkgs.system}.default
       foliate
       gnumake
       wgnord
       btop
       inputs.hyprlock.packages.${pkgs.system}.default
       inputs.hypridle.packages.${pkgs.system}.default
+      libnl
     ];
   };
 

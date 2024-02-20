@@ -8,7 +8,7 @@
     nixpkgs-fork.url = "github:JustasPolis/nixpkgs/master";
     hello.url = "github:JustasPolis/hello-flakes/main";
     nordvpn.url = "github:JustasPolis/nordvpn-linux/main";
-    gtk-waybar.url = "github:JustasPolis/gtk-waybar.rs/main";
+    #gtk-waybar.url = "github:JustasPolis/gtk-waybar.rs/main";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
   };

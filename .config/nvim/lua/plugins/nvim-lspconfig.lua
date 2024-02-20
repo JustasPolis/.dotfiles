@@ -75,8 +75,7 @@ return {
 			settings = {
 				["rust-analyzer"] = {
 					checkOnSave = { command = "clippy" },
-					diagnostics = { experimental = { enable = false } },
-					cachePriming = { enable = false },
+					diagnostics = { experimental = { enable = true } },
 				},
 			},
 			filetypes = require("lspconfig").rust_analyzer.filetypes,
