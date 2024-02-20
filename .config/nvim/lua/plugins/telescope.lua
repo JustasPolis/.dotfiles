@@ -19,7 +19,9 @@ return {
 			{
 				"<leader>sf",
 				function()
-					require("telescope.builtin").find_files()
+					require("telescope.builtin").find_files({
+						find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*", "--no-ignore" },
+					})
 				end,
 				desc = "Telescope find files",
 			},
@@ -48,6 +50,15 @@ return {
 		config = function()
 			require("telescope").setup({
 				defaults = {
+					vimgrep_arguments = {
+						"rg",
+						"--hidden",
+						"--glob",
+						"!.git/*",
+						"--with-filename",
+						"--column",
+						"--no-ignore",
+					},
 					mappings = {
 						i = {
 							["<C-u>"] = true,
@@ -56,18 +67,6 @@ return {
 					},
 					preview = {
 						hide_on_startup = false,
-					},
-					pickers = {
-						live_grep = {
-							file_ignore_patterns = { "node_modules", "target", ".git", ".direnv" },
-							additional_args = function(_)
-								return { "--hidden" }
-							end,
-						},
-						find_files = {
-							file_ignore_patterns = { "node_modules", "target", ".git", ".direnv" },
-							hidden = true,
-						},
 					},
 					layout_strategy = "vertical",
 					layout_config = {

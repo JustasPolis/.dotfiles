@@ -33,7 +33,6 @@ return {
 			update_cwd = true,
 			hijack_cursor = true,
 			on_attach = my_on_attach,
-			git = { enable = true, ignore = true },
 			view = {
 				cursorline = true,
 				width = { min = 30, max = 30, padding = 4 },
@@ -41,6 +40,9 @@ return {
 				signcolumn = "no",
 				number = false,
 				relativenumber = false,
+			},
+			filters = {
+				custom = { ".git" },
 			},
 			actions = { open_file = { quit_on_open = true } },
 			renderer = {
