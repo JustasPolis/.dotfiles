@@ -1,4 +1,10 @@
-{ pkgs, inputs, outputs, unstable, ... }: {
+{
+  pkgs,
+  inputs,
+  outputs,
+  unstable,
+  ...
+}: {
   imports = [
     ./scripts
     ./hardware-configuration.nix
@@ -11,8 +17,8 @@
     fish = {
       enable = true;
       loginShellInit = ''
-        echo 1 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode > /dev/null 
-        echo disabled | sudo tee /sys/devices/*/*/*/power/wakeup > /dev/null 
+        echo 1 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode > /dev/null
+        echo disabled | sudo tee /sys/devices/*/*/*/power/wakeup > /dev/null
           if test -z "$DISPLAY" -a "$XDG_VTNR" -eq 1
              exec "Hyprland" > /dev/null
           end
@@ -25,7 +31,8 @@
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
-    direnv = { enable = true; };
+    direnv = {enable = true;};
+    wireshark = {enable = true;};
   };
 
   hardware = {
@@ -33,12 +40,12 @@
       enable = true;
       powerOnBoot = true;
     };
-    pulseaudio = { enable = true; };
-    i2c = { enable = true; };
+    pulseaudio = {enable = true;};
+    i2c = {enable = true;};
   };
 
   nixpkgs = {
-    config = { allowUnfree = true; };
+    config = {allowUnfree = true;};
     overlays = [
       (final: prev: {
         ddcutil = prev.ddcutil.overrideAttrs (previousAttrs: rec {
@@ -53,7 +60,7 @@
   };
 
   environment = {
-    pathsToLink = [ "/libexec" ];
+    pathsToLink = ["/libexec"];
     systemPackages = with pkgs; [
       git
       fzf
@@ -98,14 +105,14 @@
         enable = true;
         configurationLimit = 2;
       };
-      efi = { canTouchEfiVariables = true; };
+      efi = {canTouchEfiVariables = true;};
     };
-    kernelParams = [ "quiet" ];
+    kernelParams = ["quiet"];
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = { justin = import ./home.nix; };
+    extraSpecialArgs = {inherit inputs outputs;};
+    users = {justin = import ./home.nix;};
   };
 
   services.hello.enable = true;
@@ -118,28 +125,28 @@
     };
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
     };
-    optimise = { automatic = true; };
+    optimise = {automatic = true;};
   };
 
   xdg = {
     portal = {
       enable = true;
       wlr.enable = false;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
   };
 
   networking = {
     hostName = "nixos";
-    networkmanager = { enable = true; };
-    firewall = { enable = true; };
+    networkmanager = {enable = true;};
+    firewall = {enable = true;};
   };
 
-  time = { timeZone = "Europe/Vilnius"; };
+  time = {timeZone = "Europe/Vilnius";};
 
-  i18n = { defaultLocale = "en_US.UTF-8"; };
+  i18n = {defaultLocale = "en_US.UTF-8";};
 
   users = {
     users = {
@@ -147,86 +154,86 @@
         shell = pkgs.fish;
         isNormalUser = true;
         description = "Justin";
-        extraGroups = [ "networkmanager" "wheel" "audio" "nordvpn" ];
-
+        extraGroups = ["networkmanager" "wheel" "audio" "nordvpn"];
       };
     };
   };
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
       roboto
       material-icons
     ];
   };
 
-  system = { stateVersion = "23.11"; };
+  system = {stateVersion = "23.11";};
 
   security = {
-    rtkit = { enable = true; };
+    rtkit = {enable = true;};
     pam = {
-      services = { swaylock = { }; };
-      loginLimits = [{
-        domain = "@users";
-        item = "rtprio";
-        type = "-";
-        value = 1;
-      }];
+      services = {swaylock = {};};
+      loginLimits = [
+        {
+          domain = "@users";
+          item = "rtprio";
+          type = "-";
+          value = 1;
+        }
+      ];
     };
     sudo = {
       enable = true;
-      extraRules = [{
-        commands = [
-          {
-            command = "${pkgs.systemd}/bin/systemctl suspend";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "${pkgs.systemd}/bin/reboot";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "${pkgs.systemd}/bin/poweroff";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl stop bluetooth";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl start bluetooth";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/cpupower";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command =
-              "/run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command =
-              "/run/current-system/sw/bin/tee /sys/devices/*/*/*/power/wakeup";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command =
-              "/run/current-system/sw/bin/tee /sys/bus/platform/drivers/ideapad_acpi/*";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-        groups = [ "wheel" ];
-      }];
+      extraRules = [
+        {
+          commands = [
+            {
+              command = "${pkgs.systemd}/bin/systemctl suspend";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.systemd}/bin/reboot";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.systemd}/bin/poweroff";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl stop bluetooth";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl start bluetooth";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/cpupower";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/tee /sys/devices/*/*/*/power/wakeup";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/tee /sys/bus/platform/drivers/ideapad_acpi/*";
+              options = ["NOPASSWD"];
+            }
+          ];
+          groups = ["wheel"];
+        }
+      ];
     };
   };
 
   systemd.services."before-suspend" = {
     description = "Sets up the suspend";
-    wantedBy = [ "suspend.target" ];
-    before = [ "systemd-suspend.service" ];
+    wantedBy = ["suspend.target"];
+    before = ["systemd-suspend.service"];
     script = ''
       percentage=$(/run/current-system/sw/bin/upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'percentage:\s+\K\d+')
       echo "$(date '+%Y-%m-%d %H:%M:%S') going to sleep battery $percentage%" >> /home/justin/suspend.log
@@ -237,13 +244,13 @@
   };
   systemd.services."after-suspend" = {
     description = "sets up after suspend";
-    wantedBy = [ "suspend.target" ];
-    after = [ "systemd-suspend.service" ];
+    wantedBy = ["suspend.target"];
+    after = ["systemd-suspend.service"];
     script = ''
-       percentage=$(/run/current-system/sw/bin/upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'percentage:\s+\K\d+')
-       echo "$(date '+%Y-%m-%d %H:%M:%S') woke up battery $percentage%" >> /home/justin/suspend.log
-       /run/current-system/sw/bin/rfkill unblock bluetooth
-       /run/current-system/sw/bin/rfkill unblock wlan
+      percentage=$(/run/current-system/sw/bin/upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'percentage:\s+\K\d+')
+      echo "$(date '+%Y-%m-%d %H:%M:%S') woke up battery $percentage%" >> /home/justin/suspend.log
+      /run/current-system/sw/bin/rfkill unblock bluetooth
+      /run/current-system/sw/bin/rfkill unblock wlan
     '';
     serviceConfig.Type = "oneshot";
   };
@@ -279,11 +286,11 @@
          case ''${vals[3]} in
              00000000)
         /run/current-system/sw/bin/cpupower frequency-set --governor powersave
-        echo "balance_power" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference 
+        echo "balance_power" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
                  ;;
              00000001)
         /run/current-system/sw/bin/cpupower frequency-set --governor performance
-        echo "performance" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference 
+        echo "performance" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
                  ;;
              *)
                  echo unknown >> /tmp/acpi.log
@@ -297,5 +304,4 @@
     ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTR{power/wakeup}="disabled"
     ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
   '';
-
 }
