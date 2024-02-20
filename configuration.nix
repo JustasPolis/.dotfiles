@@ -95,6 +95,7 @@
       gnumake
       wgnord
       btop
+      inputs.hyprlock.packages.${pkgs.system}.default
     ];
   };
 

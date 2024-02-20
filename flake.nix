@@ -9,6 +9,7 @@
     hello.url = "github:JustasPolis/hello-flakes/main";
     nordvpn.url = "github:JustasPolis/nordvpn-linux/main";
     gtk-waybar.url = "github:JustasPolis/gtk-waybar.rs/main";
+    hyprlock.url = "github:hyprwm/hyprlock";
   };
 
   outputs = {
