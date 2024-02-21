@@ -42,7 +42,7 @@
     stylua
     wl-clipboard
     sway-audio-idle-inhibit
-    firefox-unwrapped
+    firefox
     celluloid
     transmission-gtk
     shfmt
