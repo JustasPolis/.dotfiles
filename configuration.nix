@@ -5,13 +5,13 @@
   unstable,
   ...
 }: let
-  power-profiles-daemon = pkgs.power-profiles-daemon.overrideAttrs (oldAttrs: {
+  power-daemon = pkgs.power-profiles-daemon.overrideAttrs (oldAttrs: {
     src = pkgs.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
       owner = "upower";
       repo = "power-profiles-daemon";
       rev = "0.20";
-      sha256 = "sha256-94e4fbf7e2dc4f6c8fd0bac39fb531b2b355e804444d";
+      sha256 = "sha256-ErHy+shxZQ/aCryGhovmJ6KmAMt9OZeQGDbHIkC0vUE=";
     };
   });
 in {
@@ -63,6 +63,16 @@ in {
           src = prev.fetchurl {
             url = "https://www.ddcutil.com/tarballs/ddcutil-${version}.tar.gz";
             hash = "sha256-YiJrkxcoLVI/GTW8S5gMHFY30zjs0xnj5yZPmBCF5q0=";
+          };
+        });
+        power-profiles-daemon = prev.power-profiles-daemon.overrideAttrs (previousAttrs: rec {
+          version = "0.20";
+          src = prev.fetchFromGitLab {
+            domain = "gitlab.freedesktop.org";
+            owner = "upower";
+            repo = "power-profiles-daemon";
+            rev = version;
+            sha256 = "sha256-ErHy+shxZQ/aCryGhovmJ6KmAMt9OZeQGDbHIkC0vUE=";
           };
         });
       })
