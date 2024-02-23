@@ -97,7 +97,7 @@
       btop
       inputs.hyprlock.packages.${pkgs.system}.default
       inputs.hypridle.packages.${pkgs.system}.default
-      libnl
+      power-profiles-daemon
     ];
   };
 
@@ -263,6 +263,9 @@
   services.devmon.enable = true;
   services.mullvad-vpn.enable = false;
   services.dbus.enable = true;
+  services.dbus.packages = with pkgs; [power-profiles-daemon];
+  services.udev.packages = with pkgs; [power-profiles-daemon];
+  systemd.packages = with pkgs; [power-profiles-daemon];
 
   services.upower.enable = true;
 
@@ -281,27 +284,27 @@
     lidEventCommands = "systemctl suspend";
   };
 
-  services.acpid.handlers = {
-    ac-power = {
-      event = "ac_adapter/*";
-      action = ''
-         vals=($1)  # space separated string to array of multiple values
-         case ''${vals[3]} in
-             00000000)
-        /run/current-system/sw/bin/cpupower frequency-set --governor powersave
-        echo "balance_power" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
-                 ;;
-             00000001)
-        /run/current-system/sw/bin/cpupower frequency-set --governor performance
-        echo "performance" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
-                 ;;
-             *)
-                 echo unknown >> /tmp/acpi.log
-                 ;;
-         esac
-      '';
-    };
-  };
+#  services.acpid.handlers = {
+#   ac-power = {
+#     event = "ac_adapter/*";
+#     action = ''
+#        vals=($1)  # space separated string to array of multiple values
+#        case ''${vals[3]} in
+#            00000000)
+#       /run/current-system/sw/bin/cpupower frequency-set --governor powersave
+#       echo "balance_power" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
+#                ;;
+#            00000001)
+#       /run/current-system/sw/bin/cpupower frequency-set --governor performance
+#       echo "performance" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
+#                ;;
+#            *)
+#                echo unknown >> /tmp/acpi.log
+#                ;;
+#        esac
+#     '';
+#   };
+# };
 
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTR{power/wakeup}="disabled"
