@@ -4,17 +4,7 @@
   outputs,
   unstable,
   ...
-}: let
-  power-daemon = pkgs.power-profiles-daemon.overrideAttrs (oldAttrs: {
-    src = pkgs.fetchFromGitLab {
-      domain = "gitlab.freedesktop.org";
-      owner = "upower";
-      repo = "power-profiles-daemon";
-      rev = "0.20";
-      sha256 = "sha256-ErHy+shxZQ/aCryGhovmJ6KmAMt9OZeQGDbHIkC0vUE=";
-    };
-  });
-in {
+}: {
   imports = [
     ./scripts
     ./hardware-configuration.nix
@@ -72,8 +62,9 @@ in {
             owner = "upower";
             repo = "power-profiles-daemon";
             rev = version;
-            sha256 = "sha256-ErHy+shxZQ/aCryGhovmJ6KmAMt9OZeQGDbHIkC0vUE=";
+            sha256 = "sha256-8wSRPR/1ELcsZ9K3LvSNlPcJvxRhb/LRjTIxKtdQlCA=";
           };
+          doCheck = false;
         });
       })
     ];
@@ -304,27 +295,25 @@ in {
     lidEventCommands = "systemctl suspend";
   };
 
-  #  services.acpid.handlers = {
-  #   ac-power = {
-  #     event = "ac_adapter/*";
-  #     action = ''
-  #        vals=($1)  # space separated string to array of multiple values
-  #        case ''${vals[3]} in
-  #            00000000)
-  #       /run/current-system/sw/bin/cpupower frequency-set --governor powersave
-  #       echo "balance_power" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
-  #                ;;
-  #            00000001)
-  #       /run/current-system/sw/bin/cpupower frequency-set --governor performance
-  #       echo "performance" | /run/current-system/sw/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
-  #                ;;
-  #            *)
-  #                echo unknown >> /tmp/acpi.log
-  #                ;;
-  #        esac
-  #     '';
-  #   };
-  # };
+  services.acpid.handlers = {
+    ac-power = {
+      event = "ac_adapter/*";
+      action = ''
+        vals=($1)  # space separated string to array of multiple values
+        case ''${vals[3]} in
+            00000000)
+            ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set balanced
+                ;;
+            00000001)
+            ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
+                ;;
+            *)
+                echo unknown >> /tmp/acpi.log
+                ;;
+        esac
+      '';
+    };
+  };
 
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTR{power/wakeup}="disabled"

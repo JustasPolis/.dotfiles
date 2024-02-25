@@ -226,22 +226,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-fork": {
-      "locked": {
-        "lastModified": 1705605929,
-        "narHash": "sha256-/nwZ5WFf+J91iBig3hMJgj8fmqkDLUWLlT9LGnO8YvY=",
-        "owner": "JustasPolis",
-        "repo": "nixpkgs",
-        "rev": "f75bc490ca8f25fc4f1c133e26ef7854c73d47a5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JustasPolis",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1708296515,
@@ -364,7 +348,6 @@
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
         "nixpkgs": "nixpkgs_5",
-        "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nordvpn": "nordvpn"
       }

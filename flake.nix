@@ -5,7 +5,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-fork.url = "github:JustasPolis/nixpkgs/master";
     hello.url = "github:JustasPolis/hello-flakes/main";
     nordvpn.url = "github:JustasPolis/nordvpn-linux/main";
     #gtk-waybar.url = "github:JustasPolis/gtk-waybar.rs/main";
@@ -16,7 +15,6 @@
   outputs = {
     nixpkgs,
     nixpkgs-unstable,
-    nixpkgs-fork,
     home-manager,
     ...
   } @ inputs: {
@@ -25,10 +23,6 @@
         system = "x86_64-linux";
         specialArgs = {
           unstable = import nixpkgs-unstable {
-            system = system;
-            config.allowUnfree = true;
-          };
-          fork = import nixpkgs-fork {
             system = system;
             config.allowUnfree = true;
           };
