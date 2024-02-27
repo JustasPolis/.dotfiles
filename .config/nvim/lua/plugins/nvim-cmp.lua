@@ -72,26 +72,15 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			mapping = {
+			mapping = cmp.mapping.preset.insert({
 				["<C-p>"] = cmp.mapping.select_prev_item(),
-				["<"] = {
-					i = cmp.config.disable,
-					c = cmp.config.disable,
-				},
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 				["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-				["<C-y>"] = cmp.config.disable,
 				["<CR>"] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = true,
 				}),
-				["<C-a"] = cmp.mapping(
-					cmp.mapping.complete({
-						reason = cmp.ContextReason.Auto,
-					}),
-					{ "i", "c" }
-				),
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if luasnip.jumpable(1) then
 						luasnip.jump(1)
@@ -124,7 +113,7 @@ return {
 					"i",
 					"s",
 				}),
-			},
+			}),
 			---@diagnostic disable-next-line: missing-fields
 			formatting = {
 				fields = { "kind", "abbr", "menu" },

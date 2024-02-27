@@ -54,3 +54,4 @@ hl.blend = 100
 vim.api.nvim_set_hl(0, "VertSplit", hl)
 
 vim.diagnostic.config({ virtual_text = { prefix = "", spacing = 0 } })
+
