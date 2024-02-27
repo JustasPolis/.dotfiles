@@ -92,6 +92,7 @@
       killall
       glib
       rose-pine-gtk-theme
+      unstable.lua-language-server
       bibata-cursors
       jc
       linuxKernel.packages.linux_xanmod_latest.cpupower

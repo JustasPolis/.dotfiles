@@ -32,7 +32,6 @@
     hyprpaper
     neovim
     eza
-    lua-language-server
     wofi
     eww-wayland
     imagemagick
