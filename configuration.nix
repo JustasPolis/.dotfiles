@@ -40,7 +40,14 @@
       enable = true;
       powerOnBoot = true;
     };
-    pulseaudio = {enable = true;};
+    pulseaudio = {
+      enable = true;
+      extraConfig = ''
+        .ifexists module-dbus-protocol.so
+        load-module module-dbus-protocol
+        .endif
+      '';
+    };
     i2c = {enable = true;};
   };
 

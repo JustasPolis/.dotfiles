@@ -49,6 +49,7 @@ return {
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/cmp-nvim-lsp",
 		"rafamadriz/friendly-snippets",
+		"windwp/nvim-autopairs",
 	},
 	config = function()
 		local borderstyle = {
@@ -65,25 +66,18 @@ return {
 			---@diagnostic disable-next-line: missing-fields
 			completion = {
 				completeopt = "menu,menuone,noinsert",
-				-- TODO: refactor for swift
-				--get_trigger_characters = function()
-				-- return { "(" }
-				-- end,
 			},
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			matching = {
-				disallow_fuzzy_matching = true,
-				disallow_prefix_unmatching = false,
-				disallow_partial_fuzzy_matching = true,
-				disallow_fullfuzzy_matching = false,
-				disallow_partial_matching = false,
-			},
 			mapping = {
 				["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<"] = {
+					i = cmp.config.disable,
+					c = cmp.config.disable,
+				},
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 				["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
@@ -154,14 +148,6 @@ return {
 			sources = {
 				{
 					name = "nvim_lsp",
-					-- TODO: Refactor for swift
-					--entry_filter = function(entry, _)
-					--  if entry.completion_item.label == "()" then
-					--    return false
-					--  else
-					--    return true
-					--  end
-					--end
 				},
 				{ name = "nvim_lua" },
 				{ name = "luasnip" },
@@ -169,7 +155,7 @@ return {
 			},
 			experimental = {
 				native_menu = false,
-				ghost_text = true,
+				ghost_text = false,
 			},
 			---@diagnostic disable-next-line: missing-fields
 			view = {
@@ -204,5 +190,7 @@ return {
 				{ name = "cmdline" },
 			},
 		})
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 	end,
 }
