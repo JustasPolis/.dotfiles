@@ -17,5 +17,6 @@ bind p fish_clipboard_paste
 zoxide init --cmd cd fish | source
 set -x PATH $PATH ~/.cargo/bin
 
-bind \cz 'fg 2>/dev/null; commandline -f repaint'
+bind -M default \cz 'fg 2>/dev/null; commandline -f repaint'
+bind -M insert \cz 'fg 2>/dev/null; commandline -f repaint'
 

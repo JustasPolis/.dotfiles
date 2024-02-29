@@ -75,7 +75,7 @@ return {
 			settings = {
 				["rust-analyzer"] = {
 					checkOnSave = { command = "clippy" },
-					diagnostics = { experimental = { enable = true } },
+					diagnostics = { disabled = { "needless_return" }, experimental = { enable = true } },
 				},
 			},
 			filetypes = require("lspconfig").rust_analyzer.filetypes,
