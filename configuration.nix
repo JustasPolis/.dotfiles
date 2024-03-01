@@ -46,10 +46,6 @@
         .ifexists module-dbus-protocol.so
         load-module module-dbus-protocol
         .endif
-        load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/pulse-socket
-      '';
-      extraClientConf = ''
-        default-server = unix:/tmp/pulse-socket
       '';
     };
     i2c = {enable = true;};
