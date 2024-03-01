@@ -1,6 +1,7 @@
 format = """
 $directory\
 $git_branch\
+$git_status\
 $jobs\
 $character\
 """
@@ -29,4 +30,9 @@ disabled = true
 
 [jobs]
 symbol = ''
+style = 'bold red'
+
+[git_status]
+modified = "✘"
+format = '[$all_status$ahead_behind]($style) '
 style = 'bold red'
