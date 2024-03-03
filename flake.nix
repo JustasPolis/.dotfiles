@@ -5,6 +5,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-staging.url = "github:nixos/nixpkgs/staging";
     hello.url = "github:JustasPolis/hello-flakes/main";
     nordvpn.url = "github:JustasPolis/nordvpn-linux/main";
     #gtk-waybar.url = "github:JustasPolis/gtk-waybar.rs/main";
@@ -15,6 +16,7 @@
   outputs = {
     nixpkgs,
     nixpkgs-unstable,
+    nixpkgs-staging,
     home-manager,
     ...
   } @ inputs: {
@@ -26,6 +28,11 @@
             system = system;
             config.allowUnfree = true;
           };
+          staging = import nixpkgs-staging {
+            system = system;
+            config.allowUnfree = true;
+          };
+
           inherit inputs;
         };
         modules = [./configuration.nix];

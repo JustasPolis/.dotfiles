@@ -3,6 +3,7 @@
   inputs,
   outputs,
   unstable,
+  staging,
   ...
 }: {
   imports = [
@@ -42,6 +43,11 @@
     };
     pulseaudio = {
       enable = true;
+      extraConfig = ''
+        .ifexists module-dbus-protocol.so
+        load-module module-dbus-protocol
+        .endif
+      '';
     };
     i2c = {enable = true;};
   };
@@ -113,6 +119,7 @@
       inputs.hypridle.packages.${pkgs.system}.default
       power-profiles-daemon
       unstable.vscode
+      staging.pulseaudio
     ];
   };
 
