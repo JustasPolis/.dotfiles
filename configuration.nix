@@ -11,7 +11,6 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hello.nixosModules.default
-    inputs.nordvpn.nixosModules.default
   ];
 
   programs = {
@@ -120,6 +119,7 @@
       power-profiles-daemon
       unstable.vscode
       staging.pulseaudio
+      unstable.wl-screenrec
     ];
   };
 
