@@ -2,4 +2,4 @@
 	name = Justin Polis
   email = j.polikevicius@gmail.com
 [core]
-  excludefile = ~/.config/git/ignore
+  excludesfile = ~/.config/git/ignore
