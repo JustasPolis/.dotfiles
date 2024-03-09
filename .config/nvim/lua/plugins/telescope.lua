@@ -4,6 +4,7 @@ return {
 		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"smartpde/telescope-recent-files",
 			"nvim-treesitter/nvim-treesitter",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
@@ -46,6 +47,13 @@ return {
 				end,
 				desc = "Telescope grep string",
 			},
+			{
+				"<leader>rf",
+				function()
+					require("telescope").extensions.recent_files.pick()
+				end,
+				desc = "Recent files telescope",
+			},
 		},
 		config = function()
 			require("telescope").setup({
@@ -79,6 +87,7 @@ return {
 				},
 			})
 			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("recent_files")
 		end,
 	},
 }
