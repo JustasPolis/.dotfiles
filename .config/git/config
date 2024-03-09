@@ -1,0 +1,4 @@
+[user]
+	name = Justin Polis
+[core]
+  excludefile = ~/.config/git/ignore
