@@ -121,6 +121,7 @@
       staging.pulseaudio
       unstable.wl-screenrec
       unstable.bitwarden-cli
+      unstable.obsidian
     ];
   };
 
