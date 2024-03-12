@@ -49,6 +49,7 @@ return {
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/cmp-nvim-lsp",
 		"rafamadriz/friendly-snippets",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"windwp/nvim-autopairs",
 	},
 	config = function()
@@ -116,7 +117,6 @@ return {
 			}),
 			---@diagnostic disable-next-line: missing-fields
 			formatting = {
-				fields = { "kind", "abbr", "menu" },
 				expandable_indicator = false,
 				format = function(entry, vim_item)
 					local label = vim_item.abbr
@@ -124,20 +124,25 @@ return {
 					if truncated_label ~= label then
 						vim_item.abbr = truncated_label .. "…"
 					end
-					vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-					vim_item.menu = ({
-						nvim_lsp = "LSP",
-						nvim_lua = "Lua",
-						luasnip = "Snippet",
-						buffer = "Buffer",
-					})[entry.source.name]
+					local menu_label = vim_item.menu
+
+					if menu_label == nil then
+						return vim_item
+					end
+
+					local truncated_menu_label = vim.fn.strcharpart(menu_label, 0, 45)
+					if truncated_menu_label ~= menu_label then
+						vim_item.menu = truncated_menu_label .. "…"
+					end
 					return vim_item
 				end,
 			},
 			sources = {
 				{
 					name = "nvim_lsp",
+					max_item_count = 20,
 				},
+				{ name = "nvim_lsp_signature_help" },
 				{ name = "nvim_lua" },
 				{ name = "luasnip" },
 				{ name = "buffer" },

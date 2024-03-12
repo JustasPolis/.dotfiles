@@ -122,6 +122,7 @@
       unstable.wl-screenrec
       unstable.bitwarden-cli
       unstable.obsidian
+      unstable.networkmanagerapplet
     ];
   };
 
