@@ -39,10 +39,6 @@ return {
 						require("noice").api.status.lsp_progress.get,
 						cond = require("noice").api.status.lsp_progress.has,
 					},
-					{
-						require("noice").api.status.lsp_progress_done.get,
-						cond = require("noice").api.status.lsp_progress_done.has,
-					},
 				},
 				lualine_z = {
 					{

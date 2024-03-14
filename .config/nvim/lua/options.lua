@@ -27,7 +27,7 @@ vim.opt.confirm = false
 vim.opt.ignorecase = true
 vim.opt.shiftround = true
 vim.opt.splitkeep = "screen"
-vim.opt.shortmess:append({ W = true, I = true, c = true, F = true, C = true, o = true })
+vim.opt.shortmess:append({ W = true, I = true, c = true, F = true, C = true, o = true, S = true, s = true, A = true })
 vim.opt.showcmd = false
 vim.opt.fillchars = {
 	eob = " ",
@@ -54,4 +54,3 @@ hl.blend = 100
 vim.api.nvim_set_hl(0, "VertSplit", hl)
 
 vim.diagnostic.config({ virtual_text = { prefix = "", spacing = 0 } })
-

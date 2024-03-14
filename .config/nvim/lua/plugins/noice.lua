@@ -17,10 +17,10 @@ return {
 		},
 		messages = {
 			enabled = true,
-			view = "notify",
-			view_error = "notify",
-			view_warn = "notify",
-			view_history = "messages",
+			view = "split",
+			view_error = "split",
+			view_warn = "split",
+			view_history = nil,
 			view_search = "virtualtext",
 		},
 		lsp = {
@@ -29,7 +29,7 @@ return {
 				format = "lsp_progress",
 				format_done = "lsp_progress_done",
 				throttle = 1000 / 10,
-				view = "mini",
+				view = "split",
 			},
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -54,8 +54,8 @@ return {
 				opts = {},
 			},
 			message = {
-				enabled = false,
-				view = "notify",
+				enabled = true,
+				view = "split",
 				opts = {},
 			},
 			documentation = {
@@ -77,10 +77,54 @@ return {
 			inc_rename = false,
 			lsp_doc_border = false,
 		},
-
+		routes = {
+			{
+				filter = {
+					event = "lsp",
+					kind = "progress",
+				},
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "msg_show",
+					kind = "search_count",
+				},
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "msg_show",
+					kind = "",
+				},
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "notify",
+				},
+				opts = { skip = true },
+			},
+		},
 		status = {
 			lsp_progress = { event = "lsp", kind = "progress" },
 			lsp_progress_done = { event = "lsp", kind = "progress_done" },
+		},
+		commands = {
+			history = {
+				-- options for the message history that you get with `:Noice`
+				view = "popup",
+				opts = { enter = true, format = "details" },
+				filter = {
+					any = {
+						{ event = "notify" },
+						{ error = true },
+						{ warning = true },
+						{ event = "msg_show", kind = { "" } },
+						{ event = "lsp", kind = "message" },
+					},
+				},
+			},
 		},
 		views = {
 			cmdline_popup = {

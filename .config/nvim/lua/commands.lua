@@ -53,52 +53,6 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd("User", {
-	group = augroup("lsp_progress_update"),
-	pattern = { "LspProgressUpdate" },
-	callback = function() end,
-})
-
-local HEIGHT_RATIO = 0.8
-
-vim.api.nvim_create_autocmd("BufEnter", {
-	group = vim.api.nvim_create_augroup("help_win", { clear = true }),
-	callback = function()
-		local screen_w = vim.opt.columns:get()
-		local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-		local window_h = screen_h * HEIGHT_RATIO
-		local window_h_int = math.floor(window_h)
-		local center_x = (screen_w - 81) / 2
-		local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
-
-		local opts = {
-			border = "rounded",
-			zindex = 250,
-			relative = "editor",
-			row = center_y,
-			col = center_x,
-			width = 81,
-			title = "Help",
-			title_pos = "center",
-			height = window_h_int,
-		}
-		local win = vim.api.nvim_get_current_win()
-		local buf = vim.api.nvim_get_current_buf()
-		if vim.bo[buf].buftype == "help" then
-			vim.api.nvim_win_set_config(win, opts)
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-	group = vim.api.nvim_create_augroup("rust_save", { clear = true }),
-	pattern = "*.rs",
-	nested = true,
-	callback = function()
-		vim.cmd([[silent write]])
-	end,
-})
-
 vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged" }, {
 	group = vim.api.nvim_create_augroup("nvim_lint", { clear = true }),
 	pattern = { "*.swift", "*.ts", "*.tsx", "*.js", "*.fish", "*.nix" },
@@ -107,3 +61,12 @@ vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = "*",
+	callback = function(event)
+		if vim.bo[event.buf].filetype == "help" then
+			vim.bo[event.buf].buflisted = true
+			vim.cmd.only()
+		end
+	end,
+})
