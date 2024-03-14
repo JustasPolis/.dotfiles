@@ -91,7 +91,12 @@ return {
 				NvimTreeDiagnosticHintFileHL = { bg = "none", fg = "none", undercurl = false, underline = false },
 				NvimTreeDiagnosticWarnFileHL = { bg = "none", fg = "none", undercurl = false, underline = false },
 				NvimTreeDiagnosticErrorFileHL = { bg = "none", fg = "none", undercurl = false, underline = false },
-				NvimTreeLspDiagnosticsInformationText = { bg = "none", fg = "none", undercurl = false, underline = false },
+				NvimTreeLspDiagnosticsInformationText = {
+					bg = "none",
+					fg = "none",
+					undercurl = false,
+					underline = false,
+				},
 				NvimTreeLspDiagnosticsHintText = { bg = "none", fg = "none", undercurl = false, underline = false },
 				NvimTreeLspDiagnosticsWarningText = { bg = "none", fg = "none", undercurl = false, underline = false },
 				NvimTreeExecFile = { bg = "none", fg = "none", undercurl = false, underline = false },
@@ -100,6 +105,12 @@ return {
 				BufferLineSeparator = { bg = "none", fg = "none", undercurl = false, underline = false },
 				BufferLineTabSeparator = { bg = "none", fg = "none", undercurl = false, underline = false },
 				BufferLineFill = { bg = "none", fg = "none", undercurl = false, underline = false },
+				TroubleLocation = { bg = "none", fg = "#908caa", undercurl = false, underline = false },
+				TroubleText = { fg = "#908caa" },
+				TroubleCount = { fg = "#908caa", bg = "none" },
+				TroubleNormal = { fg = "#908caa", bg = "none" },
+				TroubleFile = { fg = "text", bg = "none" },
+				TroubleSource = { fg = "#908caa", bg = "none" },
 			},
 		}
 		require("rose-pine").setup(opts)
