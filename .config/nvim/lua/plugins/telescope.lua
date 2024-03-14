@@ -20,9 +20,7 @@ return {
 			{
 				"<leader>sf",
 				function()
-					require("telescope.builtin").find_files({
-						find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*", "--no-ignore" },
-					})
+					require("telescope.builtin").find_files()
 				end,
 				desc = "Telescope find files",
 			},

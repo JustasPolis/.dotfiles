@@ -96,6 +96,10 @@ return {
 				NvimTreeLspDiagnosticsWarningText = { bg = "none", fg = "none", undercurl = false, underline = false },
 				NvimTreeExecFile = { bg = "none", fg = "none", undercurl = false, underline = false },
 				NvimTreeBookmarkHL = { bg = "none", fg = "none", undercurl = false, underline = false },
+				BufferLineBackground = { bg = "none", fg = "none", undercurl = false, underline = false },
+				BufferLineSeparator = { bg = "none", fg = "none", undercurl = false, underline = false },
+				BufferLineTabSeparator = { bg = "none", fg = "none", undercurl = false, underline = false },
+				BufferLineFill = { bg = "none", fg = "none", undercurl = false, underline = false },
 			},
 		}
 		require("rose-pine").setup(opts)

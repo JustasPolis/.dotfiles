@@ -106,3 +106,4 @@ vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged" }, {
 		require("lint").try_lint()
 	end,
 })
+

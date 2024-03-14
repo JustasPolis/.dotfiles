@@ -1,9 +1,46 @@
 return {
 	"akinsho/bufferline.nvim",
 	version = "*",
-	lazy = false,
+	lazy = true,
+	event = "BufAdd",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
-		require("bufferline").setup({})
+		local buffer_line = require("bufferline")
+		buffer_line.setup({
+			options = {
+				mode = "buffers",
+				style_preset = buffer_line.style_preset.minimal,
+				themable = true,
+				numbers = "ordinal",
+				close_command = "bdelete! %d",
+				right_mouse_command = "bdelete! %d",
+				left_mouse_command = "buffer %d",
+				middle_mouse_command = nil,
+				indicator = {
+					style = "none",
+				},
+				buffer_close_icon = "",
+				modified_icon = "",
+				close_icon = "",
+				left_trunc_marker = "",
+				right_trunc_marker = "",
+				tab_size = 13,
+				diagnostics = false,
+				diagnostics_update_in_insert = false,
+				show_buffer_close_icons = false,
+				show_close_icon = false,
+				show_tab_indicators = false,
+				show_duplicate_prefix = false,
+				always_show_bufferline = true,
+				offsets = {
+					{
+						filetype = "NvimTree",
+						text = "",
+						text_align = "left",
+						separator = "",
+					},
+				},
+			},
+		})
 	end,
 }

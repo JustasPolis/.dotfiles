@@ -1,5 +1,8 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	dependencies = {
+		"folke/noice.nvim",
+	},
 	lazy = false,
 	config = function()
 		local theme = require("lualine.themes.auto")
@@ -11,24 +14,6 @@ return {
 		theme.command.c.bg = "None"
 
 		local lualine = require("lualine")
-		local file_type = function()
-			if vim.bo.filetype == "Trouble" then
-				return false
-			elseif vim.bo.filetype == "NvimTree" then
-				return false
-			elseif vim.bo.filetype == "alpha" then
-				return false
-			elseif vim.bo.filetype == "" then
-				return false
-			elseif vim.api.nvim_win_get_config(0).relative == "win" then
-				return false
-			elseif vim.api.nvim_win_get_config(0).relative == "editor" then
-				return false
-			else
-				return true
-			end
-		end
-
 		lualine.setup({
 			options = {
 				icons_enabled = true,
@@ -51,20 +36,12 @@ return {
 				lualine_x = {},
 				lualine_y = {
 					{
-						"filetype",
-						icon_only = true,
-						separator = "",
-						cond = file_type,
-						padding = { left = 0, right = 1 },
-						color = { fg = "None", bg = "None" },
+						require("noice").api.status.lsp_progress.get,
+						cond = require("noice").api.status.lsp_progress.has,
 					},
 					{
-						"filename",
-						path = 1,
-						cond = file_type,
-						symbols = { modified = "", readonly = "", unnamed = "" },
-						padding = { left = 0, right = 1 },
-						color = { fg = "white", bg = "None" },
+						require("noice").api.status.lsp_progress_done.get,
+						cond = require("noice").api.status.lsp_progress_done.has,
 					},
 				},
 				lualine_z = {

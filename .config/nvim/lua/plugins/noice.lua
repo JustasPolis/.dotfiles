@@ -25,10 +25,10 @@ return {
 		},
 		lsp = {
 			progress = {
-				enabled = false,
+				enabled = true,
 				format = "lsp_progress",
 				format_done = "lsp_progress_done",
-				throttle = 1000 / 30,
+				throttle = 1000 / 10,
 				view = "mini",
 			},
 			override = {
@@ -76,6 +76,11 @@ return {
 			long_message_to_split = true,
 			inc_rename = false,
 			lsp_doc_border = false,
+		},
+
+		status = {
+			lsp_progress = { event = "lsp", kind = "progress" },
+			lsp_progress_done = { event = "lsp", kind = "progress_done" },
 		},
 		views = {
 			cmdline_popup = {

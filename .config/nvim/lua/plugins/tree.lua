@@ -11,7 +11,7 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
 	lazy = false,
-	priority = 1000,
+	priority = 950,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
@@ -44,7 +44,15 @@ return {
 			filters = {
 				custom = { ".git" },
 			},
-			actions = { open_file = { quit_on_open = true } },
+			actions = {
+				open_file = { quit_on_open = true },
+				use_system_clipboard = true,
+				change_dir = {
+					enable = false,
+					global = false,
+					restrict_above_cwd = true,
+				},
+			},
 			renderer = {
 				root_folder_label = false,
 				indent_width = 1,

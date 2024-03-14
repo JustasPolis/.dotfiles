@@ -48,3 +48,40 @@ vim.keymap.set("n", "<ESC>", function()
 		end
 	end
 end, opts)
+
+vim.keymap.set("n", "<C-1>", function()
+	require("bufferline").go_to(1, true)
+end, opts)
+
+vim.keymap.set("n", "<C-2>", function()
+	require("bufferline").go_to(2, true)
+end, opts)
+
+vim.keymap.set("n", "<C-3>", function()
+	require("bufferline").go_to(3, true)
+end, opts)
+
+vim.keymap.set("n", "<C-4>", function()
+	require("bufferline").go_to(4, true)
+end, opts)
+
+vim.keymap.set("n", "<C-5>", function()
+	require("bufferline").go_to(5, true)
+end, opts)
+
+vim.keymap.set("n", "<C-6>", function()
+	require("bufferline").go_to(6, true)
+end, opts)
+
+vim.keymap.set("n", "<C-7>", function()
+	require("bufferline").go_to(7, true)
+end, opts)
+
+vim.keymap.set("n", "<C-8>", function()
+	require("bufferline").go_to(8, true)
+end, opts)
+
+vim.keymap.set("n", "<C-9>", function()
+	require("bufferline").go_to(9, true)
+end, opts)
+
