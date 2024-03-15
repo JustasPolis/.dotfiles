@@ -23,10 +23,22 @@ return {
 			view_history = nil,
 			view_search = "virtualtext",
 		},
+
 		lsp = {
 			progress = {
 				enabled = true,
-				format = "lsp_progress",
+				format = {
+					{
+						"{progress} ",
+						key = "progress.percentage",
+						contents = {
+							{ "{data.progress.message} " },
+						},
+					},
+					"({data.progress.percentage}%) ",
+					{ "{spinner} ", hl_group = "NoiceLspProgressSpinner" },
+					{ "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },
+				},
 				format_done = "lsp_progress_done",
 				throttle = 1000 / 10,
 				view = "split",
@@ -95,7 +107,6 @@ return {
 			{
 				filter = {
 					event = "msg_show",
-					kind = "",
 				},
 				opts = { skip = true },
 			},
@@ -108,11 +119,10 @@ return {
 		},
 		status = {
 			lsp_progress = { event = "lsp", kind = "progress" },
-			lsp_progress_done = { event = "lsp", kind = "progress_done" },
+			messages = { event = "notify" },
 		},
 		commands = {
 			history = {
-				-- options for the message history that you get with `:Noice`
 				view = "popup",
 				opts = { enter = true, format = "details" },
 				filter = {

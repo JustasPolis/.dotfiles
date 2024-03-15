@@ -40,6 +40,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		elseif vim.bo.filetype == "mason" then
 			vim.opt.cursorline = true
 			vim.cmd([[set termguicolors | hi Cursor blend=100 | set guicursor+=a:Cursor/lCursor]])
+		elseif vim.bo.filetype == "trouble" then
+			vim.opt.cursorline = false
+			vim.cmd([[set termguicolors | hi Cursor blend=100 | set guicursor+=a:Cursor/lCursor]])
 		end
 	end,
 })
@@ -70,3 +73,4 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		end
 	end,
 })
+

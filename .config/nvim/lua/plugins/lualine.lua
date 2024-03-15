@@ -22,7 +22,7 @@ return {
 				always_divide_middle = false,
 				globalstatus = true,
 				refresh = {
-					statusline = 100,
+					statusline = 1000,
 				},
 				disabled_filetypes = {
 					statusline = {},
@@ -30,7 +30,12 @@ return {
 				},
 			},
 			sections = {
-				lualine_a = {},
+				lualine_a = {
+					{
+						require("noice").api.status.messages.get_hl,
+						cond = require("noice").api.status.messages.has,
+					},
+				},
 				lualine_b = {},
 				lualine_c = {},
 				lualine_x = {},

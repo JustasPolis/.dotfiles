@@ -111,6 +111,9 @@ return {
 				TroubleNormal = { fg = "#908caa", bg = "none" },
 				TroubleFile = { fg = "text", bg = "none" },
 				TroubleSource = { fg = "#908caa", bg = "none" },
+				NoiceLspProgressClient = { fg = "#908caa", bg = "none" },
+				NoiceLspProgressSpinner = { fg = "#908caa", bg = "none" },
+				NoiceLspProgressTitle = { fg = "#908caa", bg = "none" },
 			},
 		}
 		require("rose-pine").setup(opts)
