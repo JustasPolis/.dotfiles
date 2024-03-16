@@ -1,5 +1,5 @@
 return {
-	"folke/noice.nvim",
+	"JustasPolis/noice.nvim",
 	event = "VeryLazy",
 	opts = {
 		cmdline = {
@@ -125,6 +125,7 @@ return {
 				filter = {
 					any = {
 						{ event = "notify" },
+						{ error = true },
 						{ error = true },
 						{ warning = true },
 						{ event = "msg_show" },
