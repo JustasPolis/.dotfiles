@@ -30,12 +30,7 @@ return {
 				},
 			},
 			sections = {
-				lualine_a = {
-					{
-						require("noice").api.status.messages.get_hl,
-						cond = require("noice").api.status.messages.has,
-					},
-				},
+				lualine_a = {},
 				lualine_b = {},
 				lualine_c = {},
 				lualine_x = {},

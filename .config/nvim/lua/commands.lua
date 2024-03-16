@@ -65,6 +65,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged" }, {
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
+	group = vim.api.nvim_create_augroup("help_enter", { clear = true }),
 	pattern = "*",
 	callback = function(event)
 		if vim.bo[event.buf].filetype == "help" then
@@ -74,3 +75,18 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("User", {
+	group = vim.api.nvim_create_augroup("noice_message", { clear = true }),
+	pattern = "NoiceMessage",
+	callback = function()
+		vim.cmd("NoiceHistory")
+		for _, win in pairs(vim.api.nvim_list_wins()) do
+			local buf = vim.api.nvim_win_get_buf(win)
+			local ft = vim.bo[buf].filetype
+			if ft == "noice" then
+				local lines = vim.api.nvim_buf_line_count(buf)
+				vim.api.nvim_win_set_cursor(win, { lines, 0 })
+			end
+		end
+	end,
+})

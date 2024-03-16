@@ -1,4 +1,4 @@
 return {
 	"famiu/bufdelete.nvim",
-	lazy = true,
+	lazy = false,
 }

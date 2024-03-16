@@ -20,7 +20,7 @@ return {
 			view = "split",
 			view_error = "split",
 			view_warn = "split",
-			view_history = nil,
+			view_history = "split",
 			view_search = "virtualtext",
 		},
 
@@ -85,9 +85,6 @@ return {
 		presets = {
 			bottom_search = false,
 			command_palette = true,
-			long_message_to_split = true,
-			inc_rename = false,
-			lsp_doc_border = false,
 		},
 		routes = {
 			{
@@ -123,20 +120,24 @@ return {
 		},
 		commands = {
 			history = {
-				view = "popup",
-				opts = { enter = true, format = "details" },
+				view = "split",
+				opts = { enter = false, format = "details" },
 				filter = {
 					any = {
 						{ event = "notify" },
 						{ error = true },
 						{ warning = true },
-						{ event = "msg_show", kind = { "" } },
+						{ event = "msg_show" },
 						{ event = "lsp", kind = "message" },
 					},
 				},
 			},
 		},
 		views = {
+			split = {
+				size = "10%",
+				enter = false,
+			},
 			cmdline_popup = {
 				backend = "popup",
 				relative = "editor",
