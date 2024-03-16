@@ -136,8 +136,9 @@ return {
 		},
 		views = {
 			split = {
-				size = "10%",
+				size = "5%",
 				enter = false,
+        scrollbar = false,
 			},
 			cmdline_popup = {
 				backend = "popup",

@@ -90,3 +90,10 @@ vim.api.nvim_create_autocmd("User", {
 		end
 	end,
 })
+
+-- vim.api.nvim_create_autocmd("LspProgress", {
+--   group = vim.api.nvim_create_augroup("lsp_progress", { clear = true }),
+--   callback = function()
+--     print("Lsp incoming")
+--   end,
+-- })

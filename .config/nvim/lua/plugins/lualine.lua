@@ -22,7 +22,7 @@ return {
 				always_divide_middle = false,
 				globalstatus = true,
 				refresh = {
-					statusline = 1000,
+					statusline = 100,
 				},
 				disabled_filetypes = {
 					statusline = {},
@@ -36,7 +36,7 @@ return {
 				lualine_x = {},
 				lualine_y = {
 					{
-						require("noice").api.status.lsp_progress.get,
+						require("noice").api.status.lsp_progress.get_hl,
 						cond = require("noice").api.status.lsp_progress.has,
 					},
 				},
