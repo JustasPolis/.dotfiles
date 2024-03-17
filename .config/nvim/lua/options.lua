@@ -29,6 +29,7 @@ vim.opt.shiftround = true
 vim.opt.splitkeep = "screen"
 vim.opt.shortmess:append({ W = true, I = true, c = true, F = true, C = true, o = true, S = true, s = true, A = true })
 vim.opt.showcmd = false
+vim.opt.smoothscroll = true
 vim.opt.fillchars = {
 	eob = " ",
 	vert = " ",
