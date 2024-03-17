@@ -32,6 +32,13 @@ return {
 				show_tab_indicators = false,
 				show_duplicate_prefix = false,
 				always_show_bufferline = true,
+				custom_filter = function(buf_number, buf_numbers)
+					if vim.bo[buf_number].filetype == "" then
+						return false
+					else
+						return true
+					end
+				end,
 				offsets = {
 					{
 						filetype = "NvimTree",

@@ -30,7 +30,6 @@
     neofetch
     swayidle
     hyprpaper
-    neovim
     eza
     wofi
     eww-wayland

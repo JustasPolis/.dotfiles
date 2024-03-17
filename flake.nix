@@ -11,6 +11,7 @@
     #gtk-waybar.url = "github:JustasPolis/gtk-waybar.rs/main";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = {

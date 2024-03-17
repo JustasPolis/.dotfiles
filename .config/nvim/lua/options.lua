@@ -54,3 +54,9 @@ hl.blend = 100
 vim.api.nvim_set_hl(0, "VertSplit", hl)
 
 vim.diagnostic.config({ virtual_text = { prefix = "", spacing = 0 } })
+
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for name, icon in pairs(signs) do
+	name = "DiagnosticSign" .. name
+	vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+end

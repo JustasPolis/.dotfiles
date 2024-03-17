@@ -22,7 +22,7 @@ return {
 				always_divide_middle = false,
 				globalstatus = true,
 				refresh = {
-					statusline = 100,
+					statusline = 10000,
 				},
 				disabled_filetypes = {
 					statusline = {},

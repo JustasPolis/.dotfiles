@@ -91,9 +91,17 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
--- vim.api.nvim_create_autocmd("LspProgress", {
---   group = vim.api.nvim_create_augroup("lsp_progress", { clear = true }),
---   callback = function()
---     print("Lsp incoming")
---   end,
--- })
+vim.api.nvim_create_autocmd("LspProgress", {
+	group = vim.api.nvim_create_augroup("lsp_progress", { clear = true }),
+	callback = function()
+		require("lualine").refresh()
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if vim.fn.argv(0) == "." then
+			require("telescope.builtin").git_files()
+		end
+	end,
+})

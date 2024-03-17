@@ -105,7 +105,7 @@
       unzip
       gzip
       home-manager
-      unstable.neovim
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       nil
       alejandra
       zoxide

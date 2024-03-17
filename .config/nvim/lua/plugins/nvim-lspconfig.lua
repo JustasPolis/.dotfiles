@@ -3,35 +3,20 @@ return {
 	lazy = true,
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "folke/neodev.nvim", "folke/trouble.nvim" },
+		{ "folke/neodev.nvim", opts = {} },
+		"folke/trouble.nvim",
 	},
 	config = function()
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-		vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-
-		local on_attach = function(_, bufnr)
-			local nmap = function(keys, func, desc)
-				if desc then
-					desc = "LSP: " .. desc
-				end
-
-				vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+		local on_attach = function(client, bufnr)
+			local map = function(keys, func, desc)
+				vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
 			end
 
-			nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-			nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-			nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-			nmap("<c-d>", vim.lsp.buf.type_definition, "Type [D]efinition")
-			vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
+			vim.lsp.inlay_hint.enable(bufnr, true)
 
-			nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+			map("K", vim.lsp.buf.hover, "Hover Documentation")
 
-			nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-			nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-			nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-			nmap("<leader>wl", function() end, "[W]orkspace [L]ist Folders")
-			nmap("<leader>sd", function()
+			map("<leader>sd", function()
 				local opts = {
 					focusable = false,
 					close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
@@ -42,6 +27,10 @@ return {
 				}
 				vim.diagnostic.open_float(nil, opts)
 			end, "LSP diagnostic hover")
+
+			map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+			map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+			map("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
 
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 				border = "rounded",
@@ -58,27 +47,18 @@ return {
 				})
 		end
 
-		require("neodev").setup({
-			override = function(_, library)
-				library.enabled = true
-				library.plugins = true
-			end,
-		})
-
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		require("lspconfig").rust_analyzer.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = {
 				["rust-analyzer"] = {
-					checkOnSave = { command = "clippy" },
+					checkOnSave = { command = "clippy", extraArgs = { "--no-deps" } },
 					diagnostics = { disabled = { "needless_return" }, experimental = { enable = true } },
 				},
 			},
-			filetypes = require("lspconfig").rust_analyzer.filetypes,
 		})
 
 		require("lspconfig").gopls.setup({
@@ -113,27 +93,28 @@ return {
 			on_attach = on_attach,
 			settings = {
 				Lua = {
-					runtime = {
-						version = "LuaJIT",
-					},
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
-						checkThirdParty = false,
-					},
 					telemetry = {
 						enable = false,
 					},
+					hint = {
+						enable = true,
+					},
+					runtime = {
+						version = "LuaJIT",
+					},
+					workspace = {
+						maxPreload = 100000,
+						preloadFileSize = 10000,
+						checkThirdParty = false,
+						library = vim.api.nvim_get_runtime_file("", true),
+					},
+					completion = {
+						callSnippet = "Replace",
+						showParams = true,
+					},
+					diagnostics = { disable = { "missing-fields" }, delay = 1000, globals = { "vim" } },
 				},
 			},
 		})
-
-		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-		for name, icon in pairs(signs) do
-			name = "DiagnosticSign" .. name
-			vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-		end
 	end,
 }

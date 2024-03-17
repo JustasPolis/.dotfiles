@@ -175,15 +175,6 @@ return {
 			sources = {
 				{ name = "buffer" },
 			},
-
-			formatting = {
-				expandable_indicator = false,
-				fields = { "abbr" },
-				format = function(_, vim_item)
-					vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
-					return vim_item
-				end,
-			},
 		})
 		---@diagnostic disable-next-line: missing-fields
 		cmp.setup.cmdline(":", {

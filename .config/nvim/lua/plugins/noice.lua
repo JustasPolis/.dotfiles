@@ -66,7 +66,7 @@ return {
 				opts = {},
 			},
 			message = {
-				enabled = true,
+				enabled = false,
 				view = "split",
 				opts = {},
 			},
@@ -91,6 +91,13 @@ return {
 				filter = {
 					event = "lsp",
 					kind = "progress",
+				},
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "lsp",
+					kind = "message",
 				},
 				opts = { skip = true },
 			},
@@ -138,7 +145,7 @@ return {
 			split = {
 				size = "5%",
 				enter = false,
-        scrollbar = false,
+				scrollbar = false,
 			},
 			cmdline_popup = {
 				backend = "popup",
