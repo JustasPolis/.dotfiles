@@ -4,7 +4,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		{ "folke/neodev.nvim", opts = {} },
-		"folke/trouble.nvim",
+		"JustasPolis/trouble.nvim",
 	},
 	config = function()
 		local on_attach = function(_, bufnr)

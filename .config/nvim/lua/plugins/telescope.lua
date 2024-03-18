@@ -4,7 +4,7 @@ return {
 		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"smartpde/telescope-recent-files",
+			{ "nvim-telescope/telescope-file-browser.nvim" },
 			"nvim-treesitter/nvim-treesitter",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
@@ -46,15 +46,25 @@ return {
 				desc = "Telescope grep string",
 			},
 			{
-				"<leader>rf",
+				"<leader>fb",
 				function()
-					require("telescope").extensions.recent_files.pick()
+					require("telescope").extensions.file_browser.file_browser()
 				end,
-				desc = "Recent files telescope",
+				desc = "file browser telescope",
 			},
 		},
 		config = function()
 			require("telescope").setup({
+				extensions = {
+					file_browser = {
+						hijack_netrw = true,
+            grouped = true,
+            files = true,
+            depth = 'false',
+            display_stat = false,
+            git_status = false,
+					},
+				},
 				defaults = {
 					vimgrep_arguments = {
 						"rg",
@@ -85,7 +95,7 @@ return {
 				},
 			})
 			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("recent_files")
+			require("telescope").load_extension("file_browser")
 		end,
 	},
 }

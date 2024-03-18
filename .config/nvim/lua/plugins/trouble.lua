@@ -1,5 +1,5 @@
 return {
-	"folke/trouble.nvim",
+	"JustasPolis/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	lazy = true,
 	opts = {

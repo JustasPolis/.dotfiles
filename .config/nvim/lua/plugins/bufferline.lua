@@ -30,7 +30,7 @@ return {
 				show_buffer_close_icons = false,
 				show_close_icon = false,
 				show_tab_indicators = false,
-				show_duplicate_prefix = false,
+				show_duplicate_prefix = true,
 				always_show_bufferline = true,
 				custom_filter = function(buf_number, _)
 					if vim.bo[buf_number].filetype == "" then
