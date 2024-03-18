@@ -7,7 +7,6 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
 	lazy = true,
-	enabled = false,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},

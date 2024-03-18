@@ -100,6 +100,8 @@ vim.api.nvim_create_autocmd("LspProgress", {
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
+		vim.cmd("Trouble")
+		vim.cmd("NoiceHistory")
 		if vim.fn.argv(0) == "." then
 			require("telescope.builtin").git_files()
 		end
