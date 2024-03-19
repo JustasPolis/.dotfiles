@@ -5,6 +5,7 @@ return {
 	dependencies = {
 		{ "folke/neodev.nvim", opts = {} },
 		"JustasPolis/trouble.nvim",
+		"nvim-telescope/telescope.nvim",
 	},
 	config = function()
 		local on_attach = function(_, bufnr)
@@ -29,8 +30,9 @@ return {
 			end, "LSP diagnostic hover")
 
 			map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-			map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-			map("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+			map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+			map("gi", require('telescope.builtin').lsp_implementations, "[G]oto [I]mplementation")
+			map("gr", require('telescope.builtin').lsp_references, "[G]oto [R]ereferences")
 
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 				border = "rounded",

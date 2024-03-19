@@ -4,14 +4,14 @@ return {
 	lazy = true,
 	opts = {
 		position = "bottom",
-		height = 3,
+		height = 2,
 		padding = false,
 		fold_open = "", -- icon used for open folds
 		fold_closed = "",
 		auto_preview = false,
 		indent_lines = false,
 		use_diagnostic_signs = true,
-		auto_open = true,
+		auto_open = false,
 		auto_close = false,
 	},
 	cmd = "Trouble",
