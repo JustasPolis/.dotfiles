@@ -11,8 +11,14 @@ return {
 			changedelete = { text = "│" },
 			untracked = { text = "│" },
 		},
+		current_line_blame_opts = {
+			virt_text = true,
+			virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+			delay = 0,
+			ignore_whitespace = false,
+			virt_text_priority = 100,
+		},
 		preview_config = {
-			-- Options passed to nvim_open_win
 			border = "rounded",
 			style = "minimal",
 			relative = "cursor",
