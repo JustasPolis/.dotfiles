@@ -3,6 +3,10 @@ return {
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
 		dependencies = {
+			{
+				"isak102/telescope-git-file-history.nvim",
+				dependencies = { "tpope/vim-fugitive" },
+			},
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			"nvim-treesitter/nvim-treesitter",
@@ -58,11 +62,11 @@ return {
 				extensions = {
 					file_browser = {
 						hijack_netrw = true,
-            grouped = true,
-            files = true,
-            depth = 'false',
-            display_stat = false,
-            git_status = false,
+						grouped = true,
+						files = true,
+						depth = "false",
+						display_stat = false,
+						git_status = false,
 					},
 				},
 				defaults = {
@@ -74,12 +78,6 @@ return {
 						"--with-filename",
 						"--column",
 						"--no-ignore",
-					},
-					mappings = {
-						i = {
-							["<C-u>"] = true,
-							["<C-d>"] = true,
-						},
 					},
 					preview = {
 						hide_on_startup = false,
