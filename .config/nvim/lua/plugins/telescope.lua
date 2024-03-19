@@ -94,6 +94,7 @@ return {
 			})
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
+			require("telescope").load_extension("git_file_history")
 		end,
 	},
 }

@@ -106,3 +106,11 @@ vim.api.nvim_create_autocmd("User", {
 		vim.cmd("NoiceHistory")
 	end,
 })
+
+vim.api.nvim_create_autocmd("User", {
+	group = vim.api.nvim_create_augroup("fugitive_object", { clear = true }),
+	pattern = "FugitiveObject",
+	callback = function()
+		vim.cmd("setlocal bufhidden=")
+	end,
+})

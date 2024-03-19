@@ -26,11 +26,11 @@
   "nvim-lspconfig": { "branch": "master", "commit": "8c1831817d40925d22cd8a555296c44c02fdaaf5" },
   "nvim-treesitter": { "branch": "master", "commit": "2014f8285e306f4c8a896c7d3af53fdd599e5a4f" },
   "nvim-web-devicons": { "branch": "master", "commit": "cb0c967c9723a76ccb1be0cc3a9a10e577d2f6ec" },
-  "nvim-window": { "branch": "main", "commit": "e7f5d60eeec8ff37af7be4c9a99f65edf67fc574" },
   "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
   "rose-pine": { "branch": "main", "commit": "c52167563e6aa44b5fa6fe007faa2bcac71050f0" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "8839e3f8070dfafa5b0c0e4652700298e7b872c4" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb870d27" },
+  "telescope-git-file-history.nvim": { "branch": "master", "commit": "51b5d632e7bad7537efd01c1923b5967fc9dbf0b" },
   "telescope.nvim": { "branch": "master", "commit": "c816406bd50ade6ec754474f08974154487d417c" },
   "trouble.nvim": { "branch": "main", "commit": "e3344dbd74d9efcc668ad4dab0e2aa7e9a7e7b94" },
   "vim-fugitive": { "branch": "master", "commit": "8d4e8d45385c63a0bf735fe1164772116bf0da0d" }
