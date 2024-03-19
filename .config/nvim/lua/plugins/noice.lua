@@ -39,7 +39,11 @@ return {
 					{ "{spinner} ", hl_group = "NoiceLspProgressSpinner" },
 					{ "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },
 				},
-				format_done = "lsp_progress_done",
+				format_done = {
+					{ "✔ ", hl_group = "NoiceLspProgressSpinner" },
+					{ "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },
+					{ "{data.progress.client} ", hl_group = "NoiceLspProgressClient" },
+				},
 				throttle = 1000 / 10,
 				view = "split",
 			},
@@ -72,7 +76,6 @@ return {
 			},
 			documentation = {
 				view = "hover",
-				---@type NoiceViewOptions
 				opts = {
 					lang = "markdown",
 					replace = true,

@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	group = augroup("resize_splits"),
@@ -47,12 +46,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("LspProgress", {
-	group = vim.api.nvim_create_augroup("lsp_progress", { clear = true }),
-	callback = function()
-		require("lualine").refresh()
-	end,
-})
+
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
