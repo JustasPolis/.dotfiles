@@ -3,10 +3,6 @@ return {
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
 		dependencies = {
-			{
-				"isak102/telescope-git-file-history.nvim",
-				dependencies = { "tpope/vim-fugitive" },
-			},
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			"nvim-treesitter/nvim-treesitter",
@@ -94,7 +90,6 @@ return {
 			})
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
-			require("telescope").load_extension("git_file_history")
 		end,
 	},
 }

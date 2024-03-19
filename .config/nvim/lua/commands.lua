@@ -18,43 +18,6 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	group = augroup("trouble_buf_enter"),
-	pattern = "Trouble",
-	callback = function(bufnr)
-		vim.cmd("tabdo wincmd =")
-	end,
-})
-
-vim.api.nvim_create_autocmd("WinLeave", {
-	group = augroup("floating_window_leave"),
-	callback = function()
-		if vim.bo.filetype == "mason" then
-			vim.opt.cursorline = false
-			vim.cmd([[set termguicolors | hi Cursor blend=0]])
-		elseif vim.bo.filetype == "lazy" then
-			vim.opt.cursorline = false
-			vim.cmd([[set termguicolors | hi Cursor blend=0]])
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	group = augroup("floating_file_type"),
-	callback = function()
-		if vim.bo.filetype == "lazy" then
-			vim.opt.cursorline = true
-			vim.cmd([[set termguicolors | hi Cursor blend=100 | set guicursor+=a:Cursor/lCursor]])
-		elseif vim.bo.filetype == "mason" then
-			vim.opt.cursorline = true
-			vim.cmd([[set termguicolors | hi Cursor blend=100 | set guicursor+=a:Cursor/lCursor]])
-		elseif vim.bo.filetype == "trouble" then
-			-- vim.opt.cursorline = false
-			-- vim.cmd([[set termguicolors | hi Cursor blend=100 | set guicursor+=a:Cursor/lCursor]])
-		end
-	end,
-})
-
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	group = augroup("rust_silent_write"),
 	pattern = "*.rs",
@@ -104,13 +67,5 @@ vim.api.nvim_create_autocmd("User", {
 	pattern = "NoiceMessage",
 	callback = function()
 		vim.cmd("NoiceHistory")
-	end,
-})
-
-vim.api.nvim_create_autocmd("User", {
-	group = vim.api.nvim_create_augroup("fugitive_object", { clear = true }),
-	pattern = "FugitiveObject",
-	callback = function()
-		vim.cmd("setlocal bufhidden=")
 	end,
 })
