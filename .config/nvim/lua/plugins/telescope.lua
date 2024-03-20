@@ -4,6 +4,7 @@ return {
 		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"AckslD/nvim-neoclip.lua",
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			"nvim-treesitter/nvim-treesitter",
 			{

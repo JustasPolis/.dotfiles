@@ -51,6 +51,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		vim.cmd("Trouble")
+		vim.cmd("wincmd p")
 		if vim.fn.argv(0) == "." then
 			require("telescope").extensions.file_browser.file_browser()
 		end
