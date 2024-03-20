@@ -3,7 +3,15 @@ return {
 	lazy = true,
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "folke/neodev.nvim", opts = {} },
+		{
+			"folke/neodev.nvim",
+			opts = {
+				library = {
+					plugins = false,
+				},
+				setup_jsonls = false,
+			},
+		},
 		"JustasPolis/trouble.nvim",
 		"nvim-telescope/telescope.nvim",
 	},
@@ -31,8 +39,8 @@ return {
 
 			map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 			map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-			map("gi", require('telescope.builtin').lsp_implementations, "[G]oto [I]mplementation")
-			map("gr", require('telescope.builtin').lsp_references, "[G]oto [R]ereferences")
+			map("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+			map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]ereferences")
 
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 				border = "rounded",
