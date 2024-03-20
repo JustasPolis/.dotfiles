@@ -65,10 +65,10 @@ return {
 		cmp.setup({
 			---@diagnostic disable-next-line: missing-fields
 			performance = {
-				max_view_entries = 30,
-				debounce = 60,
-				fetching_timeout = 500,
-				throttle = 30,
+				max_view_entries = 15,
+				debounce = 20,
+				fetching_timeout = 200,
+				throttle = 20,
 			},
 			preselect = cmp.PreselectMode.None,
 			---@diagnostic disable-next-line: missing-fields
