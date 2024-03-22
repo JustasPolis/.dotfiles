@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	group = augroup("resize_splits"),
@@ -47,11 +46,13 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
+	group = vim.api.nvim_create_augroup("config_vim_enter", { clear = true }),
+  once = true,
 	callback = function()
 		vim.cmd("Trouble")
 		vim.cmd("wincmd p")
 		if vim.fn.argv(0) == "." then
-			require("telescope").extensions.file_browser.file_browser()
+			vim.cmd("Alpha")
 		end
 	end,
 })
@@ -63,3 +64,14 @@ vim.api.nvim_create_autocmd("User", {
 		vim.cmd("NoiceHistory")
 	end,
 })
+
+-- vim.ui_attach(vim.api.nvim_create_namespace("redirect messages"), { ext_messages = true }, function(event, ...)
+--   if event == "msg_show" then
+--     local level = vim.log.levels.INFO
+--     local kind, content = ...
+--     if string.find(kind, "err") then
+--       level = vim.log.levels.ERROR
+--     end
+--     vim.notify(content, level, { title = "Message" })
+--   end
+-- end)

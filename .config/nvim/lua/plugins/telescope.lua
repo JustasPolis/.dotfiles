@@ -47,7 +47,7 @@ return {
 				desc = "Telescope grep string",
 			},
 			{
-				"<leader>fb",
+				"<leader>b",
 				function()
 					require("telescope").extensions.file_browser.file_browser()
 				end,
@@ -60,8 +60,6 @@ return {
 					file_browser = {
 						hijack_netrw = true,
 						grouped = true,
-						files = true,
-						depth = "false",
 						display_stat = false,
 						git_status = false,
 					},
