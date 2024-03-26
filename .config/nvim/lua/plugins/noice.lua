@@ -1,6 +1,7 @@
 return {
 	"JustasPolis/noice.nvim",
 	event = "VeryLazy",
+  enabled = false,
 	opts = {
 		cmdline = {
 			enabled = true,

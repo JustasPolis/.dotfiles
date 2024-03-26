@@ -42,6 +42,7 @@ return {
 				},
 			},
 			highlight_groups = {
+				FloatTitle = { bg = "none", fg = "#908caa" },
 				CursorLine = { bg = "#26233a", fg = "none" },
 				StatusLine = { fg = "love", bg = "love", blend = 0 },
 				Search = { bg = "gold", inherit = false },

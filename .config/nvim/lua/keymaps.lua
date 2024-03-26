@@ -6,6 +6,7 @@ keymap("", "<Space>", "<Nop>", opts)
 keymap("n", "<leader>|", ":vnew <cr>", opts)
 keymap("n", "gb", "<C-o>", opts)
 keymap("", "q", "<Nop>", opts)
+keymap("n", "q", "<ESC>", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
@@ -24,11 +25,17 @@ keymap("n", "<leader>O", ":normal O<CR>", opts)
 
 vim.keymap.set("n", "<ESC>", function()
 	for _, win in pairs(vim.api.nvim_list_wins()) do
+		if not vim.api.nvim_win_is_valid(win) then
+			return
+		end
+
 		if
 			vim.api.nvim_win_get_config(win).relative == "win"
 			or vim.api.nvim_win_get_config(win).relative == "editor"
 		then
-			vim.api.nvim_win_close(win, false)
+			if vim.api.nvim_win_is_valid(win) then
+				vim.api.nvim_win_close(win, false)
+			end
 		end
 	end
 end, opts)
