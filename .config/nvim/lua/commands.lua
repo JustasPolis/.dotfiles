@@ -57,77 +57,26 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("User", {
-	group = vim.api.nvim_create_augroup("noice_message", { clear = true }),
-	pattern = "NoiceMessage",
-	callback = function()
-		--vim.cmd("NoiceHistory")
-	end,
-})
+---@enum MessageType
+local message_type = {
+	error = 1,
+	warn = 2,
+	info = 3,
+	debug = 4,
+}
 
-local function copy(table)
-	local orig_type = type(table)
-	local copy
-	if orig_type == "table" then
-		copy = {}
-		for orig_key, orig_value in pairs(table) do
-			copy[orig_key] = orig_value
+local function on_message(_, result, ctx)
+	---@type number
+	local client_id = ctx.client_id
+	local client = vim.lsp.get_client_by_id(client_id)
+	local client_name = client and client.name or string.format("lsp id=%d", client_id)
+
+	local message = string.gsub("LSP: (" .. client_name .. ") " .. result.message, "\n", "")
+	for level, type in pairs(message_type) do
+		if type == result.type then
+			vim.notify(message, type, {})
 		end
-	else -- number, string, boolean, etc
-		copy = table
 	end
-	return copy
 end
 
-local event = require("nui.utils.autocmd").event
-
-local cmp = require("cmp")
-local cmp_config = require("cmp.config")
-
-local Input = require("nui.input")
-
-local input = Input({
-	position = "50%",
-	size = {
-		width = "50%",
-	},
-	border = {
-		style = "rounded",
-		padding = {
-			left = 1,
-		},
-		text = {
-			top = "Command",
-			top_align = "center",
-		},
-	},
-}, {
-	prompt = "",
-	default_value = "",
-	on_close = function()
-		print("Input Closed!")
-	end,
-	on_submit = function(value)
-		vim.cmd(value)
-	end,
-})
-
-vim.ui_attach(vim.api.nvim_create_namespace("redirect messages"), { ext_cmdline = true }, function(event, ...)
-	if event == "cmdline_show" then
-		input:mount()
-	elseif event == "cmdline_hide" then
-		input:unmount()
-	end
-	--if event == "msg_show" then
-	--	local level = vim.log.levels.INFO
-	--	local kind, content = ...
-	--	if string.find(kind, "err") then
-	--		level = vim.log.levels.ERROR
-	--	end
-	--	vim.notify(content, level, { title = "Message" })
-	--end
-end)
-
---local cmdline_config = Util.copy(cmp_config.cmdline[":"])
---cmdline_config.enabled = true
---cmp.setup.buffer(cmdline_config)
+vim.lsp.handlers["window/showMessage"] = on_message
