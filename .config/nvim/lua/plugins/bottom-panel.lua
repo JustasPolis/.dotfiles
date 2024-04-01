@@ -4,8 +4,8 @@ return {
   dependencies = {
     "MunifTanjim/nui.nvim",
   },
-  config = function()
-    require("bottom-panel").setup()
-  end,
   lazy = false,
+  config = function()
+    require("bottom-panel").setup("hello world")
+  end,
 }

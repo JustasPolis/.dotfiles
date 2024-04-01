@@ -27,18 +27,21 @@ vim.opt.confirm = false
 vim.opt.ignorecase = true
 vim.opt.shiftround = true
 vim.opt.splitkeep = "screen"
-vim.opt.shortmess:append({ W = true, I = true, c = true, F = true, C = true, o = true, S = true, s = true, A = true })
+vim.opt.shortmess:append({
+  W = true,
+  I = true,
+  c = true,
+  F = true,
+  C = true,
+  o = true,
+  S = true,
+  s = true,
+  A = true,
+})
 vim.opt.showcmd = false
 vim.opt.smoothscroll = true
 vim.opt.fillchars = {
-	eob = " ",
-	vert = " ",
-	horizdown = " ",
-	horiz = " ",
-	horizup = " ",
-	vertleft = " ",
-	vertright = " ",
-	verthoriz = " ",
+  eob = " ",
 }
 vim.opt.cmdheight = 0
 vim.opt.scrolloff = 4
@@ -47,7 +50,7 @@ vim.opt.autoindent = true
 
 vim.cmd([[highlight StatusLine guibg=NONE]])
 vim.diagnostic.config({
-	underline = true,
+  underline = true,
 })
 
 local hl = vim.api.nvim_get_hl(0, { name = "VertSplit" })
@@ -58,6 +61,6 @@ vim.diagnostic.config({ virtual_text = { prefix = "", spacing = 0 } })
 
 local signs = { Error = " ", Warn = " ", Hint = "", Info = " " }
 for name, icon in pairs(signs) do
-	name = "DiagnosticSign" .. name
-	vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+  name = "DiagnosticSign" .. name
+  vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
 end
