@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),
   callback = function()
     vim.cmd("tabdo wincmd =")
+    vim.opt.statusline = string.rep("─", vim.api.nvim_win_get_width(0))
   end,
 })
 
@@ -49,33 +50,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("config_vim_enter", { clear = true }),
   once = true,
   callback = function()
-    vim.cmd("wincmd p")
     if vim.fn.argv(0) == "." then
       vim.cmd("Alpha")
     end
   end,
 })
-
----@enum MessageType
-local message_type = {
-  error = 1,
-  warn = 2,
-  info = 3,
-  debug = 4,
-}
-
-local function on_message(_, result, ctx)
-  ---@type number
-  local client_id = ctx.client_id
-  local client = vim.lsp.get_client_by_id(client_id)
-  local client_name = client and client.name or string.format("lsp id=%d", client_id)
-
-  local message = string.gsub("LSP: (" .. client_name .. ") " .. result.message, "\n", "")
-  for level, type in pairs(message_type) do
-    if type == result.type then
-      vim.notify(message, type, {})
-    end
-  end
-end
-
-vim.lsp.handlers["window/showMessage"] = on_message

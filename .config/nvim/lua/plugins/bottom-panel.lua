@@ -4,8 +4,25 @@ return {
   dependencies = {
     "MunifTanjim/nui.nvim",
   },
-  lazy = false,
+  cmd = "VimEnter",
+  keys = {
+    {
+      "<leader>pd",
+      mode = { "n" },
+      function()
+        require("bottom-panel").navigate("Diagnostics")
+      end,
+      desc = "PanelDiagnostics",
+    },
+  },
   config = function()
-    require("bottom-panel").setup("hello world")
+    require("bottom-panel").setup({
+      open_on_launch = true,
+      tabs = {
+        { name = "Diagnostics", module = "diagnostics" },
+        { name = "Messages", module = "messages" },
+      },
+    })
   end,
+  lazy = true,
 }
