@@ -101,6 +101,11 @@ return {
       cmd = { "css-languageserver", "--stdio" },
     })
 
+    require("lspconfig").dartls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     require("lspconfig").lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
