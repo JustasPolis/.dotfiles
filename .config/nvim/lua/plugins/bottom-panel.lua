@@ -7,12 +7,12 @@ return {
   cmd = "VimEnter",
   keys = {
     {
-      "<leader>pd",
+      "<leader>pm",
       mode = { "n" },
       function()
-        require("bottom-panel").navigate("Diagnostics")
+        require("bottom-panel").navigate("Messages")
       end,
-      desc = "PanelDiagnostics",
+      desc = "PanelMessages",
     },
   },
   config = function()
