@@ -1,7 +1,10 @@
 return {
   "JustasPolis/statusline.nvim",
   dev = true,
-  cmd = "VimEnter",
-  config = function() end,
+  priority = 999,
+  config = function()
+    require("statusline").setup()
+  end,
   lazy = false,
+
 }
