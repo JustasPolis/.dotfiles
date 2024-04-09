@@ -1,6 +1,7 @@
 return {
-  "rose-pine/neovim",
+  "JustasPolis/rose-pine.nvim",
   name = "rose-pine",
+  dev = true,
   lazy = false,
   priority = 999,
   opts = {},
@@ -10,6 +11,12 @@ return {
       dark_variant = "main",
       dim_inactive_windows = false,
       disable_float_background = true,
+
+      enable = {
+        terminal = true,
+        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+        migrations = true, -- Handle deprecated options automatically
+      },
 
       styles = {
         bold = true,
@@ -144,6 +151,7 @@ return {
       },
     }
     require("rose-pine").setup(opts)
+
     vim.cmd("colorscheme rose-pine")
   end,
 }

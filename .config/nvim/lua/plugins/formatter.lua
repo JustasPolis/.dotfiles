@@ -13,6 +13,7 @@ return {
 			css = { "prettier" },
 			ts = { "prettier" },
 			js = { "prettier" },
+			dart = { "dart_format" },
 		},
 	},
 	keys = {

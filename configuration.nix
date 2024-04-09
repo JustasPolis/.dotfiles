@@ -123,6 +123,7 @@
       unstable.obsidian
       unstable.networkmanagerapplet
       google-chrome
+      qbittorrent
     ];
   };
 
@@ -171,6 +172,7 @@
     networkmanager = {enable = true;};
     firewall = {
       enable = true;
+      allowedTCPPorts = [1883];
       logReversePathDrops = true;
       extraCommands = ''
         ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN

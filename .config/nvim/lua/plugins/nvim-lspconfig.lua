@@ -21,7 +21,7 @@ return {
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
       end
 
-      vim.lsp.inlay_hint.enable(bufnr, true)
+      --vim.lsp.inlay_hint.enable(bufnr, true)
 
       map("K", vim.lsp.buf.hover, "Hover Documentation")
 
@@ -56,7 +56,7 @@ return {
           update_in_insert = false,
           virtual_text = false,
         })
-      --require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+      require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
     end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -103,29 +103,23 @@ return {
 
     require("lspconfig").dartls.setup({
       capabilities = capabilities,
-      autostart = false,
+      init_options = {
+        onlyAnalyzeProjectsWithOpenFiles = false,
+      },
+      --autostart = false,
+      single_file_support = false,
       on_attach = on_attach,
       settings = {
         dart = {
           completeFunctionCalls = true,
           showTodos = true,
+          enableSnippets = true,
+          analysisExcludedFolders = {
+            "/home/justin/.pub-cache",
+            "/nix/store",
+          },
         },
       },
-    })
-
-    -- ensures that one client is attached only, buggy lsp implementation
-    vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
-      group = vim.api.nvim_create_augroup("nvim_lsp_dart", { clear = true }),
-      pattern = { "*.dart" },
-      callback = function()
-        local clients = vim.lsp.buf_get_clients()
-        if #clients == 0 then
-          vim.schedule(function()
-            vim.cmd("LspStart")
-          end)
-          vim.api.nvim_clear_autocmds({ group = "nvim_lsp_dart" })
-        end
-      end,
     })
 
     require("lspconfig").lua_ls.setup({
