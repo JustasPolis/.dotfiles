@@ -39,8 +39,8 @@ vim.opt.shortmess:append({
   A = true,
 })
 vim.opt.showcmd = false
-vim.opt.laststatus = 3
-vim.opt.statusline = "d"
+vim.opt.laststatus = 0
+vim.opt.statusline = string.rep("─", vim.api.nvim_win_get_width(0))
 vim.opt.smoothscroll = true
 vim.opt.fillchars = {
   eob = " ",
