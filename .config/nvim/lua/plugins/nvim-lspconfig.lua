@@ -21,7 +21,7 @@ return {
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
       end
 
-      --vim.lsp.inlay_hint.enable(bufnr, true)
+      vim.lsp.inlay_hint.enable(bufnr, true)
 
       map("K", vim.lsp.buf.hover, "Hover Documentation")
 

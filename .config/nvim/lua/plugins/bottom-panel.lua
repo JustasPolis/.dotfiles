@@ -14,15 +14,24 @@ return {
       end,
       desc = "PanelMessages",
     },
+    {
+      "<leader>pd",
+      mode = { "n" },
+      function()
+        require("bottom-panel").navigate("Diagnostics")
+      end,
+      desc = "PanelDiagnostics",
+    },
   },
   config = function()
     require("bottom-panel").setup({
       open_on_launch = true,
       tabs = {
-        { name = "Diagnostics", module = "diagnostics" },
         { name = "Messages", module = "messages" },
+        { name = "Diagnostics", module = "diagnostics" },
       },
     })
   end,
   lazy = false,
+  priority = 999,
 }
