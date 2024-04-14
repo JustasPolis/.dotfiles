@@ -64,3 +64,4 @@ vim.api.nvim_create_user_command("InlayHintsToggle", function()
     vim.lsp.inlay_hint.enable(current_buf, true)
   end
 end, {})
+

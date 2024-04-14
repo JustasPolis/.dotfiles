@@ -5,5 +5,8 @@ return {
     "mfussenegger/nvim-dap",
   },
   cmd = "Cargo",
-  lazy = true,
+  lazy = false,
+  config = function()
+    require("rust").setup()
+  end,
 }
