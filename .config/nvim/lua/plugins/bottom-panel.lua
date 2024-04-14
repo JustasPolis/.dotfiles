@@ -26,6 +26,7 @@ return {
   config = function()
     require("bottom-panel").setup({
       open_on_launch = true,
+      initial_tab = "Messages",
       tabs = {
         { name = "Messages", module = "messages" },
         { name = "Diagnostics", module = "diagnostics" },
