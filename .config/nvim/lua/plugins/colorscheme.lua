@@ -1,7 +1,7 @@
 return {
   "JustasPolis/rose-pine.nvim",
   name = "rose-pine",
-  dev = true,
+  dev = false,
   lazy = false,
   priority = 999,
   opts = {},
@@ -33,11 +33,6 @@ return {
         comment = "muted",
         link = "iris",
         punctuation = "subtle",
-
-        error = "love",
-        hint = "iris",
-        info = "#FFFFFF",
-        warn = "#fc9403",
 
         headings = {
           h1 = "iris",
@@ -142,6 +137,8 @@ return {
         NvimTreeBookmarkHL = { bg = "none", fg = "none", undercurl = false, underline = false },
         BufferLineBackground = { bg = "none", fg = "none", undercurl = false, underline = false },
         BufferLineSeparator = { bg = "none", fg = "none", undercurl = false, underline = false },
+        BufferLineBuffer = { bg = "none", undercurl = false, underline = false },
+        BufferLineNumbers = { bg = "none", undercurl = false, underline = false },
         BufferLineTabSeparator = { bg = "none", fg = "none", undercurl = false, underline = false },
         BufferLineFill = { bg = "none", fg = "none", undercurl = false, underline = false },
 

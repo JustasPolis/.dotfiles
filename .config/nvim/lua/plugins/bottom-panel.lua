@@ -1,6 +1,6 @@
 return {
-  "JustasPolis/bottom-panel.nvim",
-  dev = true,
+  "JustasPolis/panel.nvim",
+  dev = false,
   dependencies = {
     "MunifTanjim/nui.nvim",
   },
@@ -10,7 +10,7 @@ return {
       "<leader>pm",
       mode = { "n" },
       function()
-        require("bottom-panel").navigate("Messages")
+        require("panel").navigate("Messages")
       end,
       desc = "PanelMessages",
     },
@@ -18,13 +18,13 @@ return {
       "<leader>pd",
       mode = { "n" },
       function()
-        require("bottom-panel").navigate("Diagnostics")
+        require("panel").navigate("Diagnostics")
       end,
       desc = "PanelDiagnostics",
     },
   },
   config = function()
-    require("bottom-panel").setup({
+    require("panel").setup({
       open_on_launch = true,
       initial_tab = "Messages",
       tabs = {
@@ -34,5 +34,5 @@ return {
     })
   end,
   lazy = false,
-  priority = 999,
+  priority = 998,
 }
