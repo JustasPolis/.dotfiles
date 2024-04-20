@@ -122,6 +122,11 @@ return {
       },
     })
 
+    require("lspconfig").pyright.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     require("lspconfig").lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,

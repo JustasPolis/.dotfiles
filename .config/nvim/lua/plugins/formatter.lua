@@ -14,6 +14,7 @@ return {
 			ts = { "prettier" },
 			js = { "prettier" },
 			dart = { "dart_format" },
+			python = { "black" },
 		},
 	},
 	keys = {
