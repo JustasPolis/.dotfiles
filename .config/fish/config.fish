@@ -20,3 +20,8 @@ set -x PATH $PATH ~/.cargo/bin
 bind -M default \cz 'fg 2>/dev/null; commandline -f repaint'
 bind -M insert \cz 'fg 2>/dev/null; commandline -f repaint'
 
+set fish_color_valid_path
+set fish_color_redirection cyan
+set fish_color_history_current
+set fish_pager_color_prefix normal
+set fish_color_selection white
