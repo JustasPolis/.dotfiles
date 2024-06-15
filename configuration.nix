@@ -100,12 +100,11 @@
       unstable.hyprshot
       hyprshade
       ddcutil
-      unstable.swaylock-effects
       curl
       unzip
       gzip
       home-manager
-      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+      neovim
       nil
       alejandra
       zoxide
@@ -117,7 +116,7 @@
       inputs.hyprlock.packages.${pkgs.system}.default
       inputs.hypridle.packages.${pkgs.system}.default
       power-profiles-daemon
-      staging.pulseaudio
+      pulseaudio
       unstable.wl-screenrec
       unstable.bitwarden-cli
       unstable.obsidian
