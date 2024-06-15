@@ -28,11 +28,8 @@
     file
     yq-go
     neofetch
-    swayidle
-    hyprpaper
     eza
     wofi
-    eww-wayland
     imagemagick
     perl538Packages.FileMimeInfo
     lf
@@ -44,7 +41,6 @@
     celluloid
     transmission-gtk
     shfmt
-    floorp
     trash-cli
   ];
 

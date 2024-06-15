@@ -3,14 +3,12 @@
   inputs,
   outputs,
   unstable,
-  staging,
   ...
 }: {
   imports = [
     ./scripts
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
-    inputs.hello.nixosModules.default
   ];
 
   programs = {
@@ -53,28 +51,6 @@
 
   nixpkgs = {
     config = {allowUnfree = true;};
-    overlays = [
-      (final: prev: {
-        ddcutil = prev.ddcutil.overrideAttrs (previousAttrs: rec {
-          version = "2.1.0";
-          src = prev.fetchurl {
-            url = "https://www.ddcutil.com/tarballs/ddcutil-${version}.tar.gz";
-            hash = "sha256-YiJrkxcoLVI/GTW8S5gMHFY30zjs0xnj5yZPmBCF5q0=";
-          };
-        });
-        power-profiles-daemon = prev.power-profiles-daemon.overrideAttrs (previousAttrs: rec {
-          version = "0.20";
-          src = prev.fetchFromGitLab {
-            domain = "gitlab.freedesktop.org";
-            owner = "upower";
-            repo = "power-profiles-daemon";
-            rev = version;
-            sha256 = "sha256-8wSRPR/1ELcsZ9K3LvSNlPcJvxRhb/LRjTIxKtdQlCA=";
-          };
-          doCheck = false;
-        });
-      })
-    ];
   };
 
   environment = {
@@ -104,11 +80,10 @@
       unzip
       gzip
       home-manager
-      neovim
+      unstable.neovim
       nil
       alejandra
       zoxide
-      #inputs.gtk-waybar.packages.${pkgs.system}.default
       foliate
       gnumake
       wgnord
@@ -121,7 +96,7 @@
       unstable.bitwarden-cli
       unstable.obsidian
       unstable.networkmanagerapplet
-      google-chrome
+      unstable.hyprpaper
       qbittorrent
     ];
   };
@@ -142,8 +117,6 @@
     extraSpecialArgs = {inherit inputs outputs;};
     users = {justin = import ./home.nix;};
   };
-
-  services.hello.enable = true;
 
   nix = {
     gc = {

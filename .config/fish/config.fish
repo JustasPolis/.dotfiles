@@ -8,9 +8,9 @@ set EDITOR nvim
 set BAT_THEME "ansi"
 set -g fish_key_bindings fish_vi_key_bindings
 
-bind -M insert \t accept-autosuggestion
-bind -M insert \cn 'commandline -f complete'
-bind -M insert \cp 'commandline -f complete-and-search'
+#bind -M insert \t accept-autosuggestion
+#bind -M insert \cn 'commandline -f complete'
+#bind -M insert \cp 'commandline -f complete-and-search'
 
 bind yy fish_clipboard_copy
 bind p fish_clipboard_paste
@@ -25,3 +25,19 @@ set fish_color_redirection cyan
 set fish_color_history_current
 set fish_pager_color_prefix normal
 set fish_color_selection white
+
+set -Ux FZF_DEFAULT_OPTS "\
+--ansi \
+--border rounded \
+--color='16,bg+:-1,gutter:-1,prompt:5,pointer:5,marker:6,border:4,label:4,header:italic' \
+--marker=' ' \
+--no-info \
+--no-separator \
+--pointer='👉' \
+--reverse"
+
+set -Ux FZF_TMUX_OPTS "-p 55%,60%"
+
+set -Ux FZF_CTRL_R_OPTS "\
+--border-label=' history ' \
+--prompt='  '"

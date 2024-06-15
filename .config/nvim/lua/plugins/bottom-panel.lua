@@ -1,6 +1,6 @@
 return {
   "JustasPolis/panel.nvim",
-  dev = true,
+  dev = false,
   dependencies = {
     "MunifTanjim/nui.nvim",
   },
