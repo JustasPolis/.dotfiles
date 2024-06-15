@@ -12,7 +12,6 @@
   home.file.".config/starship.toml".source = ./.config/starship/starship.toml;
   home.file.".config/nvim".source = ./.config/nvim;
   home.file.".config/swayimg/config".source = ./.config/swayimg/config;
-  home.file.".config/gtk-4.0".source = ./.config/gtk-4.0;
   home.file.".config/wofi".source = ./.config/wofi;
   home.file.".config/lf".source = ./.config/lf;
   home.file.".config/bat".source = ./.config/bat;

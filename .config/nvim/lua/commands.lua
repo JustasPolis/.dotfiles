@@ -54,14 +54,3 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
-
-vim.api.nvim_create_user_command("InlayHintsToggle", function()
-  local current_buf = vim.api.nvim_get_current_buf()
-  local is_enabled = vim.lsp.inlay_hint.is_enabled(current_buf)
-  if is_enabled then
-    vim.lsp.inlay_hint.enable(current_buf, false)
-  else
-    vim.lsp.inlay_hint.enable(current_buf, true)
-  end
-end, {})
-
