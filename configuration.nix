@@ -96,6 +96,7 @@
       unstable.obsidian
       unstable.networkmanagerapplet
       unstable.hyprpaper
+      unstable.keyd
       qbittorrent
     ];
   };
@@ -279,6 +280,24 @@
 
   services.upower.enable = true;
   services.upower.criticalPowerAction = "PowerOff";
+
+  services.keyd.enable = true;
+  services.keyd.keyboards = {
+    default = {
+      ids = ["*"];
+      settings = {
+        main = {
+          control = "layer(control)";
+        };
+        control = {
+          n = "down";
+          p = "up";
+          f = "right";
+          b = "left";
+        };
+      };
+    };
+  };
 
   services.logind.extraConfig = ''
     HandlePowerKey=ignore
