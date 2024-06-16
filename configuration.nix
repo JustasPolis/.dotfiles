@@ -167,7 +167,7 @@
         shell = pkgs.fish;
         isNormalUser = true;
         description = "Justin";
-        extraGroups = ["networkmanager" "wheel" "audio" "nordvpn" "wireshark"];
+        extraGroups = ["networkmanager" "wheel" "audio" "nordvpn" "wireshark" "keyd"];
       };
     };
   };
