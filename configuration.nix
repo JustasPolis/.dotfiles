@@ -9,6 +9,7 @@
     ./scripts
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
+    inputs.xremap.nixosModules.default
   ];
 
   programs = {
@@ -96,7 +97,6 @@
       unstable.obsidian
       unstable.networkmanagerapplet
       unstable.hyprpaper
-      unstable.keyd
       qbittorrent
     ];
   };
@@ -167,9 +167,47 @@
         shell = pkgs.fish;
         isNormalUser = true;
         description = "Justin";
-        extraGroups = ["networkmanager" "wheel" "audio" "nordvpn" "wireshark" "keyd"];
+        extraGroups = ["networkmanager" "wheel" "audio" "nordvpn" "wireshark"];
       };
     };
+  };
+
+  services.xremap = {
+    serviceMode = "user";
+    userName = "justin";
+    withWlroots = true;
+  };
+
+  services.xremap.config = {
+    keymap = [
+{
+        name = "Global";
+        remap = {
+          "CTRL_L-p" = "up";
+          "CTRL_L-n" = "down";
+        };
+      }
+      {
+        name = "Global-like shortcuts for terminal";
+        application.only = [
+          "kitty"
+        ];
+        remap = {
+          "CTRL_L-f" = "right";
+          "CTRL_L-b" = "left";
+        };
+      }
+      {
+        name = "shortcuts for firefox";
+        application.only = [
+          "firefox"
+        ];
+        remap = {
+          "ctrl-l" = "Shift-F6";
+          "CTRL_L-s" = "F11";
+        };
+      }
+    ];
   };
 
   fonts = {
@@ -280,24 +318,6 @@
 
   services.upower.enable = true;
   services.upower.criticalPowerAction = "PowerOff";
-
-  services.keyd.enable = true;
-  services.keyd.keyboards = {
-    default = {
-      ids = ["*"];
-      settings = {
-        main = {
-          control = "layer(control)";
-        };
-        control = {
-          n = "down";
-          p = "up";
-          f = "right";
-          b = "left";
-        };
-      };
-    };
-  };
 
   services.logind.extraConfig = ''
     HandlePowerKey=ignore

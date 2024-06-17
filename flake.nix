@@ -7,11 +7,13 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
+    xremap.url = "github:xremap/nix-flake";
   };
 
   outputs = {
     nixpkgs,
     nixpkgs-unstable,
+    xremap,
     home-manager,
     ...
   } @ inputs: {
