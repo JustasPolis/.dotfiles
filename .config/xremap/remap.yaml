@@ -1,0 +1,26 @@
+modmap:
+- name: Global
+  remap:
+    Capslock :
+      held: [Ctrl_L, Shift, Alt, Super]
+      alone: Super
+      alone_timeout_millis: 100
+
+keymap:
+- name: Global
+  remap:
+    CTRL_L-p: up
+    CTRL_L-n: down
+- name: kitty
+  application:
+    only: kitty
+  remap:
+    CTRL_L-f: right
+    CTRL_L-b: left
+- name: firefox
+  application:
+    only: firefox
+  remap:
+    CTRL_L-l: Shift-F6
+    CTRL_L-s: F11
+
