@@ -1,0 +1,100 @@
+#firefox-view-button {
+    display: none !important;
+}
+
+#back-button {
+    display: none !important;
+}
+
+#forward-button {
+    display: none !important;
+}
+
+#stop-reload-button {
+    display: none !important;
+}
+
+#sidebar-button {
+    display: none !important;
+}
+
+#bookmarks-menu-button {
+    display: none !important;
+}
+
+#unified-extensions-button {
+    display: none !important;
+}
+
+#PersonalToolbar {
+    display: none !important;
+}
+
+#fxa-toolbar-menu-button {
+  display: none !important;
+}
+
+tab[label="OneTab"] {
+    display: none !important;
+}
+
+.toolbarbutton.titlebar-button.titlebar-close {
+    display: none !important;
+}
+
+#ublock0_raymondhill_net-browser-action {
+  display: none !important;
+}
+
+#tracking-protection-icon-container {
+  display: none !important;
+}
+
+#identity-box {
+  display: none !important;
+}
+
+#page-action-buttons {
+  display: none !important;
+}
+
+#tabbrowser-arrowscrollbox-periphery {
+  display: none !important;
+}
+
+#tabbrowser-tabs {
+  margin-inline-start: 0px !important;
+  border-inline-start: 0px !important;
+}
+
+.tabbrowser-tab {
+  margin-inline-start: 0px !important;
+}
+
+.tab-close-button {
+  display: none !important;
+}
+
+.titlebar-buttonbox-container {
+  display: none !important;
+}
+
+#customizableui-special-spring1 {
+  max-width: 0px !important;
+}
+
+#urlbar-container {
+  margin-inline: 2px !important;
+}
+
+#customizableui-special-spring2 {
+  max-width: 0px !important;
+}
+
+#urlbar-input-container {
+  margin-inline-start: 8px !important;
+}
+
+#navigator-toolbox[fullscreenShouldAnimate] {
+    transition: none !important;
+}

@@ -3,6 +3,7 @@
   inputs,
   outputs,
   unstable,
+  old,
   ...
 }: {
   imports = [
@@ -26,10 +27,12 @@
         set fish_greeting
       '';
     };
+
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      package = old.hyprland;
     };
+
     direnv = {enable = true;};
     wireshark = {enable = true;};
   };
@@ -176,38 +179,7 @@
     serviceMode = "user";
     userName = "justin";
     withWlroots = true;
-  };
-
-  services.xremap.config = {
-    keymap = [
-{
-        name = "Global";
-        remap = {
-          "CTRL_L-p" = "up";
-          "CTRL_L-n" = "down";
-        };
-      }
-      {
-        name = "Global-like shortcuts for terminal";
-        application.only = [
-          "kitty"
-        ];
-        remap = {
-          "CTRL_L-f" = "right";
-          "CTRL_L-b" = "left";
-        };
-      }
-      {
-        name = "shortcuts for firefox";
-        application.only = [
-          "firefox"
-        ];
-        remap = {
-          "ctrl-l" = "Shift-F6";
-          "CTRL_L-s" = "F11";
-        };
-      }
-    ];
+    yamlConfig = builtins.readFile ./.config/xremap/remap.yml;
   };
 
   fonts = {

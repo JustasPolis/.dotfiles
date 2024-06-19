@@ -1,5 +1,11 @@
-{ config, pkgs, lib, inputs, system, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  system,
+  ...
+}: {
   home.username = "justin";
   home.homeDirectory = "/home/justin";
   home.file.".config/hypr".source = ./.config/hypr;
@@ -17,7 +23,21 @@
   home.file.".config/bat".source = ./.config/bat;
   home.file.".config/git".source = ./.config/git;
 
-  nixpkgs.config = { allowUnfree = true; };
+  nixpkgs.config = {allowUnfree = true;};
+
+  imports = [inputs.ags.homeManagerModules.default];
+
+  wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland.systemd.variables = ["--all"];
+
+  programs.ags = {
+    enable = true;
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
+  };
 
   home.packages = with pkgs; [
     kitty
