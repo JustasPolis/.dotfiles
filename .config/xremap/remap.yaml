@@ -1,13 +1,18 @@
-modmap:
-  - name: Global
-    remap:
-      CapsLock: [super_l, shift_l]
-
 keymap:
 - name: Global
   remap:
     CTRL_L-p: up
     CTRL_L-n: down
+    SHIFT_R-1:
+      launch: ["bash", "-c", "pamixer --toggle-mute"]
+    SHIFT_R-2:
+      launch: ["bash", "-c", "pamixer --decrease 10"]
+    SHIFT_R-3:
+      launch: ["bash", "-c", "pamixer --increase 10"]
+    SHIFT_R-4:
+      launch: ["bash", "-c", "brightnessctl set 10%-"]
+    SHIFT_R-5:
+      launch: ["bash", "-c", "brightnessctl set 10%+"]
 - name: kitty
   application:
     only: kitty
