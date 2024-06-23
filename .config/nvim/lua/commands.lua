@@ -35,15 +35,15 @@ vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  group = vim.api.nvim_create_augroup("help_enter", { clear = true }),
-  pattern = "*",
-  callback = function(event)
-    if vim.bo[event.buf].filetype == "help" then
-      vim.wo[vim.api.nvim_get_current_win()].winfixbuf = true
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufWinEnter", {
+--   group = vim.api.nvim_create_augroup("help_enter", { clear = true }),
+--   pattern = "*",
+--   callback = function(event)
+--     if vim.bo[event.buf].filetype == "help" then
+--       vim.wo[vim.api.nvim_get_current_win()].winfixbuf = true
+--     end
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("config_vim_enter", { clear = true }),
