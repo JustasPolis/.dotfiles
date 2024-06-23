@@ -185,7 +185,28 @@ return {
     ---@diagnostic disable-next-line: missing-fields
     cmp.setup.cmdline(":", {
       preselect = cmp.PreselectMode.None,
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = {
+        ["<Down>"] = {
+          c = function(fallback)
+            local cmp = require("cmp")
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end,
+        },
+        ["<Up>"] = {
+          c = function(fallback)
+            local cmp = require("cmp")
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end,
+        },
+      },
       ---@diagnostic disable-next-line: missing-fields
       formatting = {
         expandable_indicator = false,

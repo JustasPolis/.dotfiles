@@ -1,43 +1,22 @@
 {
   config,
   pkgs,
-  lib,
-  inputs,
-  system,
   ...
 }: {
   home.username = "justin";
   home.homeDirectory = "/home/justin";
-  home.file.".config/hypr".source = ./.config/hypr;
-  home.file.".config/kitty".source = ./.config/kitty;
-  home.file.".config/wallpapers".source = ./.config/wallpapers;
-  home.file.".config/swayidle/config".source = ./.config/swayidle/config;
-  home.file.".config/swaylock/config".source = ./.config/swaylock/config;
-  home.file.".config/fish/config.fish".source = ./.config/fish/config.fish;
-  home.file.".config/fish/functions".source = ./.config/fish/functions;
-  home.file.".config/starship.toml".source = ./.config/starship/starship.toml;
-  home.file.".config/nvim".source = ./.config/nvim;
-  home.file.".config/swayimg/config".source = ./.config/swayimg/config;
-  home.file.".config/wofi".source = ./.config/wofi;
-  home.file.".config/lf".source = ./.config/lf;
+  home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink ./.config/hypr;
+  home.file.".config/kitty".source = config.lib.file.mkOutOfStoreSymlink ./.config/kitty;
+  home.file.".config/wallpapers".source = config.lib.file.mkOutOfStoreSymlink ./.config/wallpapers;
+  home.file.".config/fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink ./.config/fish/config.fish;
+  home.file.".config/fish/functions".source = config.lib.file.mkOutOfStoreSymlink ./.config/fish/functions;
+  home.file.".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink ./.config/starship/starship.toml;
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./.config/nvim;
+  home.file.".config/swayimg/config".source = config.lib.file.mkOutOfStoreSymlink ./.config/swayimg/config;
   home.file.".config/bat".source = ./.config/bat;
   home.file.".config/git".source = ./.config/git;
 
   nixpkgs.config = {allowUnfree = true;};
-
-  imports = [inputs.ags.homeManagerModules.default];
-
-  wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.systemd.variables = ["--all"];
-
-  programs.ags = {
-    enable = true;
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
-    ];
-  };
 
   home.packages = with pkgs; [
     kitty
@@ -48,7 +27,6 @@
     yq-go
     neofetch
     eza
-    wofi
     imagemagick
     perl538Packages.FileMimeInfo
     lf
@@ -61,6 +39,9 @@
     transmission-gtk
     shfmt
     trash-cli
+    nodePackages_latest.typescript-language-server
+    nodePackages_latest.prettier
+    typescript
   ];
 
   home.stateVersion = "23.11";

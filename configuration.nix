@@ -41,6 +41,7 @@
     bluetooth = {
       enable = true;
       powerOnBoot = true;
+      settings.General.Experimental = true;
     };
     pulseaudio = {
       enable = true;
@@ -179,7 +180,7 @@
     serviceMode = "user";
     userName = "justin";
     withWlroots = true;
-    yamlConfig = builtins.readFile ./.config/xremap/remap.yml;
+    yamlConfig = builtins.readFile ./.config/xremap/remap.yaml;
   };
 
   fonts = {

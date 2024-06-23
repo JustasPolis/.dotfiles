@@ -1,10 +1,7 @@
 modmap:
-- name: Global
-  remap:
-    Capslock :
-      held: [Ctrl_L, Shift, Alt, Super]
-      alone: Super
-      alone_timeout_millis: 100
+  - name: Global
+    remap:
+      CapsLock: [super_l, shift_l]
 
 keymap:
 - name: Global

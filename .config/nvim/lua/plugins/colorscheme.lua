@@ -141,7 +141,7 @@ return {
         BufferLineNumbers = { bg = "none", undercurl = false, underline = false },
         BufferLineTabSeparator = { bg = "none", fg = "none", undercurl = false, underline = false },
         BufferLineFill = { bg = "none", fg = "none", undercurl = false, underline = false },
-
+        LspInlayHint = { bg = "none", fg = "#908caa", blend = 0 },
         NoiceLspProgressClient = { fg = "#908caa", bg = "none" },
         NoiceLspProgressSpinner = { fg = "#908caa", bg = "none" },
         NoiceLspProgressTitle = { fg = "#908caa", bg = "none" },

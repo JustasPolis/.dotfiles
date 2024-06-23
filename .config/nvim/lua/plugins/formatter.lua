@@ -11,15 +11,15 @@ return {
 			nix = { "alejandra" },
 			scss = { "prettier" },
 			css = { "prettier" },
-			ts = { "prettier" },
-			js = { "prettier" },
+			typescript = { "prettier" },
+			javascript = { "prettier" },
 			dart = { "dart_format" },
 			python = { "black" },
 		},
 	},
 	keys = {
 		{
-			"<C-f>",
+			"<leader>ff",
 			mode = { "n", "x", "o" },
 			function()
 				require("conform").format({ timeout_ms = 500, lsp_fallback = false })
