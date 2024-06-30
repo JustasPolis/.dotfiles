@@ -1,5 +1,7 @@
 {
   config,
+  inputs,
+  xdg,
   pkgs,
   ...
 }: {
@@ -17,6 +19,18 @@
   home.file.".config/git".source = ./.config/git;
 
   nixpkgs.config = {allowUnfree = true;};
+
+  # add the home manager module
+  imports = [inputs.ags.homeManagerModules.default];
+
+  programs.ags = {
+    enable = true;
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
+  };
 
   home.packages = with pkgs; [
     kitty
@@ -43,6 +57,9 @@
     nodePackages_latest.prettier
     typescript
   ];
+
+  xdg.enable = true;
+  xdg.desktopEntries.firefox.noDisplay = true;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;

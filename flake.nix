@@ -8,6 +8,7 @@
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
     xremap.url = "github:xremap/nix-flake";
+    ags.url = "github:Aylur/ags";
   };
 
   outputs = {

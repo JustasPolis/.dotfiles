@@ -1,0 +1,36 @@
+window.bar {
+  background-color: transparent;
+  margin-right: 36px;
+}
+
+.label {
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.icon {
+  font-size: 14px;
+}
+
+.main-box {
+  margin-top: 2px;
+  margin-right: 6px;
+}
+
+.icon-text {
+  font-size: 12px;
+}
+
+.bluetooth-off {
+  font-size: 14px;
+  color: gray;
+}
+
+.bluetooth-on {
+  font-size: 14px;
+  color: white;
+}
+
+icon {
+  color: white;
+}
