@@ -15,6 +15,8 @@ return {
 			javascript = { "prettier" },
 			dart = { "dart_format" },
 			python = { "black" },
+			c = { "clang-format" },
+			cpp = { "clang-format" },
 		},
 	},
 	keys = {
@@ -22,7 +24,7 @@ return {
 			"<leader>ff",
 			mode = { "n", "x", "o" },
 			function()
-				require("conform").format({ timeout_ms = 500, lsp_fallback = false })
+				require("conform").format({ timeout_ms = 500, lsp_fallback = true })
 			end,
 			desc = "Format File",
 		},

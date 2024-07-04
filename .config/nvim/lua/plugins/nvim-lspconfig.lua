@@ -74,6 +74,11 @@ return {
       },
     })
 
+    require("lspconfig").clangd.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     require("lspconfig").gopls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
@@ -128,6 +133,11 @@ return {
     })
 
     require("lspconfig").tsserver.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    require("lspconfig").zls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })

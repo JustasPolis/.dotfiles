@@ -59,6 +59,7 @@
   ];
 
   xdg.enable = true;
+  xdg.desktopEntries.firefox.name = "test";
   xdg.desktopEntries.firefox.noDisplay = true;
 
   home.stateVersion = "23.11";
