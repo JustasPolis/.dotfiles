@@ -5,6 +5,7 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-local.url = "github:justaspolis/nixpkgs/master";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
     xremap.url = "github:xremap/nix-flake";
@@ -15,6 +16,7 @@
     nixpkgs,
     nixpkgs-unstable,
     nixpkgs-old,
+    nixpkgs-local,
     xremap,
     home-manager,
     ...
@@ -32,9 +34,16 @@
             config.allowUnfree = true;
           };
 
+          local = import nixpkgs-local {
+            system = system;
+            config.allowUnfree = true;
+          };
+
           inherit inputs;
         };
-        modules = [./configuration.nix];
+        modules = [
+          ./configuration.nix
+        ];
       };
     };
     homeConfigurations = {

@@ -56,6 +56,7 @@
     nodePackages_latest.typescript-language-server
     nodePackages_latest.prettier
     typescript
+    yt-dlp
   ];
 
   xdg.enable = true;

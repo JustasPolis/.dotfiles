@@ -3,6 +3,7 @@
   inputs,
   outputs,
   unstable,
+  local,
   old,
   ...
 }: {
@@ -101,6 +102,7 @@
       unstable.obsidian
       unstable.networkmanagerapplet
       unstable.hyprpaper
+      unstable.android-studio
       qbittorrent
       playerctl
     ];
