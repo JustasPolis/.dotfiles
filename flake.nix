@@ -5,11 +5,13 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-local.url = "github:justaspolis/nixpkgs/master";
+    nixpkgs-local.url = "github:nixos/nixpkgs/master";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
     xremap.url = "github:xremap/nix-flake";
     ags.url = "github:Aylur/ags";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
   };
 
   outputs = {

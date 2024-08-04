@@ -31,7 +31,7 @@
 
     hyprland = {
       enable = true;
-      package = old.hyprland;
+      #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     };
 
     direnv = {enable = true;};
@@ -103,8 +103,10 @@
       unstable.networkmanagerapplet
       unstable.hyprpaper
       unstable.android-studio
+      local.jetbrains.idea-community
       qbittorrent
       playerctl
+      vlc
     ];
   };
 

@@ -20,18 +20,6 @@
 
   nixpkgs.config = {allowUnfree = true;};
 
-  # add the home manager module
-  imports = [inputs.ags.homeManagerModules.default];
-
-  programs.ags = {
-    enable = true;
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
-    ];
-  };
-
   home.packages = with pkgs; [
     kitty
     nixfmt
@@ -57,11 +45,11 @@
     nodePackages_latest.prettier
     typescript
     yt-dlp
+ #   swaybg
   ];
 
   xdg.enable = true;
-  xdg.desktopEntries.firefox.name = "test";
-  xdg.desktopEntries.firefox.noDisplay = true;
+  #  xdg.desktopEntries.firefox.name = "test"; xdg.desktopEntries.firefox.noDisplay = true;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
